@@ -1,3 +1,5 @@
+@import url("tone-staff.css");
+
 @font-face {
   font-family: "Thai Text";
   src: local("Leelawadee UI"), url("../fonts/NotoSansThai-Regular.ttf") format("truetype");

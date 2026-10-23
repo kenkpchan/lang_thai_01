@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="refresh" content="0; url=integrated-tone-vocab.html">
+  <script>location.replace("integrated-tone-vocab.html");</script>
+  <style>html{display:none !important}</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vowel seat arrows · 元音位置箭頭預覽</title>
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <link rel="stylesheet" href="css/vowel-seat.css?v=1">
+  <style>
+    :root { --accent: #1d4e89; --ink: #1c1b19; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(26px, 4vw, 38px); margin: 12px 0 8px; }
+    [lang="zh-Hant"] { font-family: "Noto Serif TC", PMingLiU, serif; }
+    .wrap { max-width: 880px; }
+    .note { font-size: 13px; color: #5c564e; line-height: 1.45; max-width: 70ch; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>Preview</span>
+      <nav><a href="integrated-tone-vocab.html">Combined workshop</a></nav>
+    </header>
+    <h1>Vowel seat · 元音位置 <em lang="zh-Hant" style="font-style:normal;font-size:.62em;display:block;margin-top:4px">五組箭頭小圖</em></h1>
+    <p class="note">Each icon shows where the vowel sits relative to the consonant (ก). Colours match the workshop: before purple, above pink, below brown, after teal.</p>
+    <p class="note" lang="zh-Hant">小圖表示元音相對輔音（ก）的位置。顏色與詞彙板一致：前紫、上粉、下褐、後青綠。</p>
+    <div class="vowel-seat-key" id="sets"></div>
+    <footer class="jump"><a href="integrated-tone-vocab.html">← Combined workshop</a></footer>
+  </div>
+  <script>
+    const SETS = [
+      { id: "set-01-classic", name: "Classic", zh: "直箭＋輔音框" },
+      { id: "set-02-minimal", name: "Minimal", zh: "細箭" },
+      { id: "set-03-labeled", name: "Labeled", zh: "箭＋前上後下" },
+      { id: "set-04-slot", name: "Slot", zh: "虛線座位" },
+      { id: "set-05-arc", name: "Arc", zh: "弧箭" }
+    ];
+    const SEATS = [
+      { id: "before", en: "Before", zh: "前" },
+      { id: "above", en: "Above", zh: "上" },
+      { id: "below", en: "Below", zh: "下" },
+      { id: "after", en: "After", zh: "後" }
+    ];
+    document.getElementById("sets").innerHTML = SETS.map(function (set) {
+      const cells = SEATS.map(function (s) {
+        return (
+          '<div class="vowel-seat-cell"><img src="img/vowel-seats/' + set.id + "/" + s.id + '.svg" width="52" height="52" alt="' + s.en + '">' +
+          "<span>" + s.en + " " + s.zh + "</span></div>"
+        );
+      }).join("");
+      return (
+        '<div class="vowel-seat-set" role="group" aria-label="' + set.name + '">' +
+        '<p class="vowel-seat-set-label"><b>' + set.name + '</b><span lang="zh-Hant">' + set.zh + "</span></p>" +
+        cells +
+        "</div>"
+      );
+    }).join("");
+  </script>
+</body>
+</html>

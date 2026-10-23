@@ -1,3 +1,69 @@
 [build]
   publish = "."
   command = "node js/check-pages.js && node js/check-syllables.js"
+
+[[redirects]]
+  from = "/"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/01-card-box.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/02-class-board.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/03-listening-room.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/04-sinitic-bridge.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/05-one-morning.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/06-syllable-bench.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/07-picture-market.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/tone-staff-preview.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/vowel-seat-preview.html"
+  to = "/integrated-tone-vocab.html"
+  status = 302
+  force = true

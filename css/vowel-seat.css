@@ -1,0 +1,121 @@
+/* Vowel seat direction arrows (relative to consonant ก) */
+
+.vowel-seat-key {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.vowel-seat-set {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) repeat(4, minmax(44px, 1fr));
+  gap: 6px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #faf8f3;
+  box-shadow: inset 0 0 0 1px rgba(28, 27, 25, 0.08);
+}
+
+.vowel-seat-set.is-pick {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  color: inherit;
+}
+
+.vowel-seat-set.is-pick:hover,
+.vowel-seat-set.is-pick:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(28, 27, 25, 0.35);
+}
+
+.vowel-seat-set.is-pick[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 2px var(--accent, #1d4e89);
+  background: #fff;
+}
+
+.vowel-seat-set-label {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #4e4a44;
+  margin: 0;
+}
+
+.vowel-seat-set-label b {
+  display: block;
+  font-size: 13px;
+  font-weight: 640;
+  color: var(--ink, #1c1b19);
+}
+
+.vowel-seat-cell {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.vowel-seat-cell img {
+  width: 100%;
+  max-width: 48px;
+  height: auto;
+}
+
+.vowel-seat-cell span {
+  font-size: 9px;
+  color: #6a645c;
+}
+
+.vowel-seat-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: auto;
+  line-height: 0;
+}
+
+.vowel-seat-key-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.vowel-seat-key-inline img {
+  width: 56px;
+  max-width: none;
+  height: auto;
+}
+
+.seat .vowel-seat-icon {
+  width: 30px;
+  pointer-events: none;
+}
+
+.seat .seat-hint {
+  font-style: normal;
+  font-size: 13px;
+  opacity: 0.35;
+}
+
+.build-seat-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 10px 0 6px;
+  min-height: 26px;
+}
+
+.build-seat-head .vowel-seat-icon {
+  width: 30px;
+}
+
+@media (max-width: 720px) {
+  .vowel-seat-set {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .vowel-seat-set-label {
+    grid-column: 1 / -1;
+  }
+}

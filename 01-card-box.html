@@ -1,13 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="refresh" content="0; url=integrated-tone-vocab.html">
+  <script>location.replace("integrated-tone-vocab.html");</script>
+  <style>html{display:none !important}</style>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>01 The Card Box · Thai alphabet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=4">
+  <link rel="stylesheet" href="css/site.css?v=5">
   <style>
     :root { --bg: #f3ecdf; --ink: #211b16; --accent: #9d3a2c; }
     h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 58px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
@@ -119,6 +123,7 @@
       <a href="07-picture-market.html">07 Picture Market</a>
     </footer>
   </div>
+  <script src="js/tone-staff.js"></script>
   <script src="js/speak.js"></script>
   <script>
     const cards = [
@@ -126,7 +131,7 @@
       { kind: "Consonant", glyph: "ข", name: "ข ไข่", cls: "high", clsLabel: "High class", sound: "aspirated k", hint: "A puff of air. Same sound as ค, different class.", emoji: "🥚", word: "ไข่", gloss: "egg", tone: "low · เอก", bits: ["ขอ", "ไข่", "สอง", "ฟอง"], en: "Two eggs, please.", note: "High class. ไม้เอก on a high-class letter is also low. The puff of air matches ค." },
       { kind: "Consonant", glyph: "ค", name: "ค ควาย", cls: "low", clsLabel: "Low class", sound: "aspirated k", hint: "Same puff of air as ข. Low class, so the tone rule differs.", emoji: "🐃", word: "ควาย", gloss: "buffalo", tone: "mid · สามัญ", bits: ["ควาย", "เดิน", "ใน", "นา"], en: "The buffalo walks in the rice field.", note: "Low class, long live syllable, no mark: mid tone. ข is the high-class twin of this sound." },
       { kind: "Consonant", glyph: "ง", name: "ง งู", cls: "low", clsLabel: "Low class", sound: "ng", hint: "The ng in sing, here at the start.", emoji: "🐍", word: "งู", gloss: "snake", tone: "mid · สามัญ", bits: ["ฉัน", "เห็น", "งู"], en: "I see a snake.", note: "Low class and a long live vowel, with no mark, gives งู its mid tone." },
-      { kind: "Consonant", glyph: "จ", name: "จ จาน", cls: "mid", clsLabel: "Mid class", sound: "unaspirated ch", hint: "No puff, and not a voiced English j.", emoji: "🍽️", word: "จาน", gloss: "plate", tone: "mid · สามัญ", bits: ["จาน", "อยู่", "บน", "โต๊ะ"], en: "The plate is on the table.", note: "Mid class. จาน ends in น, so the syllable is live and, with no mark, mid. อยู่ is an irregular spelling; learn that word whole." },
+      { kind: "Consonant", glyph: "จ", name: "จ จาน", cls: "mid", clsLabel: "Mid class", sound: "unaspirated ch", hint: "No puff, and not a voiced English j.", emoji: "🍽️", word: "จาน", gloss: "plate", tone: "mid · สามัญ", bits: ["จาน", "อยู่", "บน", "โต๊ะ"], en: "The plate is on the table.", note: "Mid class. จาน ends in น, so the syllable is live and, with no mark, mid. อยู่ is irregular: low-class ย with ไม้โท would be high, but the spoken tone is falling. Learn that word whole." },
       { kind: "Consonant", glyph: "ด", name: "ด เด็ก", cls: "mid", clsLabel: "Mid class", sound: "voiced d", hint: "Voiced, as in English day.", emoji: "🧒", word: "เด็ก", gloss: "child", tone: "low · เอก", bits: ["เด็ก", "คน", "นี้", "กิน", "ข้าว"], en: "This child is eating.", note: "Mid class. เด็ก is short and ends in a stopped k, so it is dead, and a mid-class dead syllable is low." },
       { kind: "Consonant", glyph: "น", name: "น หนู", cls: "low", clsLabel: "Low class", sound: "n", hint: "n, as in no.", emoji: "🐭", word: "หนู", gloss: "mouse", tone: "rising · จัตวา", bits: ["หนู", "วิ่ง", "เร็ว"], en: "The mouse runs fast.", note: "The letter น is low class. Its memory word หนู writes a silent ห in front, and that ห makes the name follow high-class rules, so หนู rises." },
       { kind: "Consonant", glyph: "ป", name: "ป ปลา", cls: "mid", clsLabel: "Mid class", sound: "unaspirated p", hint: "Voice off, no puff.", emoji: "🐟", word: "ปลา", gloss: "fish", tone: "mid · สามัญ", bits: ["ปลา", "อยู่", "ใน", "น้ำ"], en: "The fish is in the water.", note: "ปลา is a cluster. ป, the first consonant, sets the class. Long live vowel, no mark: mid." },
@@ -176,7 +181,7 @@
       document.getElementById("back").innerHTML =
         '<p class="kind">' + esc(c.kind) + "</p>" +
         "<p>" + pill + esc(c.sound) + "</p>" +
-        '<div class="wordline"><span class="emoji" aria-hidden="true">' + c.emoji + '</span><div><strong lang="th">' + esc(c.word) + "</strong><div>" + esc(c.gloss) + " · " + esc(c.tone) + "</div></div></div>" +
+        '<div class="wordline"><span class="emoji" aria-hidden="true">' + c.emoji + '</span><div><strong lang="th">' + esc(c.word) + "</strong><div class=\"tone-line\">" + esc(c.gloss) + " · " + ToneStaff.tagsFromLabel(c.tone, 44, 20) + "</div></div></div>" +
         '<p class="sent" lang="th">' + esc(c.bits.join(" ")) + "</p>" +
         "<p>" + esc(c.en) + "</p>" +
         '<p class="note">' + esc(c.note) + "</p>" +

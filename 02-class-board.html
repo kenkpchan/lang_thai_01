@@ -1,13 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="refresh" content="0; url=integrated-tone-vocab.html">
+  <script>location.replace("integrated-tone-vocab.html");</script>
+  <style>html{display:none !important}</style>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>02 The Class Board · Thai alphabet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=4">
+  <link rel="stylesheet" href="css/site.css?v=5">
   <style>
     :root { --bg: #f4f5f2; --ink: #1b1c1a; --accent: #1e3a6e; --mid: #1e3a6e; --high: #8a4b12; --low: #1c6b45; }
     h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
@@ -87,8 +91,15 @@
       <div class="cols" id="cols"></div>
       <aside class="inspect" id="inspect" aria-live="polite"></aside>
     </div>
+    <div class="tone-staff-key-inline" style="margin:12px 0 4px" aria-label="Five spoken tones">
+      <img src="img/tone-staves/set-01-classic/mid.svg" width="56" height="25" alt="Mid tone">
+      <img src="img/tone-staves/set-01-classic/low.svg" width="56" height="25" alt="Low tone">
+      <img src="img/tone-staves/set-01-classic/falling.svg" width="56" height="25" alt="Falling tone">
+      <img src="img/tone-staves/set-01-classic/high.svg" width="56" height="25" alt="High tone">
+      <img src="img/tone-staves/set-01-classic/rising.svg" width="56" height="25" alt="Rising tone">
+    </div>
     <table id="matrix">
-      <caption>The rule for an ordinary syllable</caption>
+      <caption>The rule for an ordinary syllable · cells show spoken tone (stave)</caption>
       <thead>
         <tr><th>Situation</th><th>Mid</th><th>High</th><th>Low</th></tr>
       </thead>
@@ -109,6 +120,7 @@
   </div>
   <script src="js/letters.js"></script>
   <script src="js/thai.js"></script>
+  <script src="js/tone-staff.js"></script>
   <script src="js/speak.js"></script>
   <script>
     const letters = ThaiLetters.letters;
@@ -193,7 +205,7 @@
           const tone = toneFor(cls, r.id);
           const btn = document.createElement("button");
           btn.type = "button";
-          btn.textContent = tone ? Thai.TONE_NAME[tone].en : "—";
+          btn.innerHTML = tone ? ToneStaff.tag(tone, 50, 22) : "—";
           if (letter.cls === cls && row === r.id) btn.className = "is-on";
           btn.addEventListener("click", function () {
             row = r.id;
@@ -223,7 +235,7 @@
       let verdict = "Standard spelling keeps this mark on mid-class consonants.";
       if (name) {
         const sameWord = ex && ex[0] === shape;
-        verdict = name.en + " · " + name.th;
+        verdict = ToneStaff.tag(tone, 96, 43) + '<span lang="th" style="display:block;font-size:18px;margin-top:6px;font-family:Fraunces,Georgia,serif">' + esc(name.th) + "</span>";
         var detail = sameWord
           ? "This shape is a real word: " + ex[0] + ", " + ex[1] + "."
           : "On " + l.g + " the shape is " + shape + ". It may not be a word. The same rule gives " + ex[0] + ", " + ex[1] + ".";
@@ -237,7 +249,7 @@
         '<p>Same sound</p><div class="siblings">' + same + "</div>" +
         '<div class="situations">' + sits + "</div>" +
         '<p class="pattern" lang="th">' + esc(shape) + "</p>" +
-        '<p class="verdict">' + esc(name ? verdict : "Not used here") + "</p>" +
+        '<p class="verdict">' + (name ? verdict : esc("Not used here")) + "</p>" +
         "<p>" + esc(name ? detail : verdict) + "</p>" +
         '<p><button class="speak" type="button" id="say"' + (voice ? "" : " hidden") + ">Play the shape</button></p>";
       box.querySelectorAll("[data-g]").forEach(function (b) {

@@ -67,9 +67,10 @@
     }
     let text = vowel.pre || "";
     text += cons;
+    const support = vowel.id === "uue" && fin ? "" : (vowel.post || "");
     if (vowel.am) text += tone + "\u0E33";
-    else if (vowel.up || vowel.lo) text += (vowel.up || "") + (vowel.lo || "") + tone + (vowel.post || "");
-    else text += tone + (vowel.post || "");
+    else if (vowel.up || vowel.lo) text += (vowel.up || "") + (vowel.lo || "") + tone + support;
+    else text += tone + support;
     text += fin;
     return { text: text, final: fin, note: note, vowel: vowel };
   }
@@ -84,7 +85,9 @@
     if ("นมงยว".indexOf(fin) !== -1) {
       return { live: true, long: !!vowel.long, why: "It ends in " + fin + ", and that ending keeps a syllable live." };
     }
-    return { live: false, long: !!vowel.long, why: "It ends in " + fin + ", a stopped consonant, so the syllable is dead." };
+    /* เ–ิ– before ก ด บ is a short dead vowel (เลิก is high, not falling). */
+    const long = vowel.id === "oei" ? false : !!vowel.long;
+    return { live: false, long: long, why: "It ends in " + fin + ", a stopped consonant, so the syllable is dead." };
   }
 
   const ONSET = {

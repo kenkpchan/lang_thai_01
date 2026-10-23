@@ -67,5 +67,12 @@
   function stop() {
     if (synth()) synth().cancel();
   }
-  root.ThaiSpeak = { speak: speak, pick: pick, whenVoices: whenVoices, stop: stop };
+  function google(text) {
+    if (!text) return false;
+    const url = "https://translate.google.com/?sl=th&tl=zh-TW&text=" + encodeURIComponent(text) + "&op=translate";
+    const win = window.open(url, "thaiGoogleRead", "popup=yes,width=560,height=760");
+    if (win) win.focus();
+    return !!win;
+  }
+  root.ThaiSpeak = { speak: speak, pick: pick, whenVoices: whenVoices, stop: stop, google: google };
 })(typeof globalThis !== "undefined" ? globalThis : this);

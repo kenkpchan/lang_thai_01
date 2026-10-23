@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="refresh" content="0; url=integrated-tone-vocab.html">
+  <script>location.replace("integrated-tone-vocab.html");</script>
+  <style>html{display:none !important}</style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spoken tone staves · 聲調五線譜預覽</title>
+  <link rel="stylesheet" href="css/site.css?v=5">
+  <link rel="stylesheet" href="css/tone-staff.css?v=1">
+  <style>
+    :root { --accent: #1d4e89; --ink: #1c1b19; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(28px, 4vw, 40px); margin: 12px 0 8px; }
+    [lang="zh-Hant"] { font-family: "Noto Serif TC", PMingLiU, serif; }
+    .wrap { max-width: 920px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>Preview</span>
+      <nav>
+        <a href="integrated-tone-vocab.html">Combined workshop</a>
+      </nav>
+    </header>
+    <h1>Spoken tone · 五線譜 <em lang="zh-Hant" style="font-style:normal;font-size:.65em;display:block;margin-top:4px">五組小圖樣式</em></h1>
+    <p>Five small stave styles for Central Thai mid, low, falling, high, and rising. The <a href="integrated-tone-vocab.html">combined workshop</a> uses <strong>Classic · 標準五線＋符頭</strong> (<code>set-01-classic</code>) everywhere spoken tone is shown.</p>
+    <p lang="zh-Hant">五種五線譜小圖，對應泰語中、低、降、高、升五個聲調。<a href="integrated-tone-vocab.html">聲調詞彙板</a>與各頁的「聲調」標示一律用 <strong>Classic · 標準五線＋符頭</strong>。</p>
+    <div class="tone-staff-key" id="sets" aria-label="Five stave style sets"></div>
+    <p class="tone-staff-note">Contour left → right = time through the syllable. Colours match the workshop tone key.</p>
+    <p class="tone-staff-note" lang="zh-Hant">曲線由左到右表示音節過程中的音高。顏色與詞彙板上的聲調色一致。</p>
+    <footer class="jump">
+      <a href="integrated-tone-vocab.html">← Combined workshop</a>
+    </footer>
+  </div>
+  <script>
+    const SETS = [
+      { id: "set-01-classic", name: "Classic", zh: "標準五線＋符頭" },
+      { id: "set-02-minimal", name: "Minimal", zh: "三線＋粗曲線" },
+      { id: "set-03-labeled", name: "Labeled", zh: "五線＋英中標籤" },
+      { id: "set-04-clef", name: "Treble hint", zh: "五線＋記號提示" },
+      { id: "set-05-arrow", name: "Direction", zh: "五線＋方向箭頭" }
+    ];
+    const TONES = [
+      { id: "mid", en: "Mid", zh: "中聲" },
+      { id: "low", en: "Low", zh: "低聲" },
+      { id: "falling", en: "Fall", zh: "降聲" },
+      { id: "high", en: "High", zh: "高聲" },
+      { id: "rising", en: "Rise", zh: "升聲" }
+    ];
+    const box = document.getElementById("sets");
+    box.innerHTML = SETS.map(function (set) {
+      const cells = TONES.map(function (t) {
+        return '<div class="tone-staff-cell"><img src="img/tone-staves/' + set.id + '/' + t.id + '.svg" width="88" height="40" alt="' + t.en + ' tone, ' + set.name + ' stave"><span>' + t.en + " " + t.zh + "</span></div>";
+      }).join("");
+      return (
+        '<div class="tone-staff-set" role="group" aria-label="' + set.name + '">' +
+        '<p class="tone-staff-set-label"><b>' + set.name + '</b><span lang="zh-Hant">' + set.zh + "</span></p>" +
+        cells +
+        "</div>"
+      );
+    }).join("");
+  </script>
+</body>
+</html>

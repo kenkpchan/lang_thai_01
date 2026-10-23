@@ -1,0 +1,36 @@
+{
+  "seats": [
+    "before",
+    "above",
+    "below",
+    "after"
+  ],
+  "colors": {
+    "before": "#7c3aed",
+    "above": "#db2777",
+    "below": "#9a3412",
+    "after": "#0f766e"
+  },
+  "sets": [
+    {
+      "id": "set-01-classic",
+      "name": "Classic · 直箭＋輔音框"
+    },
+    {
+      "id": "set-02-minimal",
+      "name": "Minimal · 細箭"
+    },
+    {
+      "id": "set-03-labeled",
+      "name": "Labeled · 箭＋前上後下"
+    },
+    {
+      "id": "set-04-slot",
+      "name": "Slot · 虛線座位"
+    },
+    {
+      "id": "set-05-arc",
+      "name": "Arc · 弧箭"
+    }
+  ]
+}

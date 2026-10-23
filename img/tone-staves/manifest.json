@@ -1,0 +1,88 @@
+{
+  "sets": [
+    {
+      "id": "set-01-classic",
+      "name": "Classic · 標準五線",
+      "tones": [
+        "mid",
+        "low",
+        "falling",
+        "high",
+        "rising"
+      ]
+    },
+    {
+      "id": "set-02-minimal",
+      "name": "Minimal · 簡線",
+      "tones": [
+        "mid",
+        "low",
+        "falling",
+        "high",
+        "rising"
+      ]
+    },
+    {
+      "id": "set-03-labeled",
+      "name": "Labeled · 標籤",
+      "tones": [
+        "mid",
+        "low",
+        "falling",
+        "high",
+        "rising"
+      ]
+    },
+    {
+      "id": "set-04-clef",
+      "name": "Treble hint · 高音記號",
+      "tones": [
+        "mid",
+        "low",
+        "falling",
+        "high",
+        "rising"
+      ]
+    },
+    {
+      "id": "set-05-arrow",
+      "name": "Direction · 方向箭頭",
+      "tones": [
+        "mid",
+        "low",
+        "falling",
+        "high",
+        "rising"
+      ]
+    }
+  ],
+  "colors": {
+    "mid": "#5c6770",
+    "low": "#5b2d8e",
+    "falling": "#a33b4a",
+    "high": "#a67c00",
+    "rising": "#0e7c86"
+  },
+  "labels": {
+    "mid": {
+      "en": "Mid",
+      "zh": "中"
+    },
+    "low": {
+      "en": "Low",
+      "zh": "低"
+    },
+    "falling": {
+      "en": "Fall",
+      "zh": "降"
+    },
+    "high": {
+      "en": "High",
+      "zh": "高"
+    },
+    "rising": {
+      "en": "Rise",
+      "zh": "升"
+    }
+  }
+}

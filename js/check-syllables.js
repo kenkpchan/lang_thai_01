@@ -53,7 +53,9 @@ const spelling = [
   ["ว", "i", "ง", "ek", "วิ่ง"],
   ["ท", "u", "ง", "ek", "ทุ่ง"],
   ["ต", "uu", "", "tho", "ตู้"],
-  ["ร", "e-short", "ว", "none", "เร็ว"]
+  ["ร", "e-short", "ว", "none", "เร็ว"],
+  ["ล", "oei", "ก", "none", "เลิก"],
+  ["ม", "uue", "ด", "none", "มืด"]
 ];
 
 let failed = 0;
@@ -97,7 +99,10 @@ const tones = [
   ["low", "ม", "ai", "", "tho", "high"],
   ["high", "ห", "ai2", "", "tho", "falling"],
   ["low", "น", "ai2", "", "none", "mid"],
-  ["low", "ร", "e-short", "ว", "none", "mid"]
+  ["low", "ร", "e-short", "ว", "none", "mid"],
+  ["low", "ล", "oei", "ก", "none", "high"],
+  ["mid", "ป", "oei", "ด", "none", "low"],
+  ["low", "ม", "uue", "ด", "none", "falling"]
 ];
 
 tones.forEach(function (row) {

@@ -1,0 +1,174 @@
+/* Small 五線譜 icons for Thai spoken tones — shared by workshop + preview page */
+
+.tone-staff-icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+  line-height: 0;
+}
+
+.tone-staff-key-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.tone-staff-key-inline img {
+  width: 100%;
+  max-width: 64px;
+  height: auto;
+}
+
+.word .tone-staff-list {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 58px;
+}
+
+.filters button.tone-filter {
+  padding: 4px 8px;
+  line-height: 0;
+}
+
+.filters button.tone-filter img {
+  width: 54px;
+  height: auto;
+  display: block;
+}
+
+td button .tone-staff-icon {
+  width: 50px;
+  max-width: 100%;
+}
+
+button.is-on .tone-staff-icon,
+button[aria-pressed="true"].tone-filter .tone-staff-icon {
+  background: #fff;
+  border-radius: 3px;
+}
+
+.block h2 .tone-staff-icon {
+  width: 56px;
+  height: auto;
+}
+
+.stage-staff {
+  margin: 4px auto 8px;
+  text-align: center;
+}
+
+.stage-staff img {
+  width: 112px;
+  max-width: 42vw;
+  height: auto;
+}
+
+.tone-staff-key {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.tone-staff-set {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(5, minmax(52px, 1fr));
+  gap: 6px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #faf8f3;
+  box-shadow: inset 0 0 0 1px rgba(28, 27, 25, 0.08);
+}
+
+.tone-staff-set.is-pick {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  color: inherit;
+}
+
+.tone-staff-set.is-pick:hover,
+.tone-staff-set.is-pick:focus-within {
+  box-shadow: inset 0 0 0 2px rgba(28, 27, 25, 0.35);
+}
+
+.tone-staff-set.is-pick[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 2px var(--accent, #1d4e89);
+  background: #fff;
+}
+
+.tone-staff-set-label {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #4e4a44;
+  margin: 0;
+}
+
+.tone-staff-set-label b {
+  display: block;
+  font-size: 13px;
+  font-weight: 640;
+  color: var(--ink, #1c1b19);
+}
+
+.tone-staff-cell {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.tone-staff-cell img {
+  width: 100%;
+  max-width: 72px;
+  height: auto;
+  display: block;
+}
+
+.tone-staff-cell span {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: #6a645c;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.tone-staff-live {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 6px 0 0;
+}
+
+.tone-staff-live img {
+  width: 96px;
+  max-width: 28vw;
+  height: auto;
+}
+
+.tone-staff-live figcaption {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 14px;
+  text-align: center;
+  margin: 4px 0 0;
+  color: var(--tone, #5c6770);
+}
+
+.tone-staff-note {
+  font-size: 12px;
+  color: #5c564e;
+  margin: 8px 0 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .tone-staff-set {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .tone-staff-set-label {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,13 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="refresh" content="0; url=integrated-tone-vocab.html">
+  <script>location.replace("integrated-tone-vocab.html");</script>
+  <style>html{display:none !important}</style>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>06 The Syllable Bench · Thai alphabet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css?v=4">
+  <link rel="stylesheet" href="css/site.css?v=5">
   <style>
     :root { --bg: #efe8dc; --ink: #2c2825; --accent: #a33b32; }
     h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
@@ -94,6 +98,7 @@
   </div>
   <script src="js/letters.js"></script>
   <script src="js/thai.js"></script>
+  <script src="js/tone-staff.js"></script>
   <script src="js/speak.js"></script>
   <script>
     const glyphList = ["ก", "ข", "ค", "ง", "จ", "ฉ", "ช", "ซ", "ด", "ต", "ถ", "ท", "น", "บ", "ป", "ผ", "พ", "ฝ", "ฟ", "ม", "ย", "ร", "ล", "ว", "ส", "ห", "อ"];
@@ -203,7 +208,9 @@
         seat("final", judged.final || "");
       document.getElementById("written").textContent = judged.text;
       const tone = judged.tone ? Thai.TONE_NAME[judged.tone] : null;
-      document.getElementById("verdict").textContent = tone ? tone.en + " · " + tone.th : "Not a standard spelling";
+      document.getElementById("verdict").innerHTML = tone
+        ? '<div class="stage-staff">' + ToneStaff.tag(judged.tone, 112, 50) + '</div><span lang="th">' + tone.th + "</span>"
+        : "Not a standard spelling";
       const cls = { mid: "mid class", high: "high class", low: "low class" }[letter.cls];
       const markLine = {
         none: "There is no tone mark.",
