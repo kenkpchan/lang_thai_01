@@ -21,7 +21,7 @@ button, input { font: inherit; color: inherit; background: none; border: 0; padd
 button { cursor: pointer; }
 a { color: inherit; }
 [lang="th"] {
-  font-family: "Thai Text", sans-serif !important;
+  font-family: "Noto Sans Thai", "Thai Text", sans-serif !important;
   font-weight: 400 !important;
   font-synthesis: none;
   letter-spacing: 0 !important;
