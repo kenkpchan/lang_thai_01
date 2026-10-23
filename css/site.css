@@ -2,10 +2,11 @@
 
 @font-face {
   font-family: "Thai Text";
-  src: local("Leelawadee UI"), url("../fonts/NotoSansThai-Regular.ttf") format("truetype");
+  src: local("Leelawadee UI"), local("Leelawadee"), url("../fonts/NotoSansThai-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: block;
+  unicode-range: U+0E00-0E7F;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -21,7 +22,7 @@ button, input { font: inherit; color: inherit; background: none; border: 0; padd
 button { cursor: pointer; }
 a { color: inherit; }
 [lang="th"] {
-  font-family: "Noto Sans Thai", "Thai Text", sans-serif !important;
+  font-family: "Thai Text", sans-serif !important;
   font-weight: 400 !important;
   font-synthesis: none;
   letter-spacing: 0 !important;
