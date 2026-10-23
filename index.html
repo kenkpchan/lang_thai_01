@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seven designs · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #f3ecdf; --ink: #211b16; --accent: #9d3a2c; }
+    body { font-family: Outfit, "Segoe UI", sans-serif; }
+    .hero { padding: 28px 0 10px; max-width: 740px; }
+    .kicker { margin: 0 0 12px; letter-spacing: .16em; text-transform: uppercase; font-size: 12px; font-weight: 500; }
+    h1 {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(40px, 6vw, 68px);
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+    }
+    h1 span { font-family: "Noto Serif Thai", "Leelawadee UI", serif; letter-spacing: 0; display: block; font-size: .62em; margin-top: 10px; }
+    .lede { font-size: 18.5px; max-width: 64ch; }
+    .path { max-width: 64ch; color: #4a4036; }
+    ol { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 12px; }
+    li a {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 8px 18px;
+      text-decoration: none;
+      background: #fffaf3;
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      box-shadow: inset 0 0 0 1px rgba(33, 27, 22, .08);
+    }
+    li a:hover { box-shadow: inset 0 0 0 1px rgba(33, 27, 22, .28); }
+    .num {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 28px;
+      line-height: 1;
+      padding-top: 4px;
+    }
+    h2 { margin: 0; font-size: 22px; font-weight: 640; letter-spacing: -0.02em; }
+    h2 em { font-style: normal; font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-weight: 560; color: #6b5648; }
+    .tag { display: block; margin-top: 3px; font-size: 13px; letter-spacing: .04em; color: var(--swatch, #9d3a2c); font-weight: 500; }
+    li p { margin: 6px 0 0; grid-column: 2; max-width: 68ch; }
+    .meta { color: #5e534a; font-size: 14px; }
+    .scope { max-width: 68ch; color: #4a4036; padding-bottom: 8px; }
+    li:nth-child(1) { --swatch: #9d3a2c; } .li1 .num { color: #9d3a2c; }
+    li:nth-child(2) { --swatch: #1e3a6e; }
+    li:nth-child(3) { --swatch: #315c32; }
+    li:nth-child(4) { --swatch: #8f1d1d; }
+    li:nth-child(5) { --swatch: #b8613d; }
+    li:nth-child(6) { --swatch: #3d342c; }
+    li:nth-child(7) { --swatch: #2f6f78; }
+    li a { border-left: 8px solid var(--swatch); }
+    li a:hover { transform: translateY(-1px); }
+    li a { transition: transform .15s ease, box-shadow .15s ease; }
+    .zh { color: #4a4036; }
+    .banner {
+      display: grid; grid-template-columns: 1fr auto; gap: 4px 18px; align-items: center;
+      margin: 26px 0 8px; padding: 18px 22px 16px;
+      background: #1d4e89; color: #f6f2e9; border-radius: 18px;
+      text-decoration: none;
+      box-shadow: 0 14px 34px rgba(29, 78, 137, .22);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .banner:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(29, 78, 137, .3); }
+    .banner strong { font-size: 22px; font-weight: 640; letter-spacing: -.01em; }
+    .banner small { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: #d7e3f2; max-width: 72ch; }
+    .banner .go {
+      grid-row: 1 / span 2; grid-column: 2;
+      align-self: center; white-space: nowrap;
+      border-radius: 999px; padding: 10px 18px;
+      background: #f6f2e9; color: #1d4e89; font-weight: 640; font-size: 15px;
+    }
+    .order-head { margin: 22px 0 8px; font-weight: 640; letter-spacing: .02em; }
+    .order { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+    .order a {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      background: #fffaf3; border-radius: 999px; padding: 8px 14px;
+      box-shadow: inset 0 0 0 1px rgba(33, 27, 22, .16);
+      text-decoration: none; font-size: 14.5px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .order a:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 2px var(--accent); }
+    .order b {
+      display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px;
+      border-radius: 999px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600;
+    }
+    .list-head { margin: 30px 0 -6px; font-weight: 640; letter-spacing: .02em; }
+    .list-head span { display: block; font-weight: 400; font-size: 14.5px; color: #5e534a; margin-top: 2px; }
+    @media (max-width: 640px) {
+      li a { grid-template-columns: 48px 1fr; }
+      .banner { grid-template-columns: 1fr; }
+      .banner .go { grid-row: auto; grid-column: 1; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">lang-thai-01</a>
+      <span>Seven designs</span>
+    </header>
+    <section class="hero">
+      <p class="kicker">A frontend for the alphabet</p>
+      <h1>Seven ways to hold a Thai letter. <span lang="th">เรียนอักษรไทย</span></h1>
+      <p class="lede">Consonants, vowels, tone marks, and enough words and sentences to make the symbols stick. Each page is a different answer to what a flash card should be. All seven are clickable.</p>
+      <p class="lede zh" lang="zh-Hant">這裡有七個學泰文字母的設計：子音、元音、聲調符號，加上單詞和句子。每一頁都可以點進去試。第一次來，照下面的次序走就可以。</p>
+      <p class="path">Two of them are specific. <a href="04-sinitic-bridge.html">中文助攻</a> borrows Mandarin, Cantonese, and Teochew. <a href="05-one-morning.html">One Morning</a> keeps a single conversation going from card to card.</p>
+      <a class="banner" href="integrated-tone-vocab.html">
+        <span>
+          <strong>Start here: the Combined workshop · 聲調詞彙板</strong>
+          <small>02 and 06 on one page, with real words, colours that keep one meaning each, English and Traditional Chinese. 聲調規則和元音座位放在同一頁，選個程度（入門／進階／熟練）就能開始。</small>
+        </span>
+        <span class="go">Open · 開啟 →</span>
+      </a>
+      <p class="order-head">A useful order through the seven designs · 建議次序</p>
+      <ol class="order">
+        <li><a href="07-picture-market.html"><b>1</b> Picture Market · 看圖識詞</a></li>
+        <li><a href="01-card-box.html"><b>2</b> Card Box · 認符號</a></li>
+        <li><a href="04-sinitic-bridge.html"><b>3</b> 中文助攻 · 用中文借力</a></li>
+        <li><a href="05-one-morning.html"><b>4</b> One Morning · 讀句子</a></li>
+        <li><a href="06-syllable-bench.html"><b>5</b> Syllable Bench · 元音座位</a></li>
+        <li><a href="02-class-board.html"><b>6</b> Class Board · 聲調規則</a></li>
+        <li><a href="03-listening-room.html"><b>7</b> Listening Room · 聽辨</a></li>
+        <li><a href="integrated-tone-vocab.html"><b>8</b> Workshop · 綜合練習</a></li>
+      </ol>
+      <p class="list-head">All seven designs · 七個設計<span>Click a card to open it. 點一張卡，打開那個設計。</span></p>
+    </section>
+    <ol>
+      <li>
+        <a href="01-card-box.html">
+          <span class="num">01</span>
+          <h2>The Card Box <em lang="th">กล่องการ์ด</em><span class="tag">One symbol</span></h2>
+          <p>The front is only the letter. The back is its class, its sound, a memory word, and a sentence you could say.</p>
+          <p class="meta">A tray. Known cards leave. Missed cards go to the back.</p>
+        </a>
+      </li>
+      <li>
+        <a href="02-class-board.html">
+          <span class="num">02</span>
+          <h2>The Class Board <em lang="th">แผงวรรณยุกต์</em><span class="tag">The tone rule</span></h2>
+          <p>All 44 consonants, sorted into mid, high, and low. Choose a syllable shape and the board names the tone.</p>
+          <p class="meta">ข and ค are the same puff of air. They are different classes, so the tone can differ.</p>
+        </a>
+      </li>
+      <li>
+        <a href="03-listening-room.html">
+          <span class="num">03</span>
+          <h2>The Listening Room <em lang="th">ห้องฟัง</em><span class="tag">A contrast</span></h2>
+          <p>Hear one syllable, then choose the spelling. The lesson is the pair: aspiration, length, tone, or ร beside ล.</p>
+          <p class="meta">Uses a Thai voice when the computer has one. Otherwise it shows a sound guide.</p>
+        </a>
+      </li>
+      <li>
+        <a href="04-sinitic-bridge.html">
+          <span class="num">04</span>
+          <h2>中文助攻 <em>The Sinitic Bridge</em><span class="tag">普通话 · 廣東話 · 潮州話</span></h2>
+          <p>Every card keeps Mandarin, Cantonese, and Teochew side by side. Borrow a sound when the match is real, and read the warning where Chinese will invent the wrong one.</p>
+          <p class="meta">Tones stay on the Thai side of the card. The same mark can fall or sit high.</p>
+        </a>
+      </li>
+      <li>
+        <a href="05-one-morning.html">
+          <span class="num">05</span>
+          <h2>One Morning <em lang="th">เช้าวันหนึ่ง</em><span class="tag">A day, one conversation</span></h2>
+          <p>Twelve lines, from the door to breakfast, the market, and home. Each line carries one letter, vowel, or tone mark.</p>
+          <p class="meta">The alphabet arrives in the order the morning needs it.</p>
+        </a>
+      </li>
+      <li>
+        <a href="06-syllable-bench.html">
+          <span class="num">06</span>
+          <h2>The Syllable Bench <em lang="th">ม้านั่งพยางค์</em><span class="tag">A syllable you build</span></h2>
+          <p>Vowels have seats: before the consonant, above it, below it, after it. Empty seats stay visible. The bench writes the syllable and names the tone.</p>
+          <p class="meta">When the result is a real word, you get a meaning and a sentence.</p>
+        </a>
+      </li>
+      <li>
+        <a href="07-picture-market.html">
+          <span class="num">07</span>
+          <h2>The Picture Market <em lang="th">ตลาดภาพ</em><span class="tag">A thing in a place</span></h2>
+          <p>A canal market. Tap the chicken, the mango, the boat. The word is attached to the object, and the letter comes with the word.</p>
+          <p class="meta">Spatial memory first. The symbol rides along with the thing you can buy.</p>
+        </a>
+      </li>
+    </ol>
+    <p class="scope">The Class Board includes all 44 consonants. The other pages use a starter set so the interaction stays readable. Ordinary syllables follow the tone rule on the board. A silent ห in front of ง ญ น ม ย ร ล ว, pronounced clusters such as ปลา, and irregular spellings such as ก็ and อยู่ are marked where a starter word needs them, and left out of the calculator.</p>
+    <footer class="jump">
+      <a href="index.html" aria-current="page">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+</body>
+</html>

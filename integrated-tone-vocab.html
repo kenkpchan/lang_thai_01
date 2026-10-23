@@ -1,0 +1,789 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tone and vocabulary workshop · 聲調詞彙板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+TC:wght@400;600&family=Noto+Sans+Thai:wght@500;700&family=Noto+Serif+TC:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root {
+      --bg: #f3f1ea; --ink: #1c1b19; --accent: #1d4e89;
+      --cls-mid: #1d4e89; --cls-high: #8a4518; --cls-low: #1c7a48;
+      --tone-mid: #5c6770; --tone-low: #5b2d8e; --tone-falling: #a33b4a;
+      --tone-high: #a67c00; --tone-rising: #0e7c86;
+      --mark-none: #8a847c; --mark-ek: #c73e78; --mark-tho: #e07a2f;
+      --mark-tri: #3d6d8a; --mark-cattawa: #4d7c0f;
+      --seat-before: #7c3aed; --seat-above: #db2777; --seat-below: #9a3412; --seat-after: #0f766e;
+      --life-live: #0f6f8a; --life-dead: #7c2d12;
+    }
+    [lang="zh-Hant"] { font-family: "Noto Serif TC", "PMingLiU", "Microsoft JhengHei", serif; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(34px, 5vw, 52px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em { font-family: "Noto Serif TC", PMingLiU, serif; font-style: normal; font-weight: 560; display: block; font-size: .62em; margin-top: 6px; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; }
+    .guide { max-width: 78ch; }
+    .key { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 16px 0 18px; }
+    .key section { background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: inset 0 0 0 1px rgba(28,27,25,.08); }
+    .key h2 { margin: 0 0 6px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 640; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .swatch, .chip, .dot, .pill { border-radius: 999px; }
+    .swatch { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 4px; background: #f6f4ee; font-size: 13px; }
+    .swatch i, .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .app { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 18px; align-items: start; }
+    .list { background: #fff; border-radius: 16px; padding: 10px; box-shadow: inset 0 0 0 1px rgba(28,27,25,.08); }
+    .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .filters button, .build button { border-radius: 999px; padding: 4px 10px; background: #fff; box-shadow: inset 0 0 0 1px rgba(28,27,25,.24); font-size: 13px; }
+    .filters button:hover, .build button:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+    .filters button[aria-pressed="true"] { color: #fff; }
+    .list-note { margin: 0 2px 8px; font-size: 13px; color: #5c564e; line-height: 1.45; }
+    .list-note p { margin: 0; }
+    .list-note .dot { width: 9px; height: 9px; margin: 0 2px; }
+    .list-note .pill-demo { display: inline-block; border-radius: 999px; padding: 0 7px; color: #fff; font-size: 11px; background: var(--tone-mid); margin: 0 2px; }
+    #words { display: grid; gap: 4px; max-height: 70vh; overflow: auto; }
+    .word { width: 100%; display: flex; align-items: center; gap: 8px; text-align: left; border-radius: 10px; padding: 6px 8px; background: transparent; box-shadow: inset 0 0 0 1px rgba(28,27,25,.1); }
+    .word:hover { background: #f6f4ee; box-shadow: inset 0 0 0 1px rgba(28,27,25,.3); }
+    .word[aria-pressed="true"] { background: #fff; box-shadow: inset 0 0 0 2px var(--on, var(--ink)); }
+    .word b { font-weight: 500; font-size: 22px; line-height: 1.45; }
+    .written { font-weight: 500; line-height: 1.35; }
+    .seat.core b { color: var(--ink); font-weight: 500; font-size: 44px; line-height: 1.35; }
+    .pill { margin-left: auto; color: #fff; font-size: 11px; letter-spacing: .04em; padding: 2px 7px; }
+    .stage { background: #fff; border-radius: 18px; padding: 14px 16px 12px; box-shadow: inset 0 0 0 1px rgba(28,27,25,.08), 0 0 0 4px color-mix(in srgb, var(--tone, #5c6770) 28%, transparent); }
+    .stick { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 210px; }
+    .stack { display: grid; justify-items: center; }
+    .seat { min-width: 78px; min-height: 48px; display: grid; place-items: center; border-radius: 10px; padding: 4px; }
+    .seat b { font-size: 36px; font-weight: 650; line-height: 1.25; }
+    .seat i { font-style: normal; font-size: 11px; letter-spacing: .04em; text-align: center; }
+    .seat.filled { background: color-mix(in srgb, var(--seat, var(--ink)) 14%, white); box-shadow: inset 0 0 0 2px var(--seat, var(--ink)); }
+    .seat.filled b, .seat i { color: var(--seat, var(--ink)); }
+    .written { font-size: 64px; line-height: 1.25; margin: 4px 0; text-align: center; }
+    .tone-name { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 0; text-align: center; color: var(--tone); }
+    .roman { text-align: center; font-family: Fraunces, Georgia, serif; font-size: 22px; margin: 0 0 4px; color: #3c3832; }
+    .sent-roman { text-align: left; font-size: 16px; margin: 2px 0 6px; }
+    .word-main .roma { font-family: Fraunces, Georgia, serif; font-size: 13px; color: #3c3832; }
+    .glosses { display: grid; gap: 4px; margin-top: 8px; max-width: 46ch; }
+    .glosses p { margin: 0; }
+    .blocks { display: grid; gap: 10px; margin-top: 12px; }
+    .block { background: #fff; border-radius: 16px; padding: 12px 14px; box-shadow: inset 4px 0 0 var(--cat, #ccc), inset 0 0 0 1px rgba(28,27,25,.06); }
+    .block h2 { margin: 0 0 6px; font-size: 16px; display: flex; gap: 8px; align-items: center; }
+    .block h2 i { width: 12px; height: 12px; border-radius: 50%; background: var(--cat); display: inline-block; }
+    .sibs { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+    .sibs button { border-radius: 999px; padding: 3px 8px; color: #fff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; }
+    th { text-align: left; font-weight: 640; padding: 6px; }
+    td button { width: 100%; text-align: left; padding: 7px 8px; border-radius: 8px; }
+    td button.is-on { color: #fff; background: var(--tone, var(--ink)); }
+    .build { margin-top: 12px; background: #fff; border-radius: 16px; padding: 8px 12px 12px; }
+    .build h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 10px 0 6px; }
+    .build button[aria-pressed="true"] { background: var(--ink); color: #f4f1ea; }
+    .fine { color: #4e4a44; max-width: 78ch; }
+    .levels { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
+    .levels button { border-radius: 999px; padding: 8px 16px; background: #fff; box-shadow: inset 0 0 0 1px rgba(28,27,25,.24); font-weight: 500; }
+    .levels button:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+    .levels button[aria-pressed="true"] { background: var(--ink); color: #f4f1ea; }
+    #say { border-radius: 999px; padding: 9px 22px; background: var(--tone, #1d4e89); color: #fff; font-weight: 640; font-size: 16px; box-shadow: 0 6px 16px rgba(28,27,25,.18); }
+    #say:hover { filter: brightness(1.08); }
+    .play-note { text-align: center; font-size: 13px; color: #7a746c; margin: 6px 0 0; }
+    .word-main { display: grid; min-width: 0; }
+    .word-main small { font-size: 12px; color: #5c564e; line-height: 1.35; }
+    body.level-starter .fine { display: none; }
+    .main { display: flex; flex-direction: column; }
+    body.level-expert #build { order: 2; }
+    body.level-expert #blocks { order: 3; }
+    @media (max-width: 980px) {
+      .key, .app, .glosses { grid-template-columns: 1fr; }
+      #words { max-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>02 + 06</span>
+      <nav>
+        <a href="02-class-board.html">Class Board</a>
+        <a href="06-syllable-bench.html">Syllable Bench</a>
+      </nav>
+    </header>
+    <p class="kicker">Class Board and Syllable Bench</p>
+    <h1>Tone and vocabulary workshop <em lang="zh-Hant">聲調詞彙板</em></h1>
+    <div class="guide">
+      <p>Pick a real word, or build a syllable. The Class Board’s rule and the Bench’s seats stay on the same page. A colour belongs to an idea. When the word changes, that idea keeps its colour.</p>
+      <p lang="zh-Hant">選一個真詞，或自己組一個音節。聲調類別板的規則，和音節工作台的元音座位，放在同一頁。一種顏色只代表一種概念。詞換了，概念的顏色不變。</p>
+      <p>Pronunciation spelling: no mark is mid, à is low, â is falling, á is high, ǎ is rising. A doubled letter is a long vowel. g, bp, dt, and j have no puff of air.</p>
+      <p lang="zh-Hant">羅馬拼音用來標讀音，不是英文翻譯。沒有符號是中聲，à 低聲，â 降聲，á 高聲，ǎ 升聲。雙寫的母音較長。g、bp、dt、j 不送氣。</p>
+    </div>
+    <div class="levels" role="group" aria-label="Level">
+      <button type="button" data-level="starter" aria-pressed="true">Starter · 入門</button>
+      <button type="button" data-level="intermediate" aria-pressed="false">Intermediate · 進階</button>
+      <button type="button" data-level="expert" aria-pressed="false">Expert · 熟練</button>
+    </div>
+    <div class="guide" id="level-note"></div>
+    <ol class="steps" id="steps"></ol>
+    <div class="key" aria-label="Colour key">
+      <section>
+        <h2>Class · 輔音類</h2>
+        <div class="chips">
+          <span class="swatch"><i style="background:var(--cls-mid)"></i>Mid 中輔音</span>
+          <span class="swatch"><i style="background:var(--cls-high)"></i>High 高輔音</span>
+          <span class="swatch"><i style="background:var(--cls-low)"></i>Low 低輔音</span>
+        </div>
+      </section>
+      <section>
+        <h2>Spoken tone · 聲調</h2>
+        <div class="chips">
+          <span class="swatch"><i style="background:var(--tone-mid)"></i>Mid 中聲</span>
+          <span class="swatch"><i style="background:var(--tone-low)"></i>Low 低聲</span>
+          <span class="swatch"><i style="background:var(--tone-falling)"></i>Falling 降聲</span>
+          <span class="swatch"><i style="background:var(--tone-high)"></i>High 高聲</span>
+          <span class="swatch"><i style="background:var(--tone-rising)"></i>Rising 升聲</span>
+        </div>
+      </section>
+      <section>
+        <h2>Vowel seat · 元音位置</h2>
+        <div class="chips">
+          <span class="swatch"><i style="background:var(--seat-before)"></i>Before 前</span>
+          <span class="swatch"><i style="background:var(--seat-above)"></i>Above 上</span>
+          <span class="swatch"><i style="background:var(--seat-below)"></i>Below 下</span>
+          <span class="swatch"><i style="background:var(--seat-after)"></i>After 後</span>
+        </div>
+      </section>
+      <section>
+        <h2>Syllable · 音節</h2>
+        <div class="chips">
+          <span class="swatch"><i style="background:var(--life-live)"></i>Live 活</span>
+          <span class="swatch"><i style="background:var(--life-dead)"></i>Dead 死</span>
+          <span class="swatch"><i style="background:var(--mark-ek)"></i><span lang="th">ก่</span></span>
+          <span class="swatch"><i style="background:var(--mark-tho)"></i><span lang="th">ก้</span></span>
+          <span class="swatch"><i style="background:var(--mark-tri)"></i><span lang="th">ก๊</span></span>
+          <span class="swatch"><i style="background:var(--mark-cattawa)"></i><span lang="th">ก๋</span></span>
+        </div>
+      </section>
+    </div>
+    <div class="app">
+      <aside class="list">
+        <div class="filters" id="filters"></div>
+        <div class="list-note">
+          <p><b>Click a word.</b> Dot <i class="dot" style="background:var(--cls-mid)"></i>= class · pill <span class="pill-demo">高聲</span>= tone.</p>
+          <p lang="zh-Hant"><b>點一個詞。</b>圓點＝輔音類顏色，標籤＝聲調顏色。</p>
+        </div>
+        <div id="words"></div>
+      </aside>
+      <div class="main">
+        <div class="stage" id="stage"></div>
+        <div class="blocks" id="blocks"></div>
+        <div class="build" id="build"></div>
+      </div>
+    </div>
+    <p class="fine">A silent ห in front of ง ญ น ม ย ร ล ว is outside this calculator, as are pronounced clusters such as ปลา and irregular words such as ก็. ก๋ง, บน, and รถ leave the vowel unwritten. The tone colour names the built word. Other words in the sentence have their own tones.</p>
+    <p class="fine" lang="zh-Hant">ง ญ น ม ย ร ล ว 前面不發音的 ห，不在這個計算器裡。真正的複輔音如 ปลา，以及不規則的 ก็，也不在這裡。ก๋ง、บน、รถ 會把元音省去不寫。聲調的顏色只標你組出來的那個詞。例句裡的其他詞各有自己的聲調。</p>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="integrated-tone-vocab.html" aria-current="page">Combined workshop</a>
+    </footer>
+  </div>
+  <script src="js/letters.js"></script>
+  <script src="js/thai.js"></script>
+  <script src="js/speak.js"></script>
+  <script>
+    const GLYPHS = ["ก","ข","ค","ง","จ","ฉ","ช","ซ","ด","ต","ถ","ท","น","บ","ป","ผ","พ","ฝ","ฟ","ม","ย","ร","ล","ว","ส","ห","อ"];
+    const CLASS_ZH = { mid: "中輔音", high: "高輔音", low: "低輔音" };
+    const CLASS_TH = { mid: "อักษรกลาง", high: "อักษรสูง", low: "อักษรต่ำ" };
+    const TONE_ZH = { mid: "中聲", low: "低聲", falling: "降聲", high: "高聲", rising: "升聲" };
+    const GROUP_ZH = {
+      k: "不送氣的 k，沒有噴氣。",
+      kh: "送氣的 k。這一組每個字母氣口相同。",
+      ng: "ng，像 sing 的尾音，這裡用在音節開頭。",
+      c: "不送氣的 ch。沒有噴氣，也不是英語裡濁的 j。",
+      ch: "送氣的 ch，有一股氣。",
+      s: "s，像 see。高輔音的 s 和低輔音的 s 氣口相同。",
+      y: "y，像 yes。",
+      d: "濁音 d，像 day。",
+      t: "不送氣的 t。聲帶不顫，沒有噴氣。",
+      th: "送氣的 t。不是英語 think 的 th。",
+      n: "n，像 no。",
+      b: "濁音 b，像 boy。",
+      p: "不送氣的 p。聲帶不顫，沒有噴氣。",
+      ph: "送氣的 p。這個 ph 不是 phone 的 f。",
+      f: "f，像 fan。",
+      m: "m，像 me。",
+      r: "舌尖輕彈一下。不是英語 r，也不是 l。",
+      l: "l，像 love。",
+      w: "w，像 we。",
+      h: "h，像 he。",
+      q: "喉嚨裡的一頓。อ 也用來托住需要輔音才能寫出來的元音。"
+    };
+    const NOTE_ZH = {
+      "ฃ": "已廢。ขวด（瓶子）現在用 ข 來寫。",
+      "ฅ": "已廢。คน（人）現在用 ค 來寫。",
+      "ฆ": "較少當聲母。記憶詞是 ระฆัง，鐘。",
+      "ญ": "記憶詞 หญิง 前面有不發音的 ห，名字按高輔音算聲調。字母 ญ 本身是低輔音。作聲母時和 ย 同音；作韻尾時讀 n。",
+      "ฎ": "和 ด 一樣是濁音 d。記憶詞是 ชฎา，頭飾。",
+      "ฏ": "和 ต 一樣是不送氣的 t。記憶詞是 ปฏัก。",
+      "ฐ": "和 ถ 一樣是送氣的 t。多見於書面語。",
+      "ฑ": "和 ท 一樣是送氣的 t。記憶名是 มณโฑ。",
+      "ฒ": "和 ท 一樣是送氣的 t。記憶詞是 ผู้เฒ่า，長者。",
+      "ณ": "和 น 同音。常見於正式語和巴利、梵語借詞。",
+      "น": "記憶詞 หนู 前面有不發音的 ห，所以 หนู 是升調。字母 น 本身是低輔音。單獨的 นา（田）是長活音節、沒有符號，讀中聲。",
+      "ภ": "和 พ 一樣是送氣的 p。記憶詞是 สำเภา，帆船。",
+      "ว": "記憶詞 แหวน 前面有不發音的 ห，所以 แหวน 是升調。字母 ว 本身是低輔音。單獨的 วาง（放置）是中聲。",
+      "ศ": "和 ส 同音。常見於書面語，例如 ศึกษา。",
+      "ษ": "和 ส 同音。記憶詞是 ฤๅษี，隱士。",
+      "ห": "這是高輔音的 h。ห 放在 ง ญ น ม ย ร ล ว 前面而且不發音時，那個音節改按高輔音算。หนู、หญิง、แหวน 就是這樣。",
+      "ฬ": "和 ล 同音。除了名字和少數詞，例如 กีฬา，很少見。",
+      "ฌ": "日常詞裡少見。和 ช 一樣是送氣的 ch。"
+    };
+    const MARKS = {
+      none: { en: "No tone mark", zh: "沒有聲調符號", th: "ไม่มีรูป" },
+      ek: { en: "Mai ek", zh: "ไม้เอก，第一個聲調符號", th: "ไม้เอก" },
+      tho: { en: "Mai tho", zh: "ไม้โท，第二個聲調符號", th: "ไม้โท" },
+      tri: { en: "Mai tri", zh: "ไม้ตรี，第三個聲調符號", th: "ไม้ตรี" },
+      cattawa: { en: "Mai chattawa", zh: "ไม้จัตวา，第四個聲調符號", th: "ไม้จัตวา" }
+    };
+    const FINALS = [["", "none · 無"], ["ก", "ก stop"], ["ด", "ด stop"], ["บ", "บ stop"], ["น", "น live"], ["ม", "ม live"], ["ง", "ง live"], ["ย", "ย live"], ["ว", "ว live"]];
+    const MARK_BUTTONS = [["none", "no mark"], ["ek", "ก่"], ["tho", "ก้"], ["tri", "ก๊"], ["cattawa", "ก๋"]];
+    const ROWS = [
+      ["live", "Live, no mark · 活，無符號"],
+      ["dead-short", "Dead, short · 死，短"],
+      ["dead-long", "Dead, long · 死，長"],
+      ["ek", "ไม้เอก"],
+      ["tho", "ไม้โท"],
+      ["tri", "ไม้ตรี"],
+      ["cattawa", "ไม้จัตวา"]
+    ];
+
+    function W(c, v, fin, mark, en, zh, bits, enLine, zhLine) {
+      return { c: c, v: v, fin: fin, mark: mark, en: en, zh: zh, bits: bits, enLine: enLine, zhLine: zhLine };
+    }
+    const WORDS = [
+      W("ก","aa","","none","crow","烏鴉",["กา","ตัว","นั้น"],"That crow.","那隻烏鴉。"),
+      W("ก","ai","","ek","chicken","雞",["ไก่","ขัน","ตอน","เช้า"],"The rooster crows in the morning.","公雞在清晨啼叫。"),
+      W("ก","ao","","ek","old","舊",["อัน","นี้","เก่า","แล้ว"],"This one is already old.","這個已經舊了。"),
+      W("ก","i","น","none","to eat","吃",["กิน","ข้าว","หรือ","ยัง"],"Have you eaten yet?","吃飯了沒有？"),
+      W("ก","ak","บ","none","with","跟、和",["ไป","กับ","ป้า"],"Go with aunt.","跟長輩的姐姐去。"),
+      W("ด","ai","","tho","can, to get","可以；得到",["ไป","ได้","ไหม"],"Can we go?","可以去嗎？"),
+      W("ด","ii","","none","good","好",["อาหาร","นี้","ดี"],"This food is good.","這個食物很好。"),
+      W("ด","uu","","none","to look","看",["ดู","นก","ตัว","นั้น"],"Look at that bird.","看那隻鳥。"),
+      W("ด","oei","น","none","to walk","走",["ควาย","เดิน","ใน","นา"],"The buffalo walks in the field.","水牛在田裡走。"),
+      W("ด","e-short","ก","none","child","小孩",["เด็ก","คน","นี้"],"This child.","這個小孩。"),
+      W("ต","o-short","","tri","table","桌子",["หนังสือ","อยู่","บน","โต๊ะ"],"The book is on the table.","書在桌子上。"),
+      W("ต","aw","ง","tho","must","必須",["ต้อง","ไป"],"Must go.","必須去。"),
+      W("ต","ak","ว","cattawa","ticket","票",["ขอ","ตั๋ว","หนึ่ง","ใบ"],"One ticket, please.","請給我一張票。"),
+      W("ป","aa","","tho","aunt, a parent's elder sister","父或母的姐姐",["ป้า","ทำ","อาหาร"],"Aunt is cooking.","父或母的姐姐在做飯。"),
+      W("ป","aa","ก","none","mouth","嘴",["เปิด","ปาก"],"Open your mouth.","張開嘴巴。"),
+      W("ป","oei","ด","none","to open","打開",["เปิด","ประตู"],"Open the door.","開門。"),
+      W("ป","ai","","none","to go","去",["ไป","ตลาด"],"Go to the market.","去市場。"),
+      W("ป","aa","","ek","forest","森林",["เสือ","อยู่","ใน","ป่า"],"The tiger is in the forest.","老虎在森林裡。"),
+      W("บ","aa","น","tho","house, home","家",["กลับ","บ้าน"],"Go home.","回家。"),
+      W("บ","aw","ก","none","to tell","告訴",["บอก","แม่"],"Tell Mom.","告訴媽媽。"),
+      W("น","am","","tho","water","水",["ขอ","น้ำ","หน่อย"],"Water, please.","請給我一點水。"),
+      W("น","aa","","none","rice field","田",["ควาย","เดิน","ใน","นา"],"The buffalo walks in the rice field.","水牛在田裡走。"),
+      W("น","ai2","","none","in","在……裡",["ปลา","อยู่","ใน","น้ำ"],"The fish is in the water.","魚在水裡。"),
+      W("ม","aa","","tho","horse","馬",["ม้า","วิ่ง","เร็ว"],"The horse runs fast.","馬跑得很快。"),
+      W("ม","aa","ก","none","very, much","很、非常",["อร่อย","มาก"],"Very delicious.","非常好吃。"),
+      W("ม","uue","","none","hand","手",["ล้าง","มือ"],"Wash your hands.","洗手。"),
+      W("ม","aa","","none","to come","來",["มา","ที่","บ้าน"],"Come to the house.","到家裡來。"),
+      W("ม","ae","","ek","mother","媽媽",["ฉัน","รัก","แม่"],"I love Mom.","我愛媽媽。"),
+      W("ม","ai","","ek","not","不",["ไป","ไม่","ได้"],"Cannot go.","不能去。"),
+      W("ม","ai","","tho","wood","木頭",["ไม้","อยู่","บน","โต๊ะ"],"The piece of wood is on the table.","木頭在桌子上。"),
+      W("ข","aa","ว","tho","cooked rice","米飯",["กิน","ข้าว"],"Eat a meal.","吃飯。"),
+      W("ข","aa","ว","none","white","白色",["เสื้อ","สี","ขาว"],"A white shirt.","一件白襯衫。"),
+      W("ข","aa","","none","leg","腿",["ขา","ขวา"],"The right leg.","右腿。"),
+      W("ร","ak","ก","none","to love","愛",["ฉัน","รัก","แม่"],"I love Mom.","我愛媽媽。"),
+      W("ร","uea","","none","boat","船",["เรือ","ลำ","นั้น","เล็ก"],"That boat is small.","那艘船很小。"),
+      W("ร","e-short","ว","none","fast","快",["ม้า","วิ่ง","เร็ว"],"The horse runs fast.","馬跑得很快。"),
+      W("ส","uea","","none","tiger","老虎",["เสือ","อยู่","ใน","ป่า"],"The tiger is in the forest.","老虎在森林裡。"),
+      W("ส","ai2","","ek","to put in","放進",["ใส่","ถุง"],"Put it in a bag.","放進袋子裡。"),
+      W("ล","uea","ก","none","to choose","選擇",["เลือก","มะม่วง"],"Choose a mango.","挑一顆芒果。"),
+      W("ล","i","ง","none","monkey","猴子",["ลิง","ตัว","นี้"],"This monkey.","這隻猴子。"),
+      W("ง","uu","","none","snake","蛇",["ฉัน","เห็น","งู"],"I see a snake.","我看見一條蛇。"),
+      W("จ","a","","none","will","將要",["จะ","ไป","ตลาด"],"Will go to the market.","要去市場。"),
+      W("อ","aa","ง","ek","basin","盆",["อ่าง","ใบ","นี้","มี","น้ำ"],"This basin has water.","這個盆裡有水。"),
+      W("ผ","aa","","tho","cloth","布",["ผ้า","สี","ขาว"],"White cloth.","白布。"),
+      W("พ","aa","","none","to take along","帶著",["พา","เด็ก","ไป"],"Take the child along.","帶著小孩去。"),
+      W("ห","ai2","","tho","to give","給",["ให้","น้ำ","หน่อย"],"Some water, please.","請給一點水。"),
+      W("ช","aa","","tho","slow","慢",["เต่า","เดิน","ช้า"],"The turtle walks slowly.","烏龜走得很慢。"),
+      W("ท","ii","","ek","at","在",["อยู่","ที่","บ้าน"],"At home.","在家。"),
+      W("น","ii","","tho","this","這",["จาน","นี้"],"This plate.","這個盤子。"),
+      W("ว","i","ง","ek","to run","跑",["ม้า","วิ่ง","เร็ว"],"The horse runs fast.","馬跑得很快。")
+    ];
+
+    const STARTER = {
+      "ก|aa||none": 1, "ก|ai||ek": 1, "ก|i|น|none": 1,
+      "ด|ii||none": 1, "ด|e-short|ก|none": 1, "จ|a||none": 1,
+      "ต|o-short||tri": 1, "ป|aa||tho": 1, "ป|ai||none": 1, "ป|aa||ek": 1,
+      "บ|aa|น|tho": 1, "น|am||tho": 1, "น|aa||none": 1,
+      "ม|aa||tho": 1, "ม|aa||none": 1, "ม|ae||ek": 1, "ม|ai||ek": 1, "ม|ai||tho": 1, "ม|aa|ก|none": 1,
+      "ข|aa|ว|tho": 1, "ข|aa|ว|none": 1, "ร|ak|ก|none": 1, "ร|uea||none": 1, "ส|uea||none": 1
+    };
+    const LEVEL_NOTE = {
+      starter: ["Start here. The list is a short set of real words. The card names each colour in a sentence, so you can follow a word without already knowing the chart.", "從這裡開始。詞表是一小組真詞。卡片用一句話點出每種顏色，還沒背過聲調表也能跟著讀。"],
+      intermediate: ["The full word list, the vowel seats, the tone chart, and the controls for building a syllable.", "完整詞表、元音座位、聲調表，以及自己組音節的按鈕。"],
+      expert: ["The chart and the builder lead. Explanations stay short. Same-sound letters and the notes on silent ห stay on the card.", "先看聲調表和組字按鈕。說明保持短。同氣口的字母，以及不發音 ห 的註記，留在卡片上。"]
+    };
+    const LEVEL_STEPS = {
+      starter: [
+        "Pick a word in the left list · 在左邊詞表點一個詞",
+        "Read the card: one colour, one idea · 看卡片：一種顏色一個概念",
+        "Press Play to hear it · 按「朗讀」聽讀音"
+      ],
+      intermediate: [
+        "Pick a word, or build a syllable below · 選一個詞，或在下面組一個音節",
+        "The chart cell and the vowel seats light up · 聲調表的一格和元音座位會亮起",
+        "Click any chart cell to try that situation · 點聲調表任何一格，試試那種情況"
+      ],
+      expert: [
+        "Build a syllable, or click a word · 組一個音節，或點一個詞",
+        "Click a same-sound letter to compare classes · 點同氣口的字母，比較輔音類",
+        "Click chart cells to jump between situations · 點表內各格，切換情況"
+      ]
+    };
+    let state = { c: "น", v: "am", fin: "", mark: "tho" };
+    let filter = "all";
+    let level = "starter";
+    let voice = false;
+    try {
+      const saved = sessionStorage.getItem("thai-workshop-level");
+      if (saved === "starter" || saved === "intermediate" || saved === "expert") level = saved;
+    } catch (err) { /* keep starter */ }
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function letterBy(g) { return ThaiLetters.letters.find(function (l) { return l.g === g; }); }
+    function currentJudge() {
+      const letter = letterBy(state.c);
+      const judged = Thai.judge(letter.cls, state.c, state.v, state.fin, state.mark);
+      return { letter: letter, judged: judged };
+    }
+    function situationOf(mark, judged) {
+      if (mark === "ek" || mark === "tho" || mark === "tri" || mark === "cattawa") return mark;
+      if (judged.live) return "live";
+      return judged.long ? "dead-long" : "dead-short";
+    }
+    function wordTone(w) {
+      return Thai.judge(letterBy(w.c).cls, w.c, w.v, w.fin, w.mark).tone;
+    }
+    function wordKey(w) { return w.c + "|" + w.v + "|" + w.fin + "|" + w.mark; }
+    function filtered() {
+      return WORDS.filter(function (w) {
+        if (level === "starter" && !STARTER[wordKey(w)]) return false;
+        if (filter === "all") return true;
+        if (filter.indexOf("cls-") === 0) return letterBy(w.c).cls === filter.slice(4);
+        if (filter.indexOf("tone-") === 0) return wordTone(w) === filter.slice(5);
+        return true;
+      });
+    }
+    function walkthrough(letter, j) {
+      const toneEn = j.tone ? Thai.TONE_NAME[j.tone].en : "not used in standard spelling";
+      const toneZh = j.tone ? TONE_ZH[j.tone] : "不是標準拼法";
+      const cls = letter.cls;
+      const letterBit = '<b lang="th" style="color:var(--cls-' + cls + ')">' + esc(letter.g) + "</b>";
+      let en = letterBit + " keeps the " + cls + "-class colour on every word. ";
+      let zh = letterBit + " 在每個詞上都用" + CLASS_ZH[cls] + "的顏色。";
+      if (state.mark === "none") {
+        en += "This word has no tone mark. ";
+        zh += "這個詞沒有聲調符號。";
+      } else {
+        en += "The mark is <b style=\"color:var(--mark-" + state.mark + ")\">" + MARKS[state.mark].en + "</b>, and that mark keeps its own colour. ";
+        zh += "符號是<b style=\"color:var(--mark-" + state.mark + ")\">" + MARKS[state.mark].th + "</b>，這個符號的顏色不跟著詞換。";
+      }
+      en += "The syllable is <b style=\"color:var(--life-" + (j.live ? "live" : "dead") + ")\">" + (j.live ? "live" : "dead") + "</b>. ";
+      zh += "這個音節是<b style=\"color:var(--life-" + (j.live ? "live" : "dead") + ")\">" + (j.live ? "活音節" : "死音節") + "</b>。";
+      en += "The spoken tone is <b style=\"color:var(--tone-" + (j.tone || "mid") + ")\">" + toneEn + "</b>. That colour is the frame around the card and the label in the list.";
+      zh += "讀出來的聲調是<b style=\"color:var(--tone-" + (j.tone || "mid") + ")\">" + toneZh + "</b>。這個顏色就是卡片外框，也是左邊詞表上的標籤。";
+      return { en: en, zh: zh };
+    }
+    function seat(kind, label, text, color, extraClass, active) {
+      const filled = !!text || !!active;
+      const inner = text ? '<b lang="th">' + esc(text) + "</b>" : "<i>" + label + "</i>";
+      return '<span class="seat' + (filled ? " filled" : "") + (extraClass ? " " + extraClass : "") + '" data-kind="' + kind + '" style="--seat:' + color + '">' + inner + "</span>";
+    }
+    function coreCluster(vowel, cons, toneChar) {
+      if (vowel.am) return cons + toneChar + "\u0E33";
+      if (vowel.up || vowel.lo) return cons + (vowel.up || "") + (vowel.lo || "") + toneChar;
+      return cons + toneChar;
+    }
+    function lifeCopy(j) {
+      const v = j.vowel;
+      if (v.liveForce) {
+        const zh = {
+          am: "ำ 本身已經以 m 音結束，所以這是活音節。",
+          ai: "ไ 本身已經以 y 音結束，所以這是活音節。",
+          ai2: "ใ 本身已經以 y 音結束，所以這是活音節。它和 ไ 同音，是較少用的寫法。",
+          ao: "เ–า 本身已經以 w 音結束，所以這是活音節。"
+        }[v.id] || "這個元音自己帶著結尾，所以是活音節。";
+        return { en: v.why, zh: zh };
+      }
+      if (!j.final) {
+        if (j.live) return { en: "The vowel is long and the syllable stays open, so it is live.", zh: "元音是長的，音節開著結束，所以是活音節。" };
+        return { en: "The vowel is short and the syllable ends there, so it is dead.", zh: "元音是短的，音節就在這裡停住，所以是死音節。" };
+      }
+      if (j.live) return { en: "It ends in " + j.final + ". ม น ง ย ว keep a syllable live.", zh: "它以 " + j.final + " 結尾。ม、น、ง、ย、ว 讓音節保持活的。" };
+      return { en: "It ends in " + j.final + ", a stopped consonant, so the syllable is dead.", zh: "它以 " + j.final + " 結尾。這是堵住的塞音，所以是死音節。" };
+    }
+    function calcCopy(letter, j) {
+      const cls = letter.cls;
+      const clsEn = cls + " class";
+      const clsZh = CLASS_ZH[cls];
+      if (!j.tone) {
+        return {
+          en: letter.g + " is " + clsEn + ". Mai tri and mai chattawa are written on mid-class consonants, so this is not a standard spelling.",
+          zh: letter.g + " 是" + clsZh + "。ไม้ตรี 和 ไม้จัตวา 只寫在中輔音上，所以這不是標準拼法。"
+        };
+      }
+      const toneEn = Thai.TONE_NAME[j.tone].en.toLowerCase();
+      const toneZh = TONE_ZH[j.tone];
+      const lifeZh = j.live ? "活音節" : "死音節";
+      const lengthZh = j.vowel.liveForce ? "" : (j.long ? "長元音，" : "短元音，");
+      let en = letter.g + " is " + clsEn + ". ";
+      let zh = letter.g + " 是" + clsZh + "。";
+      if (state.mark === "none") {
+        en += j.why + " There is no tone mark. ";
+        zh += lifeCopy(j).zh + "沒有聲調符號。";
+        if (j.live) {
+          en += "A live syllable with no mark is mid after a mid or low consonant, and rising after a high consonant.";
+          zh += "沒有符號的活音節，中輔音和低輔音讀中聲，高輔音讀升聲。";
+        } else if (cls === "low") {
+          en += "A low-class dead syllable is high when the vowel is short, and falling when the vowel is long.";
+          zh += "低輔音的死音節，短元音讀高聲，長元音讀降聲。";
+        } else {
+          en += "A mid-class or high-class dead syllable is low.";
+          zh += "中輔音或高輔音的死音節讀低聲。";
+        }
+      } else if (state.mark === "ek") {
+        en += "Mai ek is low after a mid or high consonant, and falling after a low consonant.";
+        zh += "ไม้เอก 在中輔音或高輔音後面讀低聲，在低輔音後面讀降聲。";
+      } else if (state.mark === "tho") {
+        en += "Mai tho falls after a mid or high consonant, and is high after a low consonant.";
+        zh += "ไม้โท 在中輔音或高輔音後面讀降聲，在低輔音後面讀高聲。";
+      } else if (state.mark === "tri") {
+        en += "Mai tri is written on a mid-class consonant and gives the high tone.";
+        zh += "ไม้ตรี 寫在中輔音上，讀高聲。";
+      } else {
+        en += "Mai chattawa is written on a mid-class consonant and gives the rising tone.";
+        zh += "ไม้จัตวา 寫在中輔音上，讀升聲。";
+      }
+      en += " This syllable is " + toneEn + ".";
+      zh += "這個音節是" + toneZh + "。（" + lengthZh + lifeZh + "。）";
+      if (j.note) { en += " " + j.note; zh += " " + (j.final === "น" && j.vowel.needsFinal ? "這個元音要配韻尾。還沒選的時候，先用 น。" : "這個元音自己已經收尾，所以不再加別的韻尾。"); }
+      return { en: en, zh: zh };
+    }
+    function toneForCell(cls, row) {
+      const mark = { live: "none", "dead-short": "none", "dead-long": "none", ek: "ek", tho: "tho", tri: "tri", cattawa: "cattawa" }[row];
+      return Thai.toneOf(cls, row === "live", row !== "dead-short", mark);
+    }
+    function applyCell(cls, row) {
+      const hit = WORDS.find(function (w) {
+        const j = Thai.judge(letterBy(w.c).cls, w.c, w.v, w.fin, w.mark);
+        return letterBy(w.c).cls === cls && situationOf(w.mark, j) === row;
+      });
+      if (hit) { state = { c: hit.c, v: hit.v, fin: hit.fin, mark: hit.mark }; render(); return; }
+      const c = letterBy(state.c).cls === cls ? state.c : { mid: "ก", high: "ข", low: "ค" }[cls];
+      const shape = {
+        live: { v: "aa", fin: "", mark: "none" },
+        "dead-short": { v: "a", fin: "", mark: "none" },
+        "dead-long": { v: "aa", fin: "ก", mark: "none" },
+        ek: { v: "aa", fin: "", mark: "ek" },
+        tho: { v: "aa", fin: "", mark: "tho" },
+        tri: { v: "aa", fin: "", mark: "tri" },
+        cattawa: { v: "aa", fin: "", mark: "cattawa" }
+      }[row];
+      state = { c: c, v: shape.v, fin: shape.fin, mark: shape.mark };
+      render();
+    }
+    function renderFilters() {
+      const items = level === "starter"
+        ? [["all", "All 全部", "var(--ink)"], ["cls-mid", "Mid 中輔音", "var(--cls-mid)"], ["cls-high", "High 高輔音", "var(--cls-high)"], ["cls-low", "Low 低輔音", "var(--cls-low)"], ["tone-mid", "Mid 中聲", "var(--tone-mid)"], ["tone-low", "Low 低聲", "var(--tone-low)"], ["tone-falling", "Falling 降聲", "var(--tone-falling)"], ["tone-high", "High 高聲", "var(--tone-high)"], ["tone-rising", "Rising 升聲", "var(--tone-rising)"]]
+        : [["all", "All 全部", "var(--ink)"], ["cls-mid", "Mid", "var(--cls-mid)"], ["cls-high", "High", "var(--cls-high)"], ["cls-low", "Low", "var(--cls-low)"], ["tone-mid", "中聲", "var(--tone-mid)"], ["tone-low", "低聲", "var(--tone-low)"], ["tone-falling", "降聲", "var(--tone-falling)"], ["tone-high", "高聲", "var(--tone-high)"], ["tone-rising", "升聲", "var(--tone-rising)"]];
+      document.getElementById("filters").innerHTML = items.map(function (item) {
+        const on = filter === item[0];
+        return '<button type="button" data-filter="' + item[0] + '" aria-pressed="' + on + '"' + (on ? ' style="background:' + item[2] + '"' : "") + ">" + item[1] + "</button>";
+      }).join("");
+      document.querySelectorAll("#filters button").forEach(function (b) {
+        b.addEventListener("click", function () { filter = b.dataset.filter; render(); });
+      });
+    }
+    function renderWords(active) {
+      const box = document.getElementById("words");
+      const top = box.scrollTop;
+      box.innerHTML = filtered().map(function (w) {
+        const j = Thai.judge(letterBy(w.c).cls, w.c, w.v, w.fin, w.mark);
+        const on = w === active;
+        const roma = j.tone ? Thai.romanize(w.c, w.v, j.final, j.tone) : "";
+        const gloss = level === "starter" ? "<small>" + esc(w.en) + " · " + esc(w.zh) + "</small>" : "";
+        return '<button type="button" class="word" data-key="' + w.c + "|" + w.v + "|" + w.fin + "|" + w.mark + '" aria-pressed="' + on + '" style="--on:var(--tone-' + j.tone + ')">' +
+          '<i class="dot" style="background:var(--cls-' + letterBy(w.c).cls + ')"></i><span class="word-main"><b lang="th">' + esc(j.text) + '</b><span class="roma">' + esc(roma) + "</span>" + gloss + "</span>" +
+          '<span class="pill" style="background:var(--tone-' + j.tone + ')">' + (level === "starter" ? Thai.TONE_NAME[j.tone].en + " " : "") + TONE_ZH[j.tone] + "</span></button>";
+      }).join("");
+      box.scrollTop = top;
+      box.querySelectorAll(".word").forEach(function (b) {
+        b.addEventListener("click", function () {
+          const parts = b.dataset.key.split("|");
+          state = { c: parts[0], v: parts[1], fin: parts[2], mark: parts[3] };
+          render();
+        });
+      });
+    }
+    function renderStage(pack, word) {
+      const letter = pack.letter;
+      const j = pack.judged;
+      const v = j.vowel;
+      const toneChar = Thai.TONE_MARK[state.mark] || "";
+      const post = v.am ? "" : (v.post || "");
+      const life = j.live ? "live" : "dead";
+      const core = coreCluster(v, state.c, toneChar);
+      document.documentElement.style.setProperty("--tone", j.tone ? "var(--tone-" + j.tone + ")" : "var(--mark-none)");
+      const seats = seat("before", "before · 前", v.pre || "", "var(--seat-before)") +
+        '<span class="stack">' +
+          seat("mark", "mark · 符號", "", "var(--mark-" + state.mark + ")", "", !!toneChar) +
+          seat("above", "above · 上", "", "var(--seat-above)", "", !!(v.up || v.am)) +
+          seat("cons", "", core, "var(--cls-" + letter.cls + ")", "core") +
+          seat("below", "below · 下", "", "var(--seat-below)", "", !!v.lo) +
+        "</span>" +
+        seat("after", "after · 後", post, "var(--seat-after)") +
+        seat("final", "final · 韻尾", j.final || "", "var(--life-" + life + ")");
+      const toneLine = j.tone
+        ? Thai.TONE_NAME[j.tone].en + " · " + Thai.TONE_NAME[j.tone].th + " · " + TONE_ZH[j.tone]
+        : "Not a standard spelling · 不是標準拼法";
+      const headRoman = j.tone ? Thai.romanize(state.c, state.v, j.final, j.tone) : "";
+      const meaning = word
+        ? '<div class="glosses"><p><strong>' + esc(word.en) + '</strong> · <strong lang="zh-Hant">' + esc(word.zh) + '</strong></p><p lang="th">' + esc(word.bits.join(" ")) + '</p><p class="roman sent-roman">' + esc(romanBits(word.bits)) + "</p><p>" + esc(word.enLine) + '</p><p lang="zh-Hant">' + esc(word.zhLine) + "</p></div>"
+        : '<div class="glosses"><p>This shape can be read. It is not in the starter word list.</p><p lang="zh-Hant">這個形狀讀得出來。它不在這份入門詞表裡。</p></div>';
+      document.getElementById("stage").innerHTML =
+        '<div class="stick">' + seats + "</div>" +
+        '<p class="written" lang="th">' + esc(j.text) + "</p>" +
+        (headRoman ? '<p class="roman">' + esc(headRoman) + "</p>" : "") +
+        '<p class="tone-name">' + esc(toneLine) + "</p>" + meaning +
+        (voice
+          ? '<p style="text-align:center"><button type="button" id="say">▶ Play · 朗讀</button></p>'
+          : '<p class="play-note">No Thai voice on this computer — read the pronunciation spelling above. 這部電腦沒有泰語語音，請照上面的羅馬拼音讀。</p>');
+      const say = document.getElementById("say");
+      if (say) say.addEventListener("click", function () { ThaiSpeak.speak(j.text, "th"); });
+    }
+    function renderStarterBlocks(pack) {
+      const letter = pack.letter;
+      const j = pack.judged;
+      const walk = walkthrough(letter, j);
+      const calc = calcCopy(letter, j);
+      const toneColor = j.tone ? "var(--tone-" + j.tone + ")" : "var(--mark-none)";
+      document.getElementById("blocks").innerHTML =
+        '<section class="block" style="--cat:var(--cls-' + letter.cls + ')">' +
+          "<h2><i></i>How to read this card · 怎麼讀這張卡</h2>" +
+          "<p>" + walk.en + "</p><p lang=\"zh-Hant\">" + walk.zh + "</p></section>" +
+        '<section class="block" style="--cat:' + toneColor + '">' +
+          "<h2><i></i>Why this tone · 為什麼是這個聲調</h2>" +
+          "<p>" + esc(calc.en) + "</p><p lang=\"zh-Hant\">" + esc(calc.zh) + "</p></section>";
+    }
+    function renderExpertBlocks(pack) {
+      const letter = pack.letter;
+      const j = pack.judged;
+      const calc = calcCopy(letter, j);
+      const toneColor = j.tone ? "var(--tone-" + j.tone + ")" : "var(--mark-none)";
+      const sibs = ThaiLetters.letters.filter(function (l) { return l.group === letter.group; }).map(function (l) {
+        return '<button type="button" data-c="' + l.g + '" style="background:var(--cls-' + l.cls + ')">' + l.g + "</button>";
+      }).join("");
+      const note = letter.note ? "<p>" + esc(letter.hint) + "</p>" + (NOTE_ZH[letter.g] ? '<p lang="zh-Hant">' + esc(NOTE_ZH[letter.g]) + "</p>" : "<p>" + esc(letter.note) + "</p>") : "<p>" + esc(letter.hint) + "</p><p lang=\"zh-Hant\">" + esc(GROUP_ZH[letter.group]) + "</p>";
+      document.getElementById("blocks").innerHTML =
+        '<section class="block" style="--cat:var(--mark-' + state.mark + ')">' +
+          "<h2><i></i>" + MARKS[state.mark].th + " · " + CLASS_ZH[letter.cls] + "</h2>" +
+          chartHtml(letter, j) + "</section>" +
+        '<section class="block" style="--cat:var(--cls-' + letter.cls + ')">' +
+          '<h2><i></i><span lang="th">' + esc(letter.name) + "</span> · " + CLASS_ZH[letter.cls] + "</h2>" +
+          note + '<div class="sibs">' + sibs + "</div></section>" +
+        '<section class="block" style="--cat:' + toneColor + '">' +
+          "<h2><i></i>" + (j.tone ? TONE_ZH[j.tone] + " · " + Thai.TONE_NAME[j.tone].th : "—") + "</h2>" +
+          "<p>" + esc(calc.en) + "</p><p lang=\"zh-Hant\">" + esc(calc.zh) + "</p></section>";
+      bindBlockClicks();
+    }
+    function renderBlocks(pack, word) {
+      if (level === "starter") { renderStarterBlocks(pack); return; }
+      if (level === "expert") { renderExpertBlocks(pack); return; }
+      const letter = pack.letter;
+      const j = pack.judged;
+      const v = j.vowel;
+      const life = lifeCopy(j);
+      const calc = calcCopy(letter, j);
+      const sibs = ThaiLetters.letters.filter(function (l) { return l.group === letter.group; }).map(function (l) {
+        return '<button type="button" data-c="' + l.g + '" style="background:var(--cls-' + l.cls + ')">' + l.g + " " + l.cls + "</button>";
+      }).join("");
+      const seatsUsed = [];
+      if (v.pre) seatsUsed.push(["before", "前", "var(--seat-before)"]);
+      if (v.up || v.am) seatsUsed.push(["above", "上", "var(--seat-above)"]);
+      if (v.lo) seatsUsed.push(["below", "下", "var(--seat-below)"]);
+      if (v.post && !v.am) seatsUsed.push(["after", "後", "var(--seat-after)"]);
+      const seatLine = seatsUsed.map(function (s) {
+        return '<span class="swatch"><i style="background:' + s[2] + '"></i>' + s[0] + " " + s[1] + "</span>";
+      }).join(" ");
+      const chart = chartHtml(letter, j);
+      const note = letter.note ? "<p>" + esc(letter.note) + "</p>" + (NOTE_ZH[letter.g] ? '<p lang="zh-Hant">' + esc(NOTE_ZH[letter.g]) + "</p>" : "") : "";
+      const lifeColor = j.live ? "var(--life-live)" : "var(--life-dead)";
+      const toneColor = j.tone ? "var(--tone-" + j.tone + ")" : "var(--mark-none)";
+      document.getElementById("blocks").innerHTML =
+        '<section class="block" style="--cat:var(--cls-' + letter.cls + ')">' +
+          "<h2><i></i>Consonant class · 輔音類</h2>" +
+          '<p lang="th"><strong>' + esc(letter.name) + "</strong> · " + esc(letter.gloss) + "</p>" +
+          "<p>" + CLASS_TH[letter.cls] + " · " + letter.cls + " class · " + CLASS_ZH[letter.cls] + "</p>" +
+          "<p>" + esc(letter.hint) + "</p><p lang=\"zh-Hant\">" + esc(GROUP_ZH[letter.group]) + "</p>" +
+          note +
+          "<p>Same sound · 氣口相同</p><div class=\"sibs\">" + sibs + "</div>" +
+          "<p>Class does not change the puff of air. It changes the tone rule.</p>" +
+          '<p lang="zh-Hant">輔音類不改變氣口。它改變的是聲調算法。</p></section>' +
+        '<section class="block" style="--cat:' + (seatsUsed[0] ? seatsUsed[0][2] : "var(--mark-none)") + '">' +
+          "<h2><i></i>Vowel seats · 元音的位置</h2>" +
+          '<p lang="th"><strong>' + esc(v.label) + "</strong> · " + esc(v.name) + "</p>" +
+          '<p class="chips">' + seatLine + "</p>" +
+          "<p>Thai writes some vowels before the consonant. You still say the consonant first.</p>" +
+          '<p lang="zh-Hant">有些元音寫在輔音前面。讀的時候仍然先讀輔音。</p></section>' +
+        '<section class="block" style="--cat:' + lifeColor + '">' +
+          "<h2><i></i>" + (j.live ? "Live syllable · 活音節" : "Dead syllable · 死音節") + "</h2>" +
+          "<p>" + esc(life.en) + "</p><p lang=\"zh-Hant\">" + esc(life.zh) + "</p>" +
+          "<p>A live syllable has a long open vowel, or it ends in ม น ง ย ว, or it uses ไ ใ เ–า or ำ. A dead syllable ends in a short vowel, or in a stopped ก ด บ.</p>" +
+          '<p lang="zh-Hant">活音節是長元音開著收，或以 ม น ง ย ว 結尾，或用了 ไ、ใ、เ–า、ำ。死音節是短元音自己結束，或以堵住的 ก ด บ 結尾。</p></section>' +
+        '<section class="block" style="--cat:var(--mark-' + state.mark + ')">' +
+          "<h2><i></i>Tone mark · 聲調符號</h2>" +
+          "<p>" + MARKS[state.mark].th + " · " + MARKS[state.mark].en + "</p>" +
+          '<p lang="zh-Hant">' + MARKS[state.mark].zh + "</p>" +
+          "<p>The mark does not name the tone by itself. The class completes it. The highlighted cell is this syllable.</p>" +
+          '<p lang="zh-Hant">符號自己不決定聲調。輔音類把它補完。亮著的那一格就是這個音節。</p>' +
+          chart + "</section>" +
+        '<section class="block" style="--cat:' + toneColor + '">' +
+          "<h2><i></i>Resulting tone · 得出的聲調</h2>" +
+          "<p>" + esc(calc.en) + "</p><p lang=\"zh-Hant\">" + esc(calc.zh) + "</p>" +
+          (word ? "<p>In the list, the pill uses this same tone colour. The dot uses the class colour.</p><p lang=\"zh-Hant\">左邊詞表的標籤用的是同一個聲調顏色。圓點用的是輔音類的顏色。</p>" : "") +
+          "</section>";
+      bindBlockClicks();
+    }
+    function chartHtml(letter, j) {
+      const rowNow = situationOf(state.mark, j);
+      let chart = "<table><thead><tr><th>Situation · 情況</th>";
+      ["mid", "high", "low"].forEach(function (cls) {
+        chart += '<th style="color:var(--cls-' + cls + ')">' + cls + " · " + CLASS_ZH[cls] + "</th>";
+      });
+      chart += "</tr></thead><tbody>";
+      ROWS.forEach(function (row) {
+        chart += "<tr><th>" + row[1] + "</th>";
+        ["mid", "high", "low"].forEach(function (cls) {
+          const tone = toneForCell(cls, row[0]);
+          const on = letter.cls === cls && rowNow === row[0];
+          chart += '<td><button type="button" data-cell="' + cls + "|" + row[0] + '"' + (on ? ' class="is-on"' : "") + ">" + (tone ? TONE_ZH[tone] : "—") + "</button></td>";
+        });
+        chart += "</tr>";
+      });
+      return chart + "</tbody></table>";
+    }
+    function bindBlockClicks() {
+      document.querySelectorAll("#blocks [data-c]").forEach(function (b) {
+        b.addEventListener("click", function () { state.c = b.dataset.c; render(); });
+      });
+      document.querySelectorAll("#blocks [data-cell]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          const parts = b.dataset.cell.split("|");
+          applyCell(parts[0], parts[1]);
+        });
+      });
+    }
+    function renderBuild() {
+      if (level === "starter") {
+        document.getElementById("build").innerHTML = "";
+        return;
+      }
+      const groups = ["before", "above", "below", "after", "around"];
+      const vowels = groups.map(function (group) {
+        const buttons = Thai.VOWELS.filter(function (v) { return v.group === group; }).map(function (v) {
+          return '<button type="button" data-v="' + v.id + '" aria-pressed="' + (state.v === v.id) + '"><span lang="th">' + v.label + "</span></button>";
+        }).join("");
+        return "<h2>" + group + "</h2><div class=\"chips\">" + buttons + "</div>";
+      }).join("");
+      const cons = GLYPHS.map(function (g) {
+        const cls = letterBy(g).cls;
+        const on = state.c === g;
+        return '<button type="button" data-setc="' + g + '" aria-pressed="' + on + '"' + (on ? "" : ' style="box-shadow:inset 0 0 0 2px var(--cls-' + cls + ')"') + '><span lang="th">' + g + "</span></button>";
+      }).join("");
+      const fins = FINALS.map(function (f) {
+        return '<button type="button" data-f="' + f[0] + '" aria-pressed="' + (state.fin === f[0]) + '">' + (f[0] ? '<span lang="th">' + f[0] + "</span> " : "") + f[1] + "</button>";
+      }).join("");
+      const marks = MARK_BUTTONS.map(function (m) {
+        return '<button type="button" data-m="' + m[0] + '" aria-pressed="' + (state.mark === m[0]) + '">' + m[1] + "</button>";
+      }).join("");
+      document.getElementById("build").innerHTML =
+        "<h2>Consonant · 輔音</h2><div class=\"chips\">" + cons + "</div>" +
+        vowels +
+        "<h2>Final · 韻尾</h2><div class=\"chips\">" + fins + "</div>" +
+        "<h2>Tone mark · 聲調符號</h2><div class=\"chips\">" + marks + "</div>";
+      document.querySelectorAll("#build button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (b.dataset.setc) state.c = b.dataset.setc;
+          if (b.dataset.v) state.v = b.dataset.v;
+          if (b.dataset.f !== undefined) state.fin = b.dataset.f;
+          if (b.dataset.m) state.mark = b.dataset.m;
+          render();
+        });
+      });
+    }
+    function render() {
+      const pack = currentJudge();
+      const word = WORDS.find(function (w) {
+        return w.c === state.c && w.v === state.v && w.mark === state.mark && (w.fin === state.fin || w.fin === pack.judged.final);
+      }) || null;
+      renderFilters();
+      renderWords(word);
+      renderStage(pack, word);
+      renderBlocks(pack, word);
+      renderBuild();
+    }
+    const EXTRA_ROMAN = {
+      "ตัว": "dtua", "นั้น": "nán", "ขัน": "khǎn", "ตอน": "dtawn", "เช้า": "cháo",
+      "หรือ": "rǔue", "ยัง": "yang", "อาหาร": "aahǎan", "นก": "nók", "คน": "khon",
+      "ควาย": "khwaai", "หนังสือ": "nǎng-sǔue", "อยู่": "yùu", "บน": "bon",
+      "ขอ": "khǎw", "หนึ่ง": "nèung", "ใบ": "bai", "ทำ": "tham", "ประตู": "bpràdtuu",
+      "ตลาด": "dtà-làat", "กลับ": "glàp", "หน่อย": "nòi", "ปลา": "bplaa",
+      "อร่อย": "à-ròi", "ล้าง": "láang", "ฉัน": "chǎn", "เสื้อ": "sûea", "สี": "sǐi",
+      "ขวา": "khwǎa", "ลำ": "laam", "เล็ก": "lék", "ถุง": "thǔng", "มะม่วง": "má-mûang",
+      "เห็น": "hěn", "มี": "mii", "เต่า": "dtào", "แล้ว": "láeo", "อัน": "an", "ไหม": "mǎi",
+      "จาน": "jaan"
+    };
+    let romanByText = null;
+    function romanIndex() {
+      if (romanByText) return romanByText;
+      romanByText = {};
+      WORDS.forEach(function (w) {
+        const judged = Thai.judge(letterBy(w.c).cls, w.c, w.v, w.fin, w.mark);
+        if (judged.tone) romanByText[judged.text] = Thai.romanize(w.c, w.v, judged.final, judged.tone);
+      });
+      return romanByText;
+    }
+    function romanBits(bits) {
+      const index = romanIndex();
+      return bits.map(function (bit) { return EXTRA_ROMAN[bit] || index[bit] || bit; }).join(" ");
+    }
+    function applyLevel(next) {
+      level = next;
+      try { sessionStorage.setItem("thai-workshop-level", level); } catch (err) { /* ignore */ }
+      document.body.classList.remove("level-starter", "level-intermediate", "level-expert");
+      document.body.classList.add("level-" + level);
+      document.querySelectorAll("[data-level]").forEach(function (b) {
+        b.setAttribute("aria-pressed", b.dataset.level === level ? "true" : "false");
+      });
+      const note = LEVEL_NOTE[level];
+      document.getElementById("level-note").innerHTML = "<p>" + note[0] + "</p><p lang=\"zh-Hant\">" + note[1] + "</p>";
+      document.getElementById("steps").innerHTML = LEVEL_STEPS[level].map(function (s, i) {
+        return "<li><b>" + (i + 1) + "</b><span>" + s + "</span></li>";
+      }).join("");
+      if (level === "starter" && !STARTER[state.c + "|" + state.v + "|" + state.fin + "|" + state.mark]) {
+        state = { c: "น", v: "am", fin: "", mark: "tho" };
+      }
+      render();
+    }
+    document.querySelectorAll("[data-level]").forEach(function (b) {
+      b.addEventListener("click", function () { applyLevel(b.dataset.level); });
+    });
+    ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
+    applyLevel(level);
+  </script>
+</body>
+</html>

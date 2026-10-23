@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>07 The Picture Market · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #f8efdf; --ink: #2a241c; --accent: #2f6f78; }
+    [lang="th"] { font-family: "Noto Serif Thai", "Leelawadee UI", serif; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em { font-style: normal; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; color: #2f6f78; }
+    .brief { max-width: 70ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #fffaf3; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(42,36,28,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .scene { position: relative; aspect-ratio: 1040 / 640; border-radius: 22px; overflow: hidden; background: #f6e3cc; }
+    .scene svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .tag {
+      position: absolute; transform: translate(-50%, -40%);
+      background: #fffaf3; color: var(--ink);
+      border-radius: 999px; padding: 4px 10px 6px;
+      box-shadow: 0 8px 18px rgba(40, 24, 10, .16);
+      font-size: clamp(16px, 2vw, 22px); line-height: 1.4;
+    }
+    .tag[aria-pressed="true"] { background: #2a241c; color: #fffaf3; }
+    .panel { display: grid; grid-template-columns: 160px 1fr; gap: 16px; margin-top: 14px; background: #fffaf3; border-radius: 18px; padding: 16px; }
+    .panel .glyph { font-size: 88px; line-height: 1.15; margin: 0; }
+    .word { font-size: 40px; line-height: 1.5; margin: 0; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .controls button { border-radius: 999px; padding: 8px 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(42,36,28,.16); }
+    @media (max-width: 800px) {
+      .facts, .panel { grid-template-columns: 1fr; }
+      .scene { aspect-ratio: auto; min-height: 520px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>07 / 07</span>
+      <nav>
+        <a href="06-syllable-bench.html">Prev</a>
+        <a href="01-card-box.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 07</p>
+    <h1>The Picture Market <em lang="th">ตลาดภาพ</em></h1>
+    <div class="brief">
+      <p>The memory cue is a place. This one is a floating market: chicken, eggs, fish, oranges, mango, water, flowers, and the boat that brought you. Tap a thing. The card opens on that word, the letter inside it, and one reason the tone is what it is.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone who remembers a stall more easily than a row in an alphabet chart.</div>
+        <div><strong>A card holds</strong> The object, the word, the letter, a sentence, and the tone in one line.</div>
+        <div><strong>Another page</strong> A symbol with no object of its own waits in the <a href="01-card-box.html">Card Box</a>.</div>
+      </div>
+      <p>The drawings are flat shapes, enough to judge the walk. A finished market would keep one illustration style and add stalls. Tone marks and vowels appear here when a market word contains them.</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><span>Tap a thing in the market: the chicken, the mango, the boat.</span></li>
+      <li><b>2</b><span>The card opens on that word — its letter, its tone, one sentence.</span></li>
+        <li><b>3</b><span>Use “Next stall” to visit every stall in order.</span></li>
+    </ol>
+    <div class="scene" id="scene">
+      <svg viewBox="0 0 1040 640" role="img" aria-label="A floating market on a canal">
+        <rect width="1040" height="300" fill="#f6e3cc"/>
+        <circle cx="900" cy="74" r="40" fill="#f0c56a"/>
+        <path d="M0 230 C80 190 140 250 230 220 C340 180 420 250 540 214 C680 170 760 240 900 200 C980 180 1040 210 1040 210 V320 H0 Z" fill="#efd2b0"/>
+        <path d="M70 214 l20 -28 h18 l-8 28 z" fill="#d7b089"/>
+        <path d="M96 186 l14 -22 h10 l-6 22 z" fill="#e7c4a0"/>
+        <path d="M760 196 l24 -36 h22 l-10 36 z" fill="#d7b089"/>
+        <rect y="300" width="1040" height="340" fill="#6ea3ab"/>
+        <path d="M0 360 Q180 340 360 366 T760 350 T1040 372" fill="none" stroke="#e7f4f2" stroke-width="4" opacity=".8"/>
+        <path d="M0 470 Q220 448 460 476 T900 456 T1040 486" fill="none" stroke="#e7f4f2" stroke-width="3" opacity=".45"/>
+        <path d="M40 318 h200 l28 78 H18 Z" fill="#c8874d"/>
+        <path d="M70 250 h150 l10 28 H60 Z" fill="#f4efe6"/>
+        <path d="M70 250 h26 v28 h-26 zM122 250 h26 v28 h-26 zM174 250 h26 v28 h-26 z" fill="#c4533a"/>
+        <path d="M360 328 h230 l26 74 H338 Z" fill="#b8743f"/>
+        <path d="M400 258 h160 l8 30 H392 Z" fill="#f4efe6"/>
+        <path d="M400 258 h28 v30 h-28 zM456 258 h28 v30 h-28 zM512 258 h28 v30 h-28 z" fill="#2f6f78"/>
+        <path d="M660 316 h230 l24 76 H640 Z" fill="#c8874d"/>
+        <path d="M700 246 h160 l10 30 H690 Z" fill="#f4efe6"/>
+        <path d="M700 246 h28 v30 h-28 zM756 246 h28 v30 h-28 zM812 246 h28 v30 h-28 z" fill="#3e7a4a"/>
+        <rect x="930" y="300" width="110" height="18" rx="3" fill="#8d5a32"/>
+        <rect x="948" y="250" width="14" height="50" fill="#8d5a32"/>
+        <rect x="990" y="236" width="14" height="64" fill="#8d5a32"/>
+        <ellipse cx="118" cy="292" rx="34" ry="22" fill="#f7f1e6"/>
+        <circle cx="148" cy="274" r="14" fill="#f7f1e6"/>
+        <path d="M160 274 l14 4 -14 5 z" fill="#e39a3a"/>
+        <circle cx="142" cy="262" r="4" fill="#d4533c"/>
+        <circle cx="150" cy="258" r="4" fill="#d4533c"/>
+        <circle cx="186" cy="300" r="12" fill="#f4e2c0"/>
+        <circle cx="206" cy="308" r="11" fill="#f7edd4"/>
+        <circle cx="196" cy="318" r="10" fill="#f4e2c0"/>
+        <path d="M430 300 q28 -16 48 2 q-8 16 -28 14 q-22 -4 -20 -16 z" fill="#5d8fbe"/>
+        <circle cx="468" cy="294" r="2" fill="#1d2a33"/>
+        <path d="M424 302 l-14 6 14 2 z" fill="#5d8fbe"/>
+        <circle cx="520" cy="312" r="16" fill="#ef8b2a"/>
+        <circle cx="546" cy="304" r="15" fill="#f29a3a"/>
+        <circle cx="534" cy="326" r="13" fill="#e47a22"/>
+        <path d="M548 286 q8 -16 4 -2 z" fill="#3e7a4a"/>
+        <path d="M760 300 q20 -36 42 -6 q-6 20 -24 22 q-20 0 -18 -16 z" fill="#e6a423"/>
+        <path d="M792 276 q14 -8 8 8 q-10 2 -8 -8 z" fill="#3e7a4a"/>
+        <path d="M830 286 h28 l8 18 v28 h-40 v-28 z" fill="#d8b48a"/>
+        <ellipse cx="848" cy="304" rx="16" ry="5" fill="#9fd0d4"/>
+        <path d="M820 286 h36 l-4 8 h-30 z" fill="#c49a72"/>
+        <path d="M960 300 q-2 -28 8 -36" fill="none" stroke="#3e7a4a" stroke-width="3"/>
+        <path d="M984 308 q6 -32 16 -38" fill="none" stroke="#3e7a4a" stroke-width="3"/>
+        <circle cx="966" cy="262" r="10" fill="#d45d73"/>
+        <circle cx="1000" cy="266" r="11" fill="#e7c14a"/>
+        <circle cx="982" cy="284" r="9" fill="#d4533c"/>
+        <path d="M120 500 h210 l18 36 H108 Z" fill="#8d5a32"/>
+        <path d="M300 518 h70 l6 -16" fill="none" stroke="#5c3b24" stroke-width="4"/>
+        <circle cx="168" cy="492" r="7" fill="#f4efe6"/>
+      </svg>
+      <button class="tag" type="button" style="left:14%;top:42%" data-id="kai">ไก่</button>
+      <button class="tag" type="button" style="left:20%;top:52%" data-id="khai">ไข่</button>
+      <button class="tag" type="button" style="left:45%;top:44%" data-id="pla">ปลา</button>
+      <button class="tag" type="button" style="left:53%;top:54%" data-id="som">ส้ม</button>
+      <button class="tag" type="button" style="left:74%;top:43%" data-id="mamuang">มะม่วง</button>
+      <button class="tag" type="button" style="left:83%;top:50%" data-id="nam">น้ำ</button>
+      <button class="tag" type="button" style="left:94%;top:40%" data-id="dokmai">ดอกไม้</button>
+      <button class="tag" type="button" style="left:22%;top:78%" data-id="ruea">เรือ</button>
+    </div>
+    <article class="panel" id="panel"></article>
+    <div class="controls">
+      <button type="button" id="walk">Next stall</button>
+      <button type="button" id="say" hidden>Play the sentence</button>
+    </div>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html" aria-current="page">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/speak.js"></script>
+  <script>
+    const stalls = [
+      { id: "kai", word: "ไก่", en: "chicken", glyph: "ก", name: "ก ไก่", bits: ["ไก่", "ตัว", "นี้", "กิน", "ข้าว"], gloss: "This chicken is eating.", tone: "ก is mid class. ไม้เอก makes ไก่ low." },
+      { id: "khai", word: "ไข่", en: "egg", glyph: "ข", name: "ข ไข่", bits: ["ขอ", "ไข่", "สอง", "ฟอง"], gloss: "Two eggs, please.", tone: "ข is high class, an aspirated k. ไม้เอก makes ไข่ low. ค is the same puff of air and a different class." },
+      { id: "pla", word: "ปลา", en: "fish", glyph: "ป", name: "ป ปลา", bits: ["ปลา", "ตัว", "นี้", "สด"], gloss: "This fish is fresh.", tone: "ปลา is a cluster. ป sets the class: mid, unaspirated p. The vowel is long and live, and there is no mark, so the tone is mid." },
+      { id: "som", word: "ส้ม", en: "orange", glyph: "ส", name: "ส เสือ", bits: ["ขอ", "ส้ม", "สาม", "ลูก"], gloss: "Three oranges, please.", tone: "ส is high class. ไม้โท on a high-class letter makes ส้ม fall." },
+      { id: "mamuang", word: "มะม่วง", en: "mango", glyph: "ม", name: "ม ม้า", bits: ["มะม่วง", "ลูก", "นี้", "หวาน"], gloss: "This mango is sweet.", tone: "Two syllables. มะ is high: low class, short, and dead. ม่วง falls: low class with ไม้เอก. หวาน rises because a silent ห stands in front of ว." },
+      { id: "nam", word: "น้ำ", en: "water", glyph: "◌้", name: "ไม้โท in น้ำ", bits: ["ขอ", "น้ำ", "หนึ่ง", "แก้ว"], gloss: "A glass of water, please.", tone: "น is low class. ไม้โท on a low-class letter makes น้ำ high. The same mark makes ส้ม, a high-class word, fall." },
+      { id: "dokmai", word: "ดอกไม้", en: "flower", glyph: "ด", name: "ด เด็ก", bits: ["ดอกไม้", "นี้", "สี", "แดง"], gloss: "These flowers are red.", tone: "ดอก starts with mid-class ด, ends in a stopped k, and is low. ไม้, the second syllable, is low-class ม with ไม้โท, so it is high." },
+      { id: "ruea", word: "เรือ", en: "boat", glyph: "ร", name: "ร เรือ", bits: ["เรือ", "ลำ", "นี้", "ไป", "ตลาด"], gloss: "This boat goes to the market.", tone: "ร is a tap, low class, not an English r and not ล. The vowel เอือ is long and live, and there is no mark, so เรือ is mid." }
+    ];
+    let current = 0;
+    let voice = false;
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function render() {
+      const item = stalls[current];
+      document.querySelectorAll(".tag").forEach(function (tag) {
+        tag.setAttribute("aria-pressed", tag.dataset.id === item.id ? "true" : "false");
+      });
+      document.getElementById("panel").innerHTML =
+        '<p class="glyph" lang="th">' + esc(item.glyph) + '</p><div><p class="word" lang="th">' + esc(item.word) + " · " + esc(item.en) + '</p><p lang="th">' + esc(item.name) + '</p><p lang="th">' + esc(item.bits.join(" ")) + "</p><p>" + esc(item.gloss) + "</p><p>" + esc(item.tone) + "</p></div>";
+      document.getElementById("say").hidden = !voice;
+    }
+    document.querySelectorAll(".tag").forEach(function (tag) {
+      tag.addEventListener("click", function () {
+        current = stalls.findIndex(function (s) { return s.id === tag.dataset.id; });
+        render();
+      });
+    });
+    document.getElementById("walk").addEventListener("click", function () {
+      current = (current + 1) % stalls.length;
+      render();
+    });
+    document.getElementById("say").addEventListener("click", function () {
+      ThaiSpeak.speak(stalls[current].bits.join(""), "th");
+    });
+    ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
+    render();
+  </script>
+</body>
+</html>

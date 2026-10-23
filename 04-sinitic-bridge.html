@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>04 中文助攻 · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+TC:wght@400;600&family=Noto+Serif+TC:wght@560;700&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #fbf6ee; --ink: #241c18; --accent: #8f1d1d; }
+    [lang="zh-Hans"], [lang="zh-Hant"], [lang="zh-HK"] { font-family: "Noto Serif TC", "PMingLiU", "Microsoft JhengHei", serif; }
+    h1 { font-family: "Noto Serif TC", PMingLiU, serif; font-weight: 560; font-size: clamp(40px, 6vw, 64px); line-height: 1.15; margin: 8px 0; }
+    h1 em { font-family: Fraunces, Georgia, serif; font-style: normal; font-size: .48em; display: block; letter-spacing: -.02em; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; color: var(--accent); }
+    .brief { max-width: 72ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(36,28,24,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 8px 0 16px; }
+    .legend p { margin: 0; background: #fff; border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .toolbar button, .say { border-radius: 999px; padding: 7px 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(36,28,24,.16); }
+    .card { background: #fff; border-radius: 22px; padding: 18px 18px 16px; box-shadow: 0 16px 40px rgba(80, 30, 20, .06); }
+    .glyphs { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; }
+    .glyphs strong { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: clamp(72px, 12vw, 112px); font-weight: 560; line-height: 1.15; }
+    .glyphs span { display: block; color: #6d584c; }
+    h2.card-title { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: 28px; margin: 8px 0; }
+    .langs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .langs article { background: #fbf6ee; border-radius: 14px; padding: 12px; }
+    .langs h3 { margin: 0 0 6px; font-size: 18px; }
+    .langs p { margin: 6px 0; }
+    .trap { margin-top: 12px; border-radius: 14px; padding: 12px 14px; background: #f8e8e2; }
+    .trap h3 { margin: 0 0 6px; color: var(--accent); font-size: 16px; }
+    .band { margin-top: 12px; display: grid; gap: 4px; }
+    .band .th { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: 28px; line-height: 1.6; margin: 0; }
+    .progress { margin-left: auto; color: #6d584c; }
+    @media (max-width: 900px) {
+      .facts, .legend, .langs { grid-template-columns: 1fr; }
+      .progress { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>04 / 07</span>
+      <nav>
+        <a href="03-listening-room.html">Prev</a>
+        <a href="05-one-morning.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 04 · 中文助攻</p>
+    <h1>中文助攻 <em>The Sinitic Bridge</em></h1>
+    <div class="brief">
+      <p lang="zh-Hant">用普通話、廣東話、潮州話靠近泰語的聲母和詞義。聲調留在泰語這邊，不借用。</p>
+      <p>This deck is for someone who already speaks Mandarin, Cantonese, or Teochew. The three columns stay side by side, so a Teochew reader is not sent through Mandarin first. Borrow an initial when the match is real. The cards spend their room on those matches, and on the places Chinese will invent the wrong sound: voiced ด and บ, the tap ร, the missing f in Teochew, vowel length, and every tone.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> A reader of 中文, 廣東話, or 潮州話.</div>
+        <div><strong>A card holds</strong> The Thai symbol, three bridges, the trap, and one sentence.</div>
+        <div><strong>Tones</strong> The same ้ falls on ป้า and is high on ม้า. That chart is the <a href="02-class-board.html">Class Board</a>.</div>
+      </div>
+      <p>Column headings are traditional. The Mandarin gloss is simplified. Cantonese and Teochew stay in traditional characters. s, m, n, and w transfer more directly, so they do not take a card. These ten cards are the bridges and the traps.</p>
+    </div>
+    <div class="legend">
+      <p lang="zh-Hans"><strong>普通话拼音</strong>　b d g 是不送气的清音，不是英语的 b d g。</p>
+      <p lang="zh-Hant"><strong>粤拼</strong>　1 阴平，2 阴上，3 阴去，4 阳平，5 阳上，6 阳去。入声并进 1、3、6。</p>
+      <p lang="zh-Hant"><strong>潮拼</strong>　b d g 不送气，p t k 送气，bh 才是浊音。调号是潮汕八调，各乡会差一调。只标有把握的词。</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><span lang="zh-Hant">用「上一张／下一张」或左右方向鍵翻卡。</span></li>
+      <li><b>2</b><span lang="zh-Hant">三欄並排：讀你會的那一欄，泰語那行不變。</span></li>
+      <li><b>3</b><span lang="zh-Hant">按泰語行的朗讀鍵聽發音。寫著「不要讀成」的地方，就是中文會帶你走的錯路。</span></li>
+    </ol>
+    <div class="toolbar">
+      <button type="button" id="prev">上一张</button>
+      <button type="button" id="next">下一张</button>
+      <span class="progress" id="progress"></span>
+    </div>
+    <article class="card" id="card"></article>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html" aria-current="page">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/speak.js"></script>
+  <script>
+    const cards = [
+      {
+        title: "Unaspirated k · 不送气的 k",
+        glyphs: [["ก", "ก ไก่ · mid · chicken 鸡"]],
+        zh: ["词义　鸡 jī", "拼音 g 不是英语 g。它是不送气的 k，和 ก 同一类。可以借「哥 gē」「鸡 jī」的 g 来起音。拼音 k 是送气，留给 ข 和 ค。"],
+        yue: ["詞義　雞 gai1", "粵語 g 也是不送氣 k。雞 gai1、家 gaa1 的 g，就是 ก 的氣口。不要讀成卡 kaa1 的 k。"],
+        teo: ["詞義　雞 goi1", "潮拼 g 也是不送氣 k。雞 goi1 的 g 對齊 ก。潮拼 k 才送氣。"],
+        trap: "ไก่ 的聲調是泰語低音。雞 jī、雞 gai1 的聲調都不是它。這裡只借聲母。",
+        lines: [["ไก่ ตัว นี้ กิน ข้าว", "This chicken is eating.", "这只鸡在吃饭。", "呢隻雞食緊飯。", "雞食飯。", "雞 goi1，食 ziah8，飯 bung7"]]
+      },
+      {
+        title: "Same puff, two classes · 气口相同，类不同",
+        glyphs: [["ข", "ข ไข่ · high · egg"], ["ค", "ค ควาย · low · buffalo"]],
+        zh: ["词义　蛋 dàn；水牛 shuǐniú", "ข 和 ค 都是送气 k，像拼音 k（可 kě）。普通话听不出高辅音和低辅音。类不改变气口，类用来算声调。"],
+        yue: ["詞義　蛋 daan6；水牛 seoi2 ngau4", "兩個都是粵語 k，如卡 kaa1。粵語一樣分不出 ข 和 ค。蛋是粵語常用詞；潮州話要改說卵。"],
+        teo: ["詞義　卵 nng6；水牛 zui2 ghu5", "兩個都是潮拼 k。潮州話說「卵」，不說「蛋」。水牛 zui2 ghu5。類的分別，潮州話幫不上。"],
+        trap: "ไข่ 有 ไม้เอก。高輔音加這個符號是低音。ควาย 沒有符號，低輔音、長元音、活音節，是中音。聲母借得走，聲調要另算。",
+        lines: [
+          ["ขอ ไข่ สอง ฟอง", "Two eggs, please.", "请给我两个鸡蛋。", "唔該畀兩隻蛋我。", "愛兩粒卵。", "愛 ain3，兩 no6，粒 liab8，卵 nng6"],
+          ["ควาย เดิน ใน นา", "The buffalo walks in the field.", "水牛在田里走。", "水牛喺田度行。", "水牛在田裡行。", "水牛 zui2 ghu5，行 gian5"]
+        ]
+      },
+      {
+        title: "ng at the start · 开头的 ng",
+        glyphs: [["ง", "ง งู · low · snake 蛇"]],
+        zh: ["词义　蛇 shé", "普通话没有 ng 声母。不要用 n，也不要做成零声母。可以先哼一声「嗯」，再滑进元音。"],
+        yue: ["詞義　蛇 se4", "粵語有這個聲母。牛 ngau4、我 ngo5 的 ng，很接近 ง。蛇 se4 本身不以 ng 開頭，借的是聲母，不是這個詞的讀音。"],
+        teo: ["詞義　蛇 zua5", "潮州「五 ngou6」的 ng 可以借來起音。蛇 zua5 的聲母是 z，不是 ng。"],
+        trap: "งู 是中音：低輔音、長元音、沒有聲調符號。不要把蛇 shé 的聲調安到 งู 上。",
+        lines: [["ฉัน เห็น งู", "I see a snake.", "我看见一条蛇。", "我見到一條蛇。", "我看見一條蛇。", "蛇 zua5"]]
+      },
+      {
+        title: "Voiced d beside unaspirated t",
+        glyphs: [["ด", "ด เด็ก · mid · child"], ["ต", "ต เต่า · mid · turtle"]],
+        zh: ["词义　孩子 háizi；乌龟 wūguī", "拼音 d（得 dé）对齐的是 ต，不是 ด。ต 不送气，声带不颤。ด 是真正的浊音，像英语 day。普通话没有这个浊音。"],
+        yue: ["詞義　細路 sai3 lou6；龜 gwai1", "粵語 d（得 dak1）對齊 ต。粵語沒有濁音 d，所以 ด 不能借，要讓聲帶顫。"],
+        teo: ["詞義　囝仔 giann2 a2；龜", "潮拼 d（豬 du1）對齊 ต。潮州話沒有相對的濁音 d。囝仔是潮州話的小孩。"],
+        trap: "เด็ก 和 เต่า 都是低音，聲調幫你分不開它們。分別在聲帶顫不顫。拼音 d 會把兩張卡讀成同一張。",
+        lines: [
+          ["เด็ก คน นี้ กิน ข้าว", "This child is eating.", "这个孩子在吃饭。", "呢個細路食緊飯。", "這個囝仔在食飯。", "囝仔 giann2 a2，食 ziah8"],
+          ["เต่า เดิน ช้า", "The turtle walks slowly.", "乌龟走得很慢。", "隻龜行得好慢。", "龜行得慢。", "ช้า 是高音，慢"]
+        ]
+      },
+      {
+        title: "Voiced b beside unaspirated p",
+        glyphs: [["บ", "บ ใบไม้ · mid · leaf"], ["ป", "ป ปลา · mid · fish"]],
+        zh: ["词义　叶子 yèzi；鱼 yú", "拼音 b（波 bō）对齐的是 ป，不是 บ。ป 不送气，声带不颤。บ 是浊音，像英语 boy。拼音 p（坡 pō）是送气，对齐 ผ 和 พ。"],
+        yue: ["詞義　葉 jip6；魚 jyu4", "粵語 b（波 bo1）對齊 ป。粵語 p（坡 po1）對齊送氣的 ผ、พ。บ 要另練，粵語沒有這個濁音。"],
+        teo: ["詞義　葉；魚 hu5", "潮拼 b 對齊 ป。潮拼 p 是送氣。潮拼 bh 才是濁音，馬 bhê2 的 bh 可以感覺 บ。"],
+        trap: "ปลา 是複輔音，類看第一個 ป。長元音、活音節、沒有符號，所以是中音。不要把魚 yú 的聲調借過來。",
+        lines: [["ปลา อยู่ ใน น้ำ", "The fish is in the water.", "鱼在水里。", "魚喺水度。", "魚在水裡。", "魚 hu5，水 zui2"]]
+      },
+      {
+        title: "Unaspirated ch · 接近 j，不是 q",
+        glyphs: [["จ", "จ จาน · mid · plate"]],
+        zh: ["词义　盘子 pánzi", "จ 不送气。拼音 j（鸡 jī）可以作入口，舌头不用卷得那么后。拼音 q 是送气，对齐 ฉ 和 ช。"],
+        yue: ["詞義　碟 dip6", "粵語沒有完全相同的聲母。汁 zap1 的 z 比英文 j 接近。粵語 c 是送氣，留給 ฉ、ช。"],
+        teo: ["詞義　碟 dih8", "潮拼 z 不送氣，接近 จ。潮拼 c 才送氣。碟 dih8。"],
+        trap: "จาน 以 น 結尾，是活音節。中輔音、沒有符號，所以是中音。桌上的 โต๊ะ 是借詞，來自閩南話、潮州話的「桌」，整詞記。อยู่ 的拼法不規則，低音，整詞記。",
+        lines: [["จาน อยู่ บน โต๊ะ", "The plate is on the table.", "盘子在桌子上。", "碟喺枱上面。", "碟在桌頂。", "碟 dih8"]]
+      },
+      {
+        title: "A tap, not l · ร 不要读成 ล",
+        glyphs: [["ร", "ร เรือ · low · boat"], ["ล", "ล ลิง · low · monkey"]],
+        zh: ["词义　船 chuán；猴子 hóuzi", "普通话没有这个弹音。日语式的卷舌 r、英语 r，都不是 ร。舌尖在齿龈后轻弹一下，不要拖。ล 才是 l。"],
+        yue: ["詞義　船 syun4；馬騮 maa5 lau1", "粵語沒有 r。最常見的錯是把 ร 讀成 l。船 syun4 的聲母幫不上 ร。ลิง 的 ล 才接近粵語 l。"],
+        teo: ["詞義　船 zung5；猴", "潮州「二 ri6」的聲母可以幫你找到舌尖，但仍要輕彈，不能拖成 ri。ล 才是 l。船 zung5。"],
+        trap: "เรือ 和 ลิง 都是中音。聲調相同，分它們的是聲母。低輔音、長而活的音節、沒有符號，就是中音。",
+        lines: [
+          ["เรือ ลำ นี้ เล็ก", "This boat is small.", "这艘船很小。", "呢艘船好細。", "這隻船細。", "船 zung5"],
+          ["ลิง ตัว นี้ เล็ก", "This monkey is small.", "这只猴子很小。", "呢隻馬騮好細。", "這隻猴細。", "ลิง 的聲母是 l"]
+        ]
+      },
+      {
+        title: "f, missing in Teochew",
+        glyphs: [["ฝ", "ฝ ฝา · high · lid"]],
+        zh: ["词义　盖子 gàizi", "ฝ 和 ฟ 都是 f，像飞 fēi。ฝ 是高辅音，ฟ 是低辅音，声调算法不同。气口一样。"],
+        yue: ["詞義　蓋 goi3", "粵語有 f，飛 fei1、科 fo1 都可以借來感覺。蓋 goi3 的聲母是 g，借的是 f 這個音，不是「蓋」字本身的聲母。"],
+        teo: ["詞義　蓋", "潮州話沒有 f。不要用 h，也不要用 p 代替。上齒輕咬下唇，再送氣。潮州「飛」往往讀成 p，那個 p 不是泰語 f。"],
+        trap: "ฝา 沒有聲調符號。高輔音、長元音、活音節，所以是升調。ฟ 若走同一條規則，低輔音會得到中音。符號還沒出現，類已經把聲調分開。",
+        lines: [["ปิด ฝา นี้", "Close this lid.", "把这个盖子盖上。", "蓋埋呢個蓋。", "蓋這箇蓋。", "潮州話此句請按自己的腔讀，沒有 f 可借"]]
+      },
+      {
+        title: "Length · อะ 短，อา 长",
+        glyphs: [["อะ", "short a"], ["อา", "long aa"]],
+        zh: ["例词　จะ jà 将要；กา gaa 乌鸦", "普通话的 a 多半接近长的 อา。短的 อะ 要故意收住。长短分词义，也进入声调：จะ 又短又是死音节，中辅音给出低音。กา 又长又活，是中音。"],
+        yue: ["例詞　จะ；กา", "粵語長 aa（家 gaa1、呀 aa3）接近 อา。短 a（心 sam1）只是一個方向，音質並不相同。泰語的长短比粵語更要分開記。"],
+        teo: ["例詞　จะ；กา", "潮州話的 a 可感覺長的 อา。短 a 仍然要單獨練。不要用潮州調號去套 จะ 的低音和 กา 的中音。"],
+        trap: "這張卡的重點是長短，不是把 อะ 對成某一个中文元音。耳朵要先分開，声调规则才有东西可算。",
+        lines: [
+          ["จะ ไป ตลาด", "Will go to the market.", "要去市场。", "會去街市。", "欲去市場。", "จะ 是低音"],
+          ["กา ตัว นั้น", "That crow.", "那只乌鸦。", "嗰隻烏鴉。", "那隻烏鴉。", "กา 是中音"]
+        ]
+      },
+      {
+        title: "One mark, two tones · 同一个 ้",
+        glyphs: [["◌้", "ไม้โท"], ["ป้า", "falling · aunt"], ["ม้า", "high · horse"]],
+        zh: ["词义　父或母的姐姐；马 mǎ", "不要把 ้ 记成第四声。ป 是中辅音，加 ้ 是降调，ป้า。ม 是低辅音，加 ้ 是高调，ม้า。符号相同。"],
+        yue: ["詞義　父或母嘅家姐；馬 maa5", "不要把 ้ 記成粵語某一聲。馬 maa5 的第 5 聲不是 ม้า 的高調。粵語第 5 聲只說明這個中文詞，不說明泰語符號。"],
+        teo: ["詞義　父或母的阿姊；馬 bhê2", "潮州八調也套不上 ้。馬 bhê2 的 bh 倒是可以回想 บ 的濁音；ม้า 的聲母是 ม，不是 บ。兩件事分開。"],
+        trap: "中輔音或高輔音遇到 ้，讀降調。低輔音遇到 ้，讀高調。算法在 Class Board。中文助攻停在這裡。",
+        lines: [
+          ["ป้า ทำ อาหาร", "Aunt is cooking. ป้า is a parent’s elder sister.", "父或母的姐姐在做饭。", "阿姑或者姨媽喺度煮餸。", "阿姑在煮食。", "ป้า 是降調"],
+          ["ม้า วิ่ง เร็ว", "The horse runs fast.", "马跑得很快。", "馬跑得好快。", "馬走猛猛。", "潮州話「走」常指跑。馬 bhê2。ม้า 是高調，เร็ว 是中音"]
+        ]
+      }
+    ];
+
+    let index = 0;
+    const voices = { th: false, zh: false, yue: false };
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function render() {
+      const c = cards[index];
+      document.getElementById("progress").textContent = (index + 1) + " / " + cards.length;
+      const glyphs = c.glyphs.map(function (g) {
+        return '<div><strong lang="th">' + esc(g[0]) + '</strong><span>' + esc(g[1]) + "</span></div>";
+      }).join("");
+      function col(title, lang, lines, sayLabel, prefix, enabled) {
+        const body = lines.map(function (line) { return "<p lang=\"" + lang + "\">" + esc(line) + "</p>"; }).join("");
+        const btn = '<button class="say" type="button" data-prefix="' + prefix + '"' + (enabled ? "" : " disabled") + ">" + sayLabel + "</button>";
+        return "<article><h3 lang=\"" + lang + "\">" + title + "</h3>" + body + btn + "</article>";
+      }
+      const bands = c.lines.map(function (line) {
+        return '<p class="th" lang="th">' + esc(line[0]) + "</p><p>" + esc(line[1]) + '</p><p lang="zh-Hans">' + esc(line[2]) + '</p><p lang="zh-HK">' + esc(line[3]) + '</p><p lang="zh-Hant">' + esc(line[4]) + "</p><p>" + esc(line[5]) + "</p>";
+      }).join("");
+      document.getElementById("card").innerHTML =
+        '<div class="glyphs">' + glyphs + "</div>" +
+        '<h2 class="card-title">' + esc(c.title) + "</h2>" +
+        '<div class="langs">' +
+          col("普通话", "zh-Hans", c.zh, "朗读普通话", "zh-CN", voices.zh) +
+          col("廣東話", "zh-HK", c.yue, "朗讀粵語", "zh-HK", voices.yue) +
+          col("潮州話", "zh-Hant", c.teo, "潮州話請看潮拼", "teo", false) +
+        "</div>" +
+        '<div class="trap"><h3 lang="zh-Hant">這裡不要借</h3><p lang="zh-Hant">' + esc(c.trap) + "</p></div>" +
+        '<div class="band">' + bands + '<p><button class="say" type="button" id="say-th"' + (voices.th ? "" : " disabled") + ">Play Thai</button></p></div>";
+      document.querySelectorAll(".say[data-prefix]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          const prefix = b.dataset.prefix;
+          const col = prefix === "zh-CN" ? 2 : 3;
+          ThaiSpeak.speak(c.lines.map(function (line) { return line[col]; }).join("。"), prefix);
+        });
+      });
+      const sayTh = document.getElementById("say-th");
+      if (sayTh) sayTh.addEventListener("click", function () {
+        ThaiSpeak.speak(c.lines.map(function (line) { return line[0].replace(/ /g, ""); }).join(" "), "th");
+      });
+    }
+    document.getElementById("prev").addEventListener("click", function () {
+      index = (index - 1 + cards.length) % cards.length;
+      render();
+    });
+    document.getElementById("next").addEventListener("click", function () {
+      index = (index + 1) % cards.length;
+      render();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") document.getElementById("next").click();
+      if (e.key === "ArrowLeft") document.getElementById("prev").click();
+    });
+    ThaiSpeak.whenVoices(function () {
+      voices.th = !!ThaiSpeak.pick("th");
+      voices.zh = !!ThaiSpeak.pick("zh-CN");
+      voices.yue = !!ThaiSpeak.pick("zh-HK");
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>

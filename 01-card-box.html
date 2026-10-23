@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 The Card Box · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #f3ecdf; --ink: #211b16; --accent: #9d3a2c; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 58px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em, .th-serif { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-style: normal; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; }
+    .brief { max-width: 68ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #fffaf3; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(33,27,22,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .proto { margin-top: 10px; }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 14px; }
+    .chip, .ctrl { border-radius: 999px; padding: 7px 12px; background: #fffaf3; box-shadow: inset 0 0 0 1px rgba(33,27,22,.14); }
+    .chip[aria-pressed="true"], .ctrl.primary { background: var(--ink); color: #f6f1e7; }
+    .count { margin-left: auto; font-size: 14px; color: #5c5148; }
+    .stage { display: grid; justify-items: center; gap: 14px; }
+    .flip { width: min(460px, 100%); height: 490px; perspective: 1200px; }
+    .inner { position: relative; height: 100%; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+    .flip.is-on .inner { transform: rotateY(180deg); }
+    .face { position: absolute; inset: 0; backface-visibility: hidden; overflow: auto; border-radius: 24px; background: #fffdf8; box-shadow: 0 20px 50px rgba(70, 42, 22, .12); padding: 26px 26px 22px; }
+    .back { transform: rotateY(180deg); }
+    .kind { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; margin: 0; color: #7a6a5c; }
+    .glyph { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: clamp(92px, 16vw, 148px); line-height: 1.25; margin: 18px 0 0; }
+    .pair { font-size: clamp(64px, 10vw, 96px); }
+    .sub { margin: 0; color: #6d5e52; }
+    .pill { display: inline-block; border-radius: 999px; padding: 3px 10px; color: #fff; font-size: 13px; }
+    .mid { background: #1e3a6e; } .high { background: #8a4b12; } .low { background: #1c6b45; }
+    .wordline { display: flex; gap: 14px; align-items: center; margin: 12px 0; }
+    .emoji { font-size: 42px; line-height: 1; }
+    .wordline strong { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: 36px; font-weight: 560; }
+    .sent { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: 26px; line-height: 1.7; margin: 8px 0; }
+    .note { color: #4e433a; }
+    .speak { border-radius: 999px; padding: 6px 12px; box-shadow: inset 0 0 0 1px rgba(33,27,22,.2); }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .empty { width: min(460px, 100%); background: #fffdf8; border-radius: 24px; padding: 32px; text-align: center; }
+    .keys { color: #74685d; font-size: 13px; text-align: center; }
+    @media (max-width: 800px) {
+      .facts { grid-template-columns: 1fr; }
+      .flip { height: auto; perspective: none; }
+      .inner, .flip.is-on .inner { transform: none; height: auto; }
+      .face { position: relative; transform: none; }
+      .flip:not(.is-on) .back, .flip.is-on .front { display: none; }
+      .count { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>01 / 07</span>
+      <nav>
+        <a href="07-picture-market.html">Prev</a>
+        <a href="02-class-board.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 01</p>
+    <h1>The Card Box <em lang="th">กล่องการ์ด</em></h1>
+    <div class="brief">
+      <p>The card is one symbol, and the session is a tray. You see the letter, say what you remember, turn it, and check the class, the sound, the memory word, and one sentence. A card you know leaves the tray. A card you miss goes to the back.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone meeting the shapes, or keeping them in a daily tray.</div>
+        <div><strong>A card holds</strong> Symbol, class, sound, picture-word, sentence.</div>
+        <div><strong>Another page</strong> The tone system lives on the <a href="02-class-board.html">Class Board</a>. A continuing day lives in <a href="05-one-morning.html">One Morning</a>.</div>
+      </div>
+      <p>Spaces between Thai words are for learners. Ordinary writing closes them up. The picture is a stand-in: a finished deck would use one drawn style for every memory word. This tray is the first twenty cards, not the whole alphabet.</p>
+    </div>
+    <section class="proto" aria-label="Card box prototype">
+      <ol class="steps">
+        <li><b>1</b><span>Look at the front. Say the class, the sound, and the memory word.</span></li>
+        <li><b>2</b><span>Click the card — or press space — to turn it and check.</span></li>
+        <li><b>3</b><span><strong>Got it</strong> clears the card from the tray. <strong>Again</strong> sends it to the back.</span></li>
+      </ol>
+      <div class="bar">
+        <button class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="Consonant">Consonants</button>
+        <button class="chip" data-filter="Vowel">Vowels</button>
+        <button class="chip" data-filter="Tone mark">Tone marks</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="stage">
+        <div class="flip" id="flip">
+          <div class="inner">
+            <div class="face front" id="front"></div>
+            <div class="face back" id="back"></div>
+          </div>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <p>The tray is clear.</p>
+          <button class="ctrl primary" id="restore" type="button">Put the cards back</button>
+        </div>
+        <div class="row">
+          <button class="ctrl" id="prev" type="button">Previous</button>
+          <button class="ctrl" id="next" type="button">Next</button>
+          <button class="ctrl" id="turn" type="button">Turn</button>
+          <button class="ctrl" id="again" type="button">Again</button>
+          <button class="ctrl primary" id="got" type="button">Got it</button>
+        </div>
+        <p class="keys">Click the card or press space to turn it. Left and right move. A sends it back. G keeps it.</p>
+      </div>
+    </section>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html" aria-current="page">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/speak.js"></script>
+  <script>
+    const cards = [
+      { kind: "Consonant", glyph: "ก", name: "ก ไก่", cls: "mid", clsLabel: "Mid class", sound: "unaspirated k", hint: "No puff of air.", emoji: "🐔", word: "ไก่", gloss: "chicken", tone: "low · เอก", bits: ["ไก่", "ขัน", "ตอน", "เช้า"], en: "The rooster crows in the morning.", note: "Mid class. ไม้เอก on a mid-class letter makes ไก่ low." },
+      { kind: "Consonant", glyph: "ข", name: "ข ไข่", cls: "high", clsLabel: "High class", sound: "aspirated k", hint: "A puff of air. Same sound as ค, different class.", emoji: "🥚", word: "ไข่", gloss: "egg", tone: "low · เอก", bits: ["ขอ", "ไข่", "สอง", "ฟอง"], en: "Two eggs, please.", note: "High class. ไม้เอก on a high-class letter is also low. The puff of air matches ค." },
+      { kind: "Consonant", glyph: "ค", name: "ค ควาย", cls: "low", clsLabel: "Low class", sound: "aspirated k", hint: "Same puff of air as ข. Low class, so the tone rule differs.", emoji: "🐃", word: "ควาย", gloss: "buffalo", tone: "mid · สามัญ", bits: ["ควาย", "เดิน", "ใน", "นา"], en: "The buffalo walks in the rice field.", note: "Low class, long live syllable, no mark: mid tone. ข is the high-class twin of this sound." },
+      { kind: "Consonant", glyph: "ง", name: "ง งู", cls: "low", clsLabel: "Low class", sound: "ng", hint: "The ng in sing, here at the start.", emoji: "🐍", word: "งู", gloss: "snake", tone: "mid · สามัญ", bits: ["ฉัน", "เห็น", "งู"], en: "I see a snake.", note: "Low class and a long live vowel, with no mark, gives งู its mid tone." },
+      { kind: "Consonant", glyph: "จ", name: "จ จาน", cls: "mid", clsLabel: "Mid class", sound: "unaspirated ch", hint: "No puff, and not a voiced English j.", emoji: "🍽️", word: "จาน", gloss: "plate", tone: "mid · สามัญ", bits: ["จาน", "อยู่", "บน", "โต๊ะ"], en: "The plate is on the table.", note: "Mid class. จาน ends in น, so the syllable is live and, with no mark, mid. อยู่ is an irregular spelling; learn that word whole." },
+      { kind: "Consonant", glyph: "ด", name: "ด เด็ก", cls: "mid", clsLabel: "Mid class", sound: "voiced d", hint: "Voiced, as in English day.", emoji: "🧒", word: "เด็ก", gloss: "child", tone: "low · เอก", bits: ["เด็ก", "คน", "นี้", "กิน", "ข้าว"], en: "This child is eating.", note: "Mid class. เด็ก is short and ends in a stopped k, so it is dead, and a mid-class dead syllable is low." },
+      { kind: "Consonant", glyph: "น", name: "น หนู", cls: "low", clsLabel: "Low class", sound: "n", hint: "n, as in no.", emoji: "🐭", word: "หนู", gloss: "mouse", tone: "rising · จัตวา", bits: ["หนู", "วิ่ง", "เร็ว"], en: "The mouse runs fast.", note: "The letter น is low class. Its memory word หนู writes a silent ห in front, and that ห makes the name follow high-class rules, so หนู rises." },
+      { kind: "Consonant", glyph: "ป", name: "ป ปลา", cls: "mid", clsLabel: "Mid class", sound: "unaspirated p", hint: "Voice off, no puff.", emoji: "🐟", word: "ปลา", gloss: "fish", tone: "mid · สามัญ", bits: ["ปลา", "อยู่", "ใน", "น้ำ"], en: "The fish is in the water.", note: "ปลา is a cluster. ป, the first consonant, sets the class. Long live vowel, no mark: mid." },
+      { kind: "Consonant", glyph: "ม", name: "ม ม้า", cls: "low", clsLabel: "Low class", sound: "m", hint: "m, as in me.", emoji: "🐴", word: "ม้า", gloss: "horse", tone: "high · ตรี", bits: ["ม้า", "วิ่ง", "เร็ว"], en: "The horse runs fast.", note: "Low class. ไม้โท on a low-class letter gives the high tone. On a mid-class letter the same mark would fall." },
+      { kind: "Consonant", glyph: "ร", name: "ร เรือ", cls: "low", clsLabel: "Low class", sound: "tapped r", hint: "A quick tap. Not an English r, and not ล.", emoji: "⛵", word: "เรือ", gloss: "boat", tone: "mid · สามัญ", bits: ["เรือ", "ลำ", "นั้น", "เล็ก"], en: "That boat is small.", note: "Low class, long live vowel, no mark: mid. Keep it apart from ล. The Listening Room drills that pair." },
+      { kind: "Consonant", glyph: "ส", name: "ส เสือ", cls: "high", clsLabel: "High class", sound: "s", hint: "s, as in see. Same sound as low-class ซ.", emoji: "🐯", word: "เสือ", gloss: "tiger", tone: "rising · จัตวา", bits: ["เสือ", "อยู่", "ใน", "ป่า"], en: "The tiger is in the forest.", note: "High class, long live vowel, no mark: rising. ซ is the low-class s." },
+      { kind: "Consonant", glyph: "อ", name: "อ อ่าง", cls: "mid", clsLabel: "Mid class", sound: "glottal stop", hint: "A catch in the throat, and the support for a vowel.", emoji: "🪣", word: "อ่าง", gloss: "basin", tone: "low · เอก", bits: ["อ่าง", "ใบ", "นี้", "มี", "น้ำ"], en: "This basin has water.", note: "Mid class. ไม้เอก makes อ่าง low. อ also opens syllables that need a written consonant, as in อา." },
+      { kind: "Vowel", glyph: "อะ", alt: "อา", name: "Short a · long aa", cls: "", sound: "a · aa", hint: "Length is a different vowel, and it can change the tone.", emoji: "⏱️", word: "จะ · กา", gloss: "will · crow", tone: "low · mid", bits: ["จะ", "ไป", "ตลาด"], en: "Will go to the market. กา, with long aa, is a crow: กา ตัว นั้น.", note: "จะ is short, so the syllable is dead and mid-class จ makes it low. กา is long and live, so mid-class ก stays mid. Both marks are written after the consonant." },
+      { kind: "Vowel", glyph: "อิ", alt: "อี", name: "Short i · long ii", cls: "", sound: "i · ii", hint: "Both sit above the consonant.", emoji: "👆", word: "กิน · มี", gloss: "to eat · to have", tone: "mid · mid", bits: ["กิน", "ข้าว", "หรือ", "ยัง"], en: "Have you eaten yet? มี เวลา ไหม means “Do you have time?”", note: "อิ is the short mark. อี is the long one. In กิน the final น keeps the syllable live, so mid-class ก with no tone mark is mid." },
+      { kind: "Vowel", glyph: "ไ", alt: "ใ", name: "Two spellings of ai", cls: "", sound: "ai", hint: "Same sound. ไ is the usual spelling.", emoji: "✍️", word: "ไป · ใส่", gloss: "to go · to put in", tone: "mid · low", bits: ["ไป", "ไหน"], en: "Where are you going? ใส่ ถุง means “Put it in a bag.”", note: "ไ and ใ are said the same way. ใ is kept for a short list of common words. ใส่ is high-class ส with ไม้เอก, so it is low." },
+      { kind: "Vowel", glyph: "เ–า", name: "ao, around the consonant", cls: "", sound: "ao", hint: "เ before the consonant, า after it. You say the consonant first.", emoji: "↔️", word: "เรา", gloss: "we", tone: "mid · สามัญ", bits: ["เรา", "ไป", "ตลาด"], en: "We're going to the market.", note: "เ–า already ends in a w sound, so the syllable is live. ร is low class and there is no mark, so เรา is mid." },
+      { kind: "Tone mark", glyph: "◌่", name: "ไม้เอก", cls: "", sound: "the first mark", hint: "On mid and high class, a low tone. On low class, a falling tone.", emoji: "▾", word: "เก่า", gloss: "old", tone: "low · เอก", bits: ["อัน", "นี้", "เก่า", "แล้ว"], en: "This one is already old.", note: "เก่า is mid-class ก with ไม้เอก, so it is low. The same mark on low-class ม gives แม่, which falls. The Class Board holds the whole chart." },
+      { kind: "Tone mark", glyph: "◌้", name: "ไม้โท", cls: "", sound: "the second mark", hint: "On mid and high class, a falling tone. On low class, a high tone.", emoji: "⤵", word: "ได้", gloss: "can, to get", tone: "falling · โท", bits: ["ไป", "ได้", "ไหม"], en: "Can we go?", note: "ได้ is mid-class ด with ไม้โท, so it falls. The same mark on low-class ม gives ม้า, which is high." },
+      { kind: "Tone mark", glyph: "◌๊", name: "ไม้ตรี", cls: "", sound: "the third mark", hint: "Written on mid-class consonants. The tone is high.", emoji: "⌃", word: "โต๊ะ", gloss: "table", tone: "high · ตรี", bits: ["หนังสือ", "อยู่", "บน", "โต๊ะ"], en: "The book is on the table.", note: "ไม้ตรี gives the high tone. โต๊ะ is a loanword; learn the spelling whole, including the short ะ." },
+      { kind: "Tone mark", glyph: "◌๋", name: "ไม้จัตวา", cls: "", sound: "the fourth mark", hint: "Written on mid-class consonants. The tone is rising.", emoji: "⤴", word: "ตั๋ว", gloss: "ticket", tone: "rising · จัตวา", bits: ["ขอ", "ตั๋ว", "หนึ่ง", "ใบ"], en: "One ticket, please.", note: "ไม้จัตวา gives the rising tone. It is written on mid-class letters such as ต." }
+    ];
+
+    let filter = "all";
+    let tray = [];
+    let cursor = 0;
+    let flipped = false;
+    let voice = false;
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function rebuild() {
+      tray = cards.map(function (_, i) { return i; }).filter(function (i) {
+        return filter === "all" || cards[i].kind === filter;
+      });
+      cursor = 0;
+      flipped = false;
+      render();
+    }
+    function card() { return cards[tray[cursor]]; }
+    function render() {
+      const empty = tray.length === 0;
+      document.getElementById("empty").hidden = !empty;
+      document.getElementById("flip").hidden = empty;
+      document.getElementById("count").textContent = empty ? "Tray clear" : (cursor + 1) + " of " + tray.length + " in the tray";
+      if (empty) return;
+      const c = card();
+      document.getElementById("flip").classList.toggle("is-on", flipped);
+      const glyph = c.alt ? '<p class="glyph pair" lang="th">' + esc(c.glyph) + " " + esc(c.alt) + "</p>" : '<p class="glyph" lang="th">' + esc(c.glyph) + "</p>";
+      document.getElementById("front").innerHTML = '<p class="kind">' + esc(c.kind) + '</p>' + glyph + '<p class="sub th-serif" lang="th">' + esc(c.name) + "</p>";
+      const pill = c.cls ? '<span class="pill ' + c.cls + '">' + esc(c.clsLabel) + "</span> " : "";
+      document.getElementById("back").innerHTML =
+        '<p class="kind">' + esc(c.kind) + "</p>" +
+        "<p>" + pill + esc(c.sound) + "</p>" +
+        '<div class="wordline"><span class="emoji" aria-hidden="true">' + c.emoji + '</span><div><strong lang="th">' + esc(c.word) + "</strong><div>" + esc(c.gloss) + " · " + esc(c.tone) + "</div></div></div>" +
+        '<p class="sent" lang="th">' + esc(c.bits.join(" ")) + "</p>" +
+        "<p>" + esc(c.en) + "</p>" +
+        '<p class="note">' + esc(c.note) + "</p>" +
+        '<p><button class="speak" type="button" id="say"' + (voice ? "" : " hidden") + ">Play the sentence</button></p>" +
+        "<p class=\"sub\">" + esc(c.hint) + "</p>";
+      const say = document.getElementById("say");
+      if (say) say.addEventListener("click", function (e) {
+        e.stopPropagation();
+        ThaiSpeak.speak(c.bits.join(""), "th");
+      });
+    }
+    document.getElementById("flip").addEventListener("click", function (e) {
+      if (e.target.closest("button")) return;
+      flipped = !flipped;
+      render();
+    });
+    document.getElementById("turn").addEventListener("click", function () { flipped = !flipped; render(); });
+    function step(delta) {
+      if (!tray.length) return;
+      cursor = (cursor + delta + tray.length) % tray.length;
+      flipped = false;
+      render();
+    }
+    document.getElementById("prev").addEventListener("click", function () { step(-1); });
+    document.getElementById("next").addEventListener("click", function () { step(1); });
+    document.getElementById("again").addEventListener("click", function () {
+      if (tray.length < 2) { flipped = false; render(); return; }
+      tray.push(tray.splice(cursor, 1)[0]);
+      flipped = false;
+      render();
+    });
+    document.getElementById("got").addEventListener("click", function () {
+      if (!tray.length) return;
+      tray.splice(cursor, 1);
+      if (cursor >= tray.length) cursor = 0;
+      flipped = false;
+      render();
+    });
+    document.getElementById("restore").addEventListener("click", rebuild);
+    document.querySelectorAll(".chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        document.querySelectorAll(".chip").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+        chip.setAttribute("aria-pressed", "true");
+        filter = chip.dataset.filter;
+        rebuild();
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      const k = e.key.toLowerCase();
+      if (k === " " || k === "enter") { e.preventDefault(); flipped = !flipped; render(); }
+      if (k === "arrowright") step(1);
+      if (k === "arrowleft") step(-1);
+      if (k === "a") document.getElementById("again").click();
+      if (k === "g") document.getElementById("got").click();
+    });
+    ThaiSpeak.whenVoices(function () {
+      voice = !!ThaiSpeak.pick("th");
+      render();
+    });
+    rebuild();
+  </script>
+</body>
+</html>

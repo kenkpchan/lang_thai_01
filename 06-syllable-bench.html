@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>06 The Syllable Bench · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #efe8dc; --ink: #2c2825; --accent: #a33b32; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em { font-family: "Noto Sans Thai", "Leelawadee UI", sans-serif; font-style: normal; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; }
+    .brief { max-width: 70ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #f7f3ea; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(44,40,37,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .bench { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
+    .stick-wrap { background: #f7f1e6; border-radius: 18px; padding: 16px; box-shadow: inset 0 0 0 1px rgba(44,40,37,.1); }
+    .stick { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 230px; }
+    .stack { display: grid; justify-items: center; }
+    .seat { min-width: 72px; min-height: 52px; display: grid; place-items: center; border-radius: 10px; }
+    .seat b { font-family: "Noto Sans Thai", "Leelawadee UI", sans-serif; font-size: 42px; font-weight: 500; line-height: 1.2; }
+    .seat i { font-style: normal; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8a8178; }
+    .seat.filled { background: #fff; box-shadow: inset 0 0 0 1px rgba(44,40,37,.12); }
+    .seat.mark b { color: var(--accent); }
+    .written, .seat b { font-weight: 500; line-height: 1.35; }
+    .written { font-size: 56px; margin: 8px 0; text-align: center; }
+    .verdict { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 0; text-align: center; }
+    .slip { background: #fff; border-radius: 14px; padding: 12px 14px; margin-top: 10px; }
+    .controls h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin: 14px 0 6px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chips button { border-radius: 999px; padding: 5px 9px; background: #f7f1e6; box-shadow: inset 0 0 0 1px rgba(44,40,37,.12); }
+    .chips button[aria-pressed="true"] { background: var(--ink); color: #f4efe6; }
+    .speak { border-radius: 999px; padding: 7px 12px; box-shadow: inset 0 0 0 1px rgba(44,40,37,.2); }
+    .fine { color: #534c46; max-width: 78ch; }
+    @media (max-width: 900px) { .facts, .bench { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>06 / 07</span>
+      <nav>
+        <a href="05-one-morning.html">Prev</a>
+        <a href="07-picture-market.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 06</p>
+    <h1>The Syllable Bench <em lang="th">ม้านั่งพยางค์</em></h1>
+    <div class="brief">
+      <p>A Thai vowel is a seat. เ stands before the consonant. ิ stands above it. ุ stands under it. า stands after it. เ and า can stand on either side at once. This bench keeps those seats visible, including the empty ones.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone who can copy a letter and still loses the vowel when it moves.</div>
+        <div><strong>A card holds</strong> The seats, the written syllable, the tone, and a meaning when the word is real.</div>
+        <div><strong>The rule</strong> Live or dead, then the mark. The same chart is the <a href="02-class-board.html">Class Board</a>.</div>
+      </div>
+      <p>Choose a consonant, a vowel, a final if the vowel allows one, and a mark. The bench writes a real Unicode syllable. If the result is in the starter list, you get the meaning and a sentence. Words such as ก๋ง, บน, and รถ leave the vowel unwritten. This bench writes the vowel you chose.</p>
+      <p>For the same seats next to the class chart, real words, and Traditional Chinese, open the <a href="integrated-tone-vocab.html">combined workshop</a>.</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><span>Choose a consonant on the right.</span></li>
+      <li><b>2</b><span>Choose a vowel. Watch which seats it fills: before, above, below, after.</span></li>
+      <li><b>3</b><span>Add a final and a tone mark if the vowel allows them.</span></li>
+      <li><b>4</b><span>The bench writes the syllable, names the tone, and plays it when a Thai voice exists.</span></li>
+    </ol>
+    <div class="bench">
+      <div>
+        <div class="stick-wrap">
+          <div class="stick" id="stick"></div>
+          <p class="written" id="written" lang="th"></p>
+          <p class="verdict" id="verdict"></p>
+          <p id="because"></p>
+          <div class="slip" id="slip"></div>
+          <p><button class="speak" id="say" type="button" hidden>Play</button></p>
+        </div>
+      </div>
+      <div class="controls" id="controls"></div>
+    </div>
+    <p class="fine">A silent ห in front of ง ญ น ม ย ร ล ว is a later rule, so หนู and ใหม่ are not built here. A pronounced cluster such as ปลา takes the class of the first consonant; this bench uses one initial. ก็ is irregular. Starter words are a sample, so a readable syllable can still be absent from the list.</p>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html" aria-current="page">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/letters.js"></script>
+  <script src="js/thai.js"></script>
+  <script src="js/speak.js"></script>
+  <script>
+    const glyphList = ["ก", "ข", "ค", "ง", "จ", "ฉ", "ช", "ซ", "ด", "ต", "ถ", "ท", "น", "บ", "ป", "ผ", "พ", "ฝ", "ฟ", "ม", "ย", "ร", "ล", "ว", "ส", "ห", "อ"];
+    const consonants = glyphList.map(function (g) { return ThaiLetters.letters.find(function (l) { return l.g === g; }); });
+    const finals = [
+      ["", "none"],
+      ["ก", "ก stopped"],
+      ["ด", "ด stopped"],
+      ["บ", "บ stopped"],
+      ["น", "น live"],
+      ["ม", "ม live"],
+      ["ง", "ง live"],
+      ["ย", "ย live"],
+      ["ว", "ว live"]
+    ];
+    const marks = [["none", "no mark"], ["ek", "◌่ เอก"], ["tho", "◌้ โท"], ["tri", "◌๊ ตรี"], ["cattawa", "◌๋ จัตวา"]];
+    const words = [
+      ["ก", "aa", "", "none", "crow", ["กา", "ตัว", "นั้น"], "That crow."],
+      ["ก", "ai", "", "ek", "chicken", ["ไก่", "ขัน", "ตอน", "เช้า"], "The rooster crows in the morning."],
+      ["ก", "ao", "", "ek", "old", ["อัน", "นี้", "เก่า", "แล้ว"], "This one is already old."],
+      ["ก", "i", "น", "none", "to eat", ["กิน", "ข้าว", "หรือ", "ยัง"], "Have you eaten yet?"],
+      ["ก", "ak", "บ", "none", "with", ["ไป", "กับ", "ป้า"], "Go with aunt."],
+      ["ด", "ai", "", "tho", "can, to get", ["ไป", "ได้", "ไหม"], "Can we go?"],
+      ["ด", "ii", "", "none", "good", ["อาหาร", "นี้", "ดี"], "This food is good."],
+      ["ด", "uu", "", "none", "to look", ["ดู", "นก", "ตัว", "นั้น"], "Look at that bird."],
+      ["ด", "oei", "น", "none", "to walk", ["ควาย", "เดิน", "ใน", "นา"], "The buffalo walks in the field."],
+      ["ด", "e-short", "ก", "none", "child", ["เด็ก", "คน", "นี้"], "This child."],
+      ["ต", "o-short", "", "tri", "table", ["หนังสือ", "อยู่", "บน", "โต๊ะ"], "The book is on the table."],
+      ["ต", "aw", "ง", "tho", "must", ["ต้อง", "ไป"], "Must go."],
+      ["ต", "ak", "ว", "cattawa", "ticket", ["ขอ", "ตั๋ว", "หนึ่ง", "ใบ"], "One ticket, please."],
+      ["ป", "aa", "", "tho", "aunt, a parent’s elder sister", ["ป้า", "ทำ", "อาหาร"], "Aunt is cooking."],
+      ["ป", "aa", "ก", "none", "mouth", ["เปิด", "ปาก"], "Open your mouth."],
+      ["ป", "oei", "ด", "none", "to open", ["เปิด", "ประตู"], "Open the door."],
+      ["ป", "ai", "", "none", "to go", ["ไป", "ตลาด"], "Go to the market."],
+      ["ป", "aa", "", "ek", "forest", ["เสือ", "อยู่", "ใน", "ป่า"], "The tiger is in the forest."],
+      ["บ", "aa", "น", "tho", "house", ["กลับ", "บ้าน"], "Go home."],
+      ["บ", "aw", "ก", "none", "to tell", ["บอก", "แม่"], "Tell Mom."],
+      ["น", "am", "", "tho", "water", ["ขอ", "น้ำ", "หน่อย"], "Water, please."],
+      ["น", "aa", "", "none", "rice field", ["ควาย", "เดิน", "ใน", "นา"], "The buffalo walks in the rice field."],
+      ["น", "ai2", "", "none", "in", ["ปลา", "อยู่", "ใน", "น้ำ"], "The fish is in the water."],
+      ["ม", "aa", "", "tho", "horse", ["ม้า", "วิ่ง", "เร็ว"], "The horse runs fast."],
+      ["ม", "aa", "ก", "none", "very, much", ["อร่อย", "มาก"], "Very delicious."],
+      ["ม", "uue", "", "none", "hand", ["ล้าง", "มือ"], "Wash your hands."],
+      ["ม", "aa", "", "none", "to come", ["มา", "ที่", "บ้าน"], "Come to the house."],
+      ["ม", "ae", "", "ek", "mother", ["รัก", "แม่"], "Love Mom. ฉัน รัก แม่."],
+      ["ม", "ai", "", "ek", "not", ["ไป", "ไม่", "ได้"], "Cannot go."],
+      ["ม", "ai", "", "tho", "wood", ["ไม้", "อยู่", "บน", "โต๊ะ"], "The stick is on the table."],
+      ["ข", "aa", "ว", "tho", "rice", ["กิน", "ข้าว"], "Eat a meal."],
+      ["ข", "aa", "ว", "none", "white", ["เสื้อ", "สี", "ขาว"], "A white shirt."],
+      ["ข", "aa", "", "none", "leg", ["ขา", "ขวา"], "The right leg."],
+      ["ร", "ak", "ก", "none", "to love", ["ฉัน", "รัก", "แม่"], "I love Mom."],
+      ["ร", "uea", "", "none", "boat", ["เรือ", "ลำ", "นั้น", "เล็ก"], "That boat is small."],
+      ["ร", "e-short", "ว", "none", "fast", ["ม้า", "วิ่ง", "เร็ว"], "The horse runs fast."],
+      ["ส", "uea", "", "none", "tiger", ["เสือ", "อยู่", "ใน", "ป่า"], "The tiger is in the forest."],
+      ["ส", "ai2", "", "ek", "to put in", ["ใส่", "ถุง"], "Put it in a bag."],
+      ["ล", "uea", "ก", "none", "to choose", ["เลือก", "มะม่วง"], "Choose a mango."],
+      ["ล", "i", "ง", "none", "monkey", ["ลิง", "ตัว", "นี้"], "This monkey."],
+      ["ง", "uu", "", "none", "snake", ["ฉัน", "เห็น", "งู"], "I see a snake."],
+      ["จ", "a", "", "none", "will", ["จะ", "ไป", "ตลาด"], "Will go to the market."],
+      ["อ", "aa", "ง", "ek", "basin", ["อ่าง", "ใบ", "นี้", "มี", "น้ำ"], "This basin has water."],
+      ["ผ", "aa", "", "tho", "cloth", ["ผ้า", "สี", "ขาว"], "White cloth."],
+      ["พ", "aa", "", "none", "to take along", ["พา", "เด็ก", "ไป"], "Take the child along."],
+      ["ห", "ai2", "", "tho", "to give", ["ให้", "น้ำ", "หน่อย"], "Some water, please."],
+      ["ช", "aa", "", "tho", "slow", ["เต่า", "เดิน", "ช้า"], "The turtle walks slowly."],
+      ["ท", "ii", "", "ek", "at", ["อยู่", "ที่", "บ้าน"], "At home."],
+      ["น", "ii", "", "tho", "this", ["จาน", "นี้"], "This plate."],
+      ["ว", "i", "ง", "ek", "to run", ["ม้า", "วิ่ง", "เร็ว"], "The horse runs fast."]
+    ];
+
+    let state = { c: "ก", v: "ai", fin: "", mark: "ek" };
+    let voice = false;
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function findWord(final) {
+      return words.find(function (w) {
+        return w[0] === state.c && w[1] === state.v && w[2] === final && w[3] === state.mark;
+      }) || null;
+    }
+    function seat(label, text, extra, active) {
+      const filled = !!text || !!active;
+      const inner = text ? '<b lang="th">' + esc(text) + "</b>" : "<i>" + label + "</i>";
+      return '<span class="seat ' + (filled ? "filled " : "") + (extra || "") + '">' + inner + "</span>";
+    }
+    function coreCluster(vowel, cons, toneChar) {
+      if (vowel.am) return cons + toneChar + "\u0E33";
+      if (vowel.up || vowel.lo) return cons + (vowel.up || "") + (vowel.lo || "") + toneChar;
+      return cons + toneChar;
+    }
+    function render() {
+      const letter = consonants.find(function (l) { return l.g === state.c; });
+      const judged = Thai.judge(letter.cls, state.c, state.v, state.fin, state.mark);
+      const vowel = judged.vowel;
+      const toneChar = Thai.TONE_MARK[state.mark] || "";
+      const post = vowel.am ? "" : (vowel.post || "");
+      const core = coreCluster(vowel, state.c, toneChar);
+      document.getElementById("stick").innerHTML =
+        seat("before", vowel.pre || "") +
+        '<span class="stack">' +
+          seat("mark", "", "mark", !!toneChar) +
+          seat("above", "", "", !!(vowel.up || vowel.am)) +
+          seat("letter", core) +
+          seat("below", "", "", !!vowel.lo) +
+        "</span>" +
+        seat("after", post) +
+        seat("final", judged.final || "");
+      document.getElementById("written").textContent = judged.text;
+      const tone = judged.tone ? Thai.TONE_NAME[judged.tone] : null;
+      document.getElementById("verdict").textContent = tone ? tone.en + " · " + tone.th : "Not a standard spelling";
+      const cls = { mid: "mid class", high: "high class", low: "low class" }[letter.cls];
+      const markLine = {
+        none: "There is no tone mark.",
+        ek: "ไม้เอก is written. On mid or high class it is low. On low class it falls.",
+        tho: "ไม้โท is written. On mid or high class it falls. On low class it is high.",
+        tri: "ไม้ตรี is written. On a mid-class letter it is high.",
+        cattawa: "ไม้จัตวา is written. On a mid-class letter it rises."
+      }[state.mark];
+      let because = letter.g + " is " + cls + ". " + judged.why + " " + markLine;
+      if (!tone) because = letter.g + " is " + cls + ". ไม้ตรี and ไม้จัตวา are written on mid-class consonants.";
+      if (judged.note) because += " " + judged.note;
+      document.getElementById("because").textContent = because;
+      const word = findWord(judged.final);
+      document.getElementById("slip").innerHTML = word
+        ? "<p><strong>" + esc(word[4]) + "</strong></p><p lang=\"th\">" + esc(word[5].join(" ")) + "</p><p>" + esc(word[6]) + "</p>"
+        : "<p>Readable shape. It is not in the starter word list.</p>";
+      const say = document.getElementById("say");
+      say.hidden = !voice;
+      say.onclick = function () { ThaiSpeak.speak(judged.text, "th"); };
+      renderControls();
+    }
+    function chip(label, pressed, attrs) {
+      return '<button type="button" aria-pressed="' + pressed + '" ' + attrs + ">" + label + "</button>";
+    }
+    function renderControls() {
+      const groups = ["after", "above", "below", "before", "around"];
+      const vowels = groups.map(function (group) {
+        const items = Thai.VOWELS.filter(function (v) { return v.group === group; }).map(function (v) {
+          return chip('<span lang="th">' + v.label + "</span>", state.v === v.id, 'data-v="' + v.id + '"');
+        }).join("");
+        return "<h2>" + group + "</h2><div class=\"chips\">" + items + "</div>";
+      }).join("");
+      const cons = consonants.map(function (l) {
+        return chip('<span lang="th">' + l.g + "</span>", state.c === l.g, 'data-c="' + l.g + '"');
+      }).join("");
+      const fins = finals.map(function (f) {
+        return chip(f[0] ? '<span lang="th">' + f[0] + "</span> " + f[1] : f[1], state.fin === f[0], 'data-f="' + f[0] + '"');
+      }).join("");
+      const ms = marks.map(function (m) {
+        return chip(m[1], state.mark === m[0], 'data-m="' + m[0] + '"');
+      }).join("");
+      const root = document.getElementById("controls");
+      root.innerHTML = "<h2>Consonant</h2><div class=\"chips\">" + cons + "</div>" + vowels + "<h2>Final</h2><div class=\"chips\">" + fins + "</div><h2>Tone mark</h2><div class=\"chips\">" + ms + "</div>";
+      root.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (b.dataset.c) state.c = b.dataset.c;
+          if (b.dataset.v) state.v = b.dataset.v;
+          if (b.dataset.f !== undefined) state.fin = b.dataset.f;
+          if (b.dataset.m) state.mark = b.dataset.m;
+          render();
+        });
+      });
+    }
+    ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
+    render();
+  </script>
+</body>
+</html>

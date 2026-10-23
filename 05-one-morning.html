@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>05 One Morning · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Serif+Thai:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #f6efe6; --ink: #3c2a22; --accent: #c46b4a; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 58px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-style: normal; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; color: #a85a3c; }
+    .brief { max-width: 68ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #fffaf4; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(60,42,34,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .morning { display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: start; }
+    .rail { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .rail button { width: 100%; text-align: left; border-radius: 12px; padding: 8px 10px; line-height: 1.45; }
+    .rail button span { font-size: 16px; }
+    .rail button[aria-current="true"] { background: #fff; box-shadow: inset 0 0 0 1px rgba(60,42,34,.16); }
+    .rail small { display: block; color: #8a6b58; letter-spacing: .06em; }
+    .sheet { background: #fffaf4; border-radius: 24px; padding: 22px 22px 18px; box-shadow: 0 16px 40px rgba(120, 70, 40, .08); }
+    .where { margin: 0; color: #a85a3c; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+    .who { margin: 10px 0 0; font-family: Fraunces, Georgia, serif; font-size: 22px; }
+    .line { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: clamp(28px, 4vw, 40px); line-height: 1.85; margin: 8px 0; }
+    .line span { display: inline-block; padding: .08em .18em .16em; border-radius: 10px; }
+    .line .is-on { background: #f6d3bf; }
+    .en { font-family: Fraunces, Georgia, serif; font-size: 22px; margin-top: 0; }
+    .lesson { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-top: 16px; background: #f6efe6; border-radius: 16px; padding: 12px; }
+    .lesson .glyph { font-family: "Noto Serif Thai", "Leelawadee UI", serif; font-size: 72px; line-height: 1.2; margin: 0; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .controls button { border-radius: 999px; padding: 8px 14px; background: #fff; box-shadow: inset 0 0 0 1px rgba(60,42,34,.16); }
+    @media (max-width: 800px) {
+      .facts, .morning, .lesson { grid-template-columns: 1fr; }
+      .rail { display: flex; overflow: auto; }
+      .rail li { min-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>05 / 07</span>
+      <nav>
+        <a href="04-sinitic-bridge.html">Prev</a>
+        <a href="06-syllable-bench.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 05 · daily life</p>
+    <h1>One Morning <em lang="th">เช้าวันหนึ่ง</em></h1>
+    <div class="brief">
+      <p>The alphabet arrives in the order a Saturday needs it. นิชา and มานพ say good morning, eat, sit in traffic, buy a mango, and get home. Twelve lines. Each line is a card, and the card teaches the one symbol that line is there to carry.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone who remembers a sentence more easily than a list.</div>
+        <div><strong>A card holds</strong> The next line, its English, and one symbol from that line.</div>
+        <div><strong>Another page</strong> When the line needs the tone rule, the card names the result and the <a href="02-class-board.html">Class Board</a> keeps the chart.</div>
+      </div>
+      <p>She uses ค่ะ for a statement and คะ for a question. He uses ครับ. Spaces between words are for learners. Ordinary Thai writing would close them up. This is a weak index of the alphabet and a strong way to keep a sentence.</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><span>Click a line in the left rail — the conversation runs from 7:10 to noon.</span></li>
+      <li><b>2</b><span>Read the line, its English, and the one symbol that line carries.</span></li>
+        <li><b>3</b><span>Use “Previous line” and “Next line” to walk the morning in order. Arrow keys work too.</span></li>
+    </ol>
+    <div class="morning">
+      <ol class="rail" id="rail"></ol>
+      <article class="sheet" id="sheet"></article>
+    </div>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html" aria-current="page">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/speak.js"></script>
+  <script>
+    const beats = [
+      { time: "7:10", place: "At the door", speaker: "นิชา", bits: ["สวัสดี", "ค่ะ"], focus: 0, en: "Hello.", glyph: "ส", kind: "High-class consonant", name: "ส เสือ", note: "สวัสดี starts with ส. High class, the s of เสือ, tiger." },
+      { time: "7:12", place: "At the door", speaker: "มานพ", bits: ["นอน", "หลับ", "ดี", "ไหม", "ครับ"], focus: 0, en: "Did you sleep well?", glyph: "น", kind: "Low-class consonant", name: "น หนู", note: "น in นอน is the letter itself: low class. The memory word หนู writes a silent ห in front of it." },
+      { time: "7:20", place: "Kitchen", speaker: "นิชา", bits: ["กิน", "ข้าว", "กัน", "ไหม", "คะ"], focus: 0, en: "Shall we eat?", glyph: "ก", kind: "Mid-class consonant", name: "ก ไก่", note: "กิน starts with ก, an unaspirated k. No puff of air. คะ, at the end, is her question particle." },
+      { time: "7:22", place: "Kitchen", speaker: "มานพ", bits: ["ขอ", "ไข่ดาว", "หนึ่ง", "ฟอง", "ครับ"], focus: 1, en: "One fried egg, please.", glyph: "ข", kind: "High-class consonant", name: "ข ไข่", note: "ไข่ดาว, a fried egg, begins with the memory word of ข. Aspirated k, high class." },
+      { time: "7:25", place: "Kitchen", speaker: "นิชา", bits: ["ข้าว", "สุก", "แล้ว", "ค่ะ"], focus: 0, en: "The rice is cooked.", glyph: "า", kind: "Vowel, written after", name: "สระ อา", note: "า is the long aa. In ข้าว it sits after ข. You say the consonant first, then the long vowel." },
+      { time: "7:26", place: "Kitchen", speaker: "มานพ", bits: ["มี", "น้ำ", "ไหม", "ครับ"], focus: 0, en: "Is there water?", glyph: "ม", kind: "Low-class consonant", name: "ม ม้า", note: "มี starts with ม. Low class, long vowel, no mark: มี is mid." },
+      { time: "7:27", place: "Kitchen", speaker: "นิชา", bits: ["มี", "น้ำ", "เย็น", "ค่ะ"], focus: 1, en: "There is cold water.", glyph: "◌้", kind: "Tone mark, ไม้โท", name: "น้ำ", note: "น้ำ is low-class น with ไม้โท, so the tone is high. The same mark on a mid-class letter would fall. เย็น is mid: low class, live ending, no mark." },
+      { time: "7:50", place: "Leaving the house", speaker: "นิชา", bits: ["ไป", "ตลาด", "กัน", "เถอะ"], focus: 0, en: "Let’s go to the market.", glyph: "ป", kind: "Mid-class consonant", name: "ป ปลา", note: "ไป starts with ป, an unaspirated p. Mid class, and ไ keeps the syllable live, so with no mark ไป is mid." },
+      { time: "8:05", place: "In the street", speaker: "มานพ", bits: ["รถ", "ติด", "นิดหน่อย", "ครับ"], focus: 0, en: "The traffic is a little stuck.", glyph: "ร", kind: "Low-class consonant", name: "ร เรือ", note: "รถ starts with ร, a tap, not an English r and not ล. The vowel is hidden and the syllable ends in a stopped t, so this low-class short dead syllable is high." },
+      { time: "8:20", place: "At the market", speaker: "นิชา", bits: ["เลือก", "มะม่วง", "ลูก", "นี้", "ค่ะ"], focus: 0, en: "Let’s take this mango.", glyph: "ล", kind: "Low-class consonant", name: "ล ลิง", note: "เลือก starts with ล. Keep it apart from ร. The vowel เอือ wraps the consonant: เ before, ื above, อ after." },
+      { time: "8:22", place: "At the market, to the seller", speaker: "มานพ", bits: ["ใส่", "ถุง", "ให้", "หน่อย", "ครับ"], focus: 0, en: "Put it in a bag, please.", glyph: "ใ", kind: "Vowel, the less common ai", name: "สระ ใอ", note: "ใส่ uses ใ. ไป, earlier, uses ไ. Same ai sound. ใ stays in a short list of common words." },
+      { time: "8:40", place: "Back home", speaker: "นิชา", bits: ["บอก", "แม่", "ว่า", "กลับ", "แล้ว", "ค่ะ"], focus: 0, en: "Tell Mom we’re back.", glyph: "บ", kind: "Mid-class consonant", name: "บ ใบไม้", note: "บอก starts with บ, a voiced b, as in English boy. Mid class. The vowel is อ, written after the consonant, and ก closes the syllable." }
+    ];
+
+    let index = 0;
+    let voice = false;
+    let token = 0;
+    let playing = false;
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function render() {
+      const rail = document.getElementById("rail");
+      rail.innerHTML = beats.map(function (b, i) {
+        return '<li><button type="button" data-i="' + i + '"' + (i === index ? ' aria-current="true"' : "") + '><small>' + b.time + "</small><span lang=\"th\">" + esc(b.bits[b.focus]) + "</span></button></li>";
+      }).join("");
+      rail.querySelectorAll("button").forEach(function (b) {
+        b.addEventListener("click", function () { stop(); index = Number(b.dataset.i); render(); });
+      });
+      const beat = beats[index];
+      const line = beat.bits.map(function (word, i) {
+        return '<span lang="th"' + (i === beat.focus ? ' class="is-on"' : "") + ">" + esc(word) + "</span>";
+      }).join("");
+      document.getElementById("sheet").innerHTML =
+        '<p class="where">' + esc(beat.time) + " · " + esc(beat.place) + "</p>" +
+        '<p class="who" lang="th">' + esc(beat.speaker) + "</p>" +
+        '<p class="line">' + line + "</p>" +
+        '<p class="en">' + esc(beat.en) + "</p>" +
+        '<div class="lesson"><p class="glyph" lang="th">' + esc(beat.glyph) + '</p><div><p>' + esc(beat.kind) + '</p><p lang="th"><strong>' + esc(beat.name) + '</strong></p><p>' + esc(beat.note) + "</p></div></div>" +
+        '<div class="controls"><button type="button" id="prev">Previous line</button><button type="button" id="next">Next line</button><button type="button" id="say"' + (voice ? "" : " disabled") + '>Play this line</button><button type="button" id="all"' + (voice ? "" : " disabled") + ">" + (playing ? "Stop" : "Play the morning") + "</button></div>";
+      document.getElementById("prev").addEventListener("click", function () { stop(); index = (index - 1 + beats.length) % beats.length; render(); });
+      document.getElementById("next").addEventListener("click", function () { stop(); index = (index + 1) % beats.length; render(); });
+      document.getElementById("say").addEventListener("click", function () { stop(); ThaiSpeak.speak(beat.bits.join(""), "th"); });
+      document.getElementById("all").addEventListener("click", function () { if (playing) stop(); else playFrom(index); });
+    }
+    function playFrom(i) {
+      const my = ++token;
+      playing = true;
+      index = i;
+      render();
+      const ok = ThaiSpeak.speak(beats[i].bits.join(""), "th", function () {
+        if (my !== token) return;
+        if (i + 1 < beats.length) playFrom(i + 1);
+        else { playing = false; render(); }
+      });
+      if (!ok) { playing = false; render(); }
+    }
+    function stop() {
+      token += 1;
+      playing = false;
+      ThaiSpeak.stop();
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") document.getElementById("next").click();
+      if (e.key === "ArrowLeft") document.getElementById("prev").click();
+    });
+    ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
+    render();
+  </script>
+</body>
+</html>

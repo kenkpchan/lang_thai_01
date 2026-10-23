@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>03 The Listening Room · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #141816; --ink: #e7f0e8; --accent: #dff56a; }
+    body { background: radial-gradient(1200px 500px at 50% -10%, #243028, var(--bg)); }
+    a { text-decoration-thickness: 1px; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; color: #f4f7ef; }
+    h1 em { font-family: "Noto Sans Thai", "Leelawadee UI", sans-serif; font-style: normal; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; color: var(--accent); }
+    .brief { max-width: 68ch; color: #d5e0d6; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: rgba(255,255,255,.04); border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; color: var(--accent); }
+    .room { width: min(640px, 100%); margin: 10px auto 0; text-align: center; }
+    .play {
+      width: 148px; height: 148px; border-radius: 50%;
+      background: var(--accent); color: #172015;
+      font-weight: 640; font-size: 18px;
+      box-shadow: 0 0 0 12px rgba(223, 245, 106, .12);
+    }
+    .play[disabled] { opacity: .45; }
+    .status { min-height: 1.4em; color: #b7c6b8; }
+    .guide { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 8px 0; color: var(--accent); }
+    .choices { display: grid; gap: 10px; margin-top: 16px; }
+    .choices button {
+      border-radius: 16px; padding: 14px 16px;
+      background: #1d2620; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      font-size: 40px; line-height: 1.35;
+    }
+    .choices button.right { box-shadow: inset 0 0 0 2px var(--accent); }
+    .choices button.wrong { opacity: .55; }
+    .why { text-align: left; background: #1c2420; border-radius: 16px; padding: 14px 16px; margin-top: 14px; }
+    .hear { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .hear button { border-radius: 999px; padding: 6px 10px; background: #2a3530; }
+    .nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+    .nav button { border-radius: 999px; padding: 8px 14px; background: #2a3530; }
+    .legend { color: #b7c6b8; font-size: 14px; max-width: 68ch; }
+    @media (max-width: 800px) { .facts { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>03 / 07</span>
+      <nav>
+        <a href="02-class-board.html">Prev</a>
+        <a href="04-sinitic-bridge.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 03</p>
+    <h1>The Listening Room <em lang="th">ห้องฟัง</em></h1>
+    <div class="brief">
+      <p>Some pairs are easy to see and hard to hear. กา and คา can share a mid tone and still be different sounds. รัก and ลัก share a vowel, a final, and a high tone. The room plays one syllable and offers the spellings it is often confused with.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone whose ear collapses aspiration, length, tone, or ร and ล.</div>
+        <div><strong>A card holds</strong> A sound, two or three spellings, and the reason they come apart.</div>
+        <div><strong>The rule</strong> When the answer is a class difference, the <a href="02-class-board.html">Class Board</a> is the chart.</div>
+      </div>
+      <p>If this computer has a Thai voice, the spelling stays hidden until you answer. If it does not, the room shows a sound guide and the choices stay in Thai. A finished room would use a recorded voice either way. After the answer you can play every choice. The point is the difference.</p>
+    </div>
+    <section class="room" aria-live="polite">
+      <ol class="steps">
+        <li><b>1</b><span>Press Play — or read the sound guide if this computer has no Thai voice.</span></li>
+        <li><b>2</b><span>Choose the spelling you heard.</span></li>
+        <li><b>3</b><span>Read why the pair comes apart. “Previous pair” and “Next pair” move between drills.</span></li>
+      </ol>
+      <p class="status" id="status"></p>
+      <button class="play" id="play" type="button">Play</button>
+      <p class="guide" id="guide" hidden></p>
+      <div class="choices" id="choices"></div>
+      <div class="why" id="why" hidden></div>
+      <div class="nav">
+        <button type="button" id="back">Previous pair</button>
+        <button type="button" id="forward">Next pair</button>
+      </div>
+    </section>
+    <p class="legend">Sound guide, when you see one: unmarked is mid, à is low, â is falling, á is high, ǎ is rising. A doubled vowel is long. g, bp, and dt are unaspirated. kh and ph have a puff of air. ph is not f.</p>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html">02 Class Board</a>
+      <a href="03-listening-room.html" aria-current="page">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/speak.js"></script>
+  <script>
+    const drills = [
+      {
+        title: "Puff of air, and class",
+        answer: "กา",
+        choices: [
+          { th: "ขา", guide: "khǎa · rising", gloss: "leg" },
+          { th: "กา", guide: "gaa · mid", gloss: "crow" },
+          { th: "คา", guide: "khaa · mid", gloss: "a stuck-out neck, the shape" }
+        ],
+        why: "กา and คา are both mid. ก has no puff of air. ค has one. ขา has the same puff as ค, and it is high class, so the unmarked live syllable rises. The ear is tracking the puff and the pitch."
+      },
+      {
+        title: "Length, and the tone that follows it",
+        answer: "กะ",
+        choices: [
+          { th: "กา", guide: "gaa · mid", gloss: "crow" },
+          { th: "กะ", guide: "gà · low", gloss: "short a" }
+        ],
+        why: "Same consonant. กะ is short and dead, so mid class gives a low tone. กา is long and live, so it stays mid. Length is doing both jobs: the vowel, and the tone."
+      },
+      {
+        title: "Short and stopped, beside long and open",
+        answer: "ปิด",
+        choices: [
+          { th: "ปี", guide: "bpii · mid", gloss: "year" },
+          { th: "ปิด", guide: "bpìt · low", gloss: "to close" }
+        ],
+        why: "ปิด has a short vowel and a stopped t, so it is dead, and mid-class ป makes it low. ปี is long and open, so it is live and mid. ป is unaspirated: voice off, no puff."
+      },
+      {
+        title: "One vowel, three tones",
+        answer: "ไม้",
+        choices: [
+          { th: "ไม่", guide: "mâi · falling", gloss: "not" },
+          { th: "ไม้", guide: "mái · high", gloss: "wood" },
+          { th: "ใหม่", guide: "mài · low", gloss: "new" }
+        ],
+        why: "ไม่ is low-class ม with ไม้เอก, so it falls. ไม้ is the same letter with ไม้โท, so it is high. ใหม่ writes a silent ห, and ม then behaves as high class. ไม้เอก on high class is low. The Class Board’s calculator leaves that silent ห for a later lesson; this pair is where you meet it."
+      },
+      {
+        title: "Same letter, the mark changes the pitch",
+        answer: "ข้าว",
+        choices: [
+          { th: "ขาว", guide: "khǎao · rising", gloss: "white" },
+          { th: "ข้าว", guide: "khâao · falling", gloss: "rice" }
+        ],
+        why: "Both start with high-class ข and the same vowel. No mark on a high-class live syllable rises: ขาว, white. ไม้โท on high class falls: ข้าว, rice."
+      },
+      {
+        title: "Three p’s",
+        answer: "พา",
+        choices: [
+          { th: "ป่า", guide: "bpàa · low", gloss: "forest" },
+          { th: "พา", guide: "phaa · mid", gloss: "to take along" },
+          { th: "ผ้า", guide: "phâa · falling", gloss: "cloth" }
+        ],
+        why: "ป่า is mid-class ป with ไม้เอก: low, and the p has no puff. ผ้า is high-class ผ with ไม้โท: falling, with a puff. พา is low-class พ, live, no mark: mid, and it has the same puff as ผ้า. The puff groups ผ้า with พา. Class and the mark split the tone."
+      },
+      {
+        title: "Tap beside l",
+        answer: "รัก",
+        choices: [
+          { th: "ลัก", guide: "lák · high", gloss: "to steal" },
+          { th: "รัก", guide: "rák · high", gloss: "to love" }
+        ],
+        why: "Same short vowel, same stopped final, same high tone. Both are low class and dead. The difference is ร, a quick tap, beside ล. English r and a held Chinese r are different sounds again."
+      }
+    ];
+
+    let index = 0;
+    let revealed = false;
+    let voice = false;
+    let correct = 0;
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function drill() { return drills[index]; }
+    function play(text) {
+      if (!voice) return false;
+      return ThaiSpeak.speak(text, "th");
+    }
+    function render() {
+      const d = drill();
+      document.getElementById("status").textContent = (index + 1) + " of " + drills.length + " · " + d.title + (voice ? "" : " · written guide, no Thai voice here");
+      document.getElementById("play").disabled = !voice;
+      document.getElementById("play").textContent = voice ? "Play" : "No voice";
+      const guide = document.getElementById("guide");
+      const answer = d.choices.find(function (c) { return c.th === d.answer; });
+      guide.hidden = voice && !revealed;
+      guide.textContent = answer.guide;
+      const box = document.getElementById("choices");
+      box.innerHTML = "";
+      d.choices.forEach(function (c) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.lang = "th";
+        b.textContent = c.th;
+        if (revealed && c.th === d.answer) b.className = "right";
+        if (revealed && c.th !== d.answer) b.className = "wrong";
+        b.addEventListener("click", function () { choose(c.th); });
+        box.appendChild(b);
+      });
+      const why = document.getElementById("why");
+      why.hidden = !revealed;
+      if (revealed) {
+        const hears = d.choices.map(function (c) {
+          return '<button type="button" data-th="' + c.th + '">' + c.th + " · " + esc(c.gloss) + "</button>";
+        }).join("");
+        why.innerHTML = "<p><strong lang=\"th\">" + d.answer + "</strong> · " + esc(answer.gloss) + " · " + esc(answer.guide) + "</p><p>" + esc(d.why) + "</p>" + (voice ? '<div class="hear">' + hears + "</div>" : "");
+        why.querySelectorAll("[data-th]").forEach(function (b) {
+          b.addEventListener("click", function () { play(b.dataset.th); });
+        });
+      }
+    }
+    function choose(th) {
+      if (revealed) {
+        play(th);
+        return;
+      }
+      revealed = true;
+      if (th === drill().answer) correct += 1;
+      render();
+    }
+    document.getElementById("play").addEventListener("click", function () { play(drill().answer); });
+    document.getElementById("back").addEventListener("click", function () {
+      index = (index - 1 + drills.length) % drills.length;
+      revealed = false;
+      ThaiSpeak.stop();
+      render();
+    });
+    document.getElementById("forward").addEventListener("click", function () {
+      index = (index + 1) % drills.length;
+      revealed = false;
+      ThaiSpeak.stop();
+      render();
+    });
+    ThaiSpeak.whenVoices(function () {
+      voice = !!ThaiSpeak.pick("th");
+      render();
+      if (voice) play(drill().answer);
+    });
+    render();
+  </script>
+</body>
+</html>

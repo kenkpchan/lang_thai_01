@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>02 The Class Board · Thai alphabet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+Thai:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=4">
+  <style>
+    :root { --bg: #f4f5f2; --ink: #1b1c1a; --accent: #1e3a6e; --mid: #1e3a6e; --high: #8a4b12; --low: #1c6b45; }
+    h1 { font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(36px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; margin: 8px 0; }
+    h1 em { font-family: "Noto Sans Thai", "Leelawadee UI", sans-serif; font-style: normal; font-weight: 700; }
+    .kicker { letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 500; margin: 18px 0 0; }
+    .brief { max-width: 72ch; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+    .facts div { background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: inset 0 0 0 1px rgba(27,28,26,.08); }
+    .facts strong { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, .8fr); gap: 22px; align-items: start; }
+    .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .col { border-radius: 16px; padding: 10px; background: color-mix(in srgb, var(--c) 8%, white); }
+    .col h2 { margin: 4px 6px 8px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
+    .col.mid { --c: var(--mid); } .col.high { --c: var(--high); } .col.low { --c: var(--low); }
+    .letter { width: 100%; display: grid; grid-template-columns: auto 1fr; gap: 0 8px; align-items: center; text-align: left; border-radius: 10px; padding: 4px 6px 6px; }
+    .letter[aria-pressed="true"] { background: #fff; box-shadow: inset 0 0 0 2px var(--c); }
+    .letter .g { font-size: 30px; line-height: 1.5; grid-row: span 2; }
+    .letter .nm { font-size: 12px; line-height: 1.55; color: #4e514c; }
+    .letter .sd { font-size: 11px; letter-spacing: .04em; color: var(--c); }
+    .letter.rare { opacity: .72; }
+    .badge { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+    .inspect { position: sticky; top: 12px; background: #fff; border-radius: 18px; padding: 16px 16px 14px; box-shadow: inset 0 0 0 1px rgba(27,28,26,.08); }
+    .big { font-size: 84px; line-height: 1.15; margin: 0; }
+    .siblings { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .siblings button { border-radius: 999px; padding: 4px 8px; box-shadow: inset 0 0 0 1px rgba(27,28,26,.16); }
+    .siblings button[aria-pressed="true"] { background: var(--ink); color: white; }
+    .situations { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .situations button { border-radius: 999px; padding: 6px 10px; background: #fff; box-shadow: inset 0 0 0 1px rgba(27,28,26,.22); }
+    .situations button:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+    .situations button[aria-pressed="true"] { background: var(--ink); color: #f4f5f2; }
+    td button:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+    .letter:hover { box-shadow: inset 0 0 0 2px var(--c, var(--ink)); }
+    .verdict { font-family: Fraunces, Georgia, serif; font-size: 32px; margin: 8px 0; letter-spacing: -.02em; }
+    .pattern { font-size: 42px; line-height: 1.4; margin: 0; }
+    .speak { border-radius: 999px; padding: 6px 12px; box-shadow: inset 0 0 0 1px rgba(27,28,26,.2); }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0 8px; background: #fff; border-radius: 16px; overflow: hidden; }
+    th, td { padding: 0; text-align: left; }
+    th { font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: 10px; }
+    td button, th button { width: 100%; text-align: left; padding: 9px 10px; }
+    td button.is-on { background: var(--ink); color: #f4f5f2; }
+    caption { text-align: left; font-weight: 640; padding: 8px 2px; }
+    .fine { color: #4c514c; max-width: 78ch; }
+    @media (max-width: 980px) {
+      .layout, .facts, .cols { grid-template-columns: 1fr; }
+      .inspect { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a href="index.html">Seven designs</a>
+      <span>02 / 07</span>
+      <nav>
+        <a href="01-card-box.html">Prev</a>
+        <a href="03-listening-room.html">Next</a>
+      </nav>
+    </header>
+    <p class="kicker">Design 02</p>
+    <h1>The Class Board <em lang="th">แผงวรรณยุกต์</em></h1>
+    <div class="brief">
+      <p>Thai spells a tone with three things: the class of the consonant, the shape of the syllable, and a mark if there is one. This page sorts all 44 consonants into the three classes and lets you try the rule.</p>
+      <div class="facts">
+        <div><strong>Learner</strong> Someone who can already see the letters and wants the reason a word rises or falls.</div>
+        <div><strong>A card holds</strong> The letter, the letters with the same sound, and the tone of the shape you chose.</div>
+        <div><strong>Hear it</strong> The pairs that share a spelling pattern are in the <a href="03-listening-room.html">Listening Room</a>.</div>
+      </div>
+      <p>ข and ค are the same puff of air. ส and ซ are the same s. Class is the part that changes the tone. Pick a letter, then a situation. The pattern written on that letter is a shape, and it may not be a dictionary word. A real word with the same class and the same situation sits next to it.</p>
+      <p>The same rule, joined to real words and to the vowel seats, is the <a href="integrated-tone-vocab.html">combined workshop</a>. English and Traditional Chinese. The colours there keep one meaning each.</p>
+    </div>
+    <ol class="steps">
+      <li><b>1</b><span>Pick a letter on the board. Its class colour stays with it.</span></li>
+      <li><b>2</b><span>Pick a situation beside the inspector: live, dead, or a tone mark.</span></li>
+      <li><b>3</b><span>Read the tone. Click any cell in the chart below to try that class and shape.</span></li>
+    </ol>
+    <div class="layout">
+      <div class="cols" id="cols"></div>
+      <aside class="inspect" id="inspect" aria-live="polite"></aside>
+    </div>
+    <table id="matrix">
+      <caption>The rule for an ordinary syllable</caption>
+      <thead>
+        <tr><th>Situation</th><th>Mid</th><th>High</th><th>Low</th></tr>
+      </thead>
+      <tbody id="matrix-body"></tbody>
+    </table>
+    <p class="fine">A live syllable has a long vowel, or it ends in ม น ง ย ว, or it uses ไ ใ เ–า or ำ. A dead syllable ends in a short vowel, or in a stopped ก ด บ. A tone mark overrides that live-or-dead split. ไม้ตรี and ไม้จัตวา are written on mid-class consonants.</p>
+    <p class="fine">Still outside this calculator: a silent ห in front of ง ญ น ม ย ร ล ว, which makes the syllable follow high-class rules, as in หนู, หญิง, and แหวน. A pronounced cluster such as ปลา takes the class of its first consonant. ก็ is irregular. Final letters also change sound: several of them are pronounced น, and the stopped endings collapse to p, t, or k. Those belong on a later board.</p>
+    <footer class="jump">
+      <a href="index.html">Index</a>
+      <a href="01-card-box.html">01 Card Box</a>
+      <a href="02-class-board.html" aria-current="page">02 Class Board</a>
+      <a href="03-listening-room.html">03 Listening Room</a>
+      <a href="04-sinitic-bridge.html">04 中文助攻</a>
+      <a href="05-one-morning.html">05 One Morning</a>
+      <a href="06-syllable-bench.html">06 Syllable Bench</a>
+      <a href="07-picture-market.html">07 Picture Market</a>
+    </footer>
+  </div>
+  <script src="js/letters.js"></script>
+  <script src="js/thai.js"></script>
+  <script src="js/speak.js"></script>
+  <script>
+    const letters = ThaiLetters.letters;
+    const rows = [
+      { id: "live", label: "Live, no mark" },
+      { id: "dead-short", label: "Dead, short" },
+      { id: "dead-long", label: "Dead, long" },
+      { id: "ek", label: "ไม้เอก ◌่" },
+      { id: "tho", label: "ไม้โท ◌้" },
+      { id: "tri", label: "ไม้ตรี ◌๊" },
+      { id: "cattawa", label: "ไม้จัตวา ◌๋" }
+    ];
+    const examples = {
+      "mid|live": ["กา", "crow"],
+      "mid|dead-short": ["จะ", "will"],
+      "mid|dead-long": ["ปาก", "mouth"],
+      "mid|ek": ["ไก่", "chicken"],
+      "mid|tho": ["ได้", "can"],
+      "mid|tri": ["โต๊ะ", "table"],
+      "mid|cattawa": ["ตั๋ว", "ticket"],
+      "high|live": ["ขา", "leg"],
+      "high|dead-short": ["ผัก", "vegetable"],
+      "high|dead-long": ["ถูก", "correct"],
+      "high|ek": ["ไข่", "egg"],
+      "high|tho": ["ข้าว", "rice"],
+      "low|live": ["มา", "to come"],
+      "low|dead-short": ["รัก", "to love"],
+      "low|dead-long": ["มาก", "very"],
+      "low|ek": ["แม่", "mother"],
+      "low|tho": ["ม้า", "horse"]
+    };
+    let current = "ก";
+    let row = "live";
+    let voice = false;
+
+    function esc(s) {
+      return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; });
+    }
+    function letterBy(g) { return letters.find(function (l) { return l.g === g; }); }
+    function toneFor(cls, id) {
+      const mark = { live: "none", "dead-short": "none", "dead-long": "none", ek: "ek", tho: "tho", tri: "tri", cattawa: "cattawa" }[id];
+      return Thai.toneOf(cls, id === "live", id !== "dead-short", mark);
+    }
+    function pattern(g, id) {
+      const mark = { ek: "\u0E48", tho: "\u0E49", tri: "\u0E4A", cattawa: "\u0E4B" }[id] || "";
+      if (id === "dead-short") return g + "ะ";
+      if (id === "dead-long") return g + "าก";
+      return g + mark + "า";
+    }
+    function renderCols() {
+      const root = document.getElementById("cols");
+      root.innerHTML = "";
+      ["mid", "high", "low"].forEach(function (cls) {
+        const list = letters.filter(function (l) { return l.cls === cls; });
+        const col = document.createElement("section");
+        col.className = "col " + cls;
+        const title = { mid: "Mid", high: "High", low: "Low" }[cls];
+        col.innerHTML = "<h2>" + title + " · " + list.length + "</h2>";
+        list.forEach(function (l) {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "letter" + (l.badge ? " rare" : "");
+          b.setAttribute("aria-pressed", l.g === current ? "true" : "false");
+          b.innerHTML = '<span class="g" lang="th">' + l.g + '</span><span class="nm" lang="th">' + esc(l.name) + (l.badge ? ' <span class="badge">' + l.badge + "</span>" : "") + '</span><span class="sd">' + esc(l.sound) + "</span>";
+          b.addEventListener("click", function () { current = l.g; render(); });
+          col.appendChild(b);
+        });
+        root.appendChild(col);
+      });
+    }
+    function renderMatrix() {
+      const body = document.getElementById("matrix-body");
+      body.innerHTML = "";
+      const letter = letterBy(current);
+      rows.forEach(function (r) {
+        const tr = document.createElement("tr");
+        const head = document.createElement("th");
+        head.textContent = r.label;
+        tr.appendChild(head);
+        ["mid", "high", "low"].forEach(function (cls) {
+          const td = document.createElement("td");
+          const tone = toneFor(cls, r.id);
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = tone ? Thai.TONE_NAME[tone].en : "—";
+          if (letter.cls === cls && row === r.id) btn.className = "is-on";
+          btn.addEventListener("click", function () {
+            row = r.id;
+            if (letter.cls !== cls) current = letters.find(function (l) { return l.cls === cls; }).g;
+            render();
+          });
+          td.appendChild(btn);
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+      });
+    }
+    function renderInspect() {
+      const l = letterBy(current);
+      const tone = toneFor(l.cls, row);
+      const shape = pattern(l.g, row);
+      const ex = examples[l.cls + "|" + row];
+      const siblings = letters.filter(function (x) { return x.group === l.group; });
+      const name = tone ? Thai.TONE_NAME[tone] : null;
+      const box = document.getElementById("inspect");
+      const same = siblings.map(function (s) {
+        return '<button type="button" data-g="' + s.g + '" aria-pressed="' + (s.g === l.g) + '" lang="th">' + s.g + " " + s.cls + "</button>";
+      }).join("");
+      const sits = rows.map(function (r) {
+        return '<button type="button" data-row="' + r.id + '" aria-pressed="' + (r.id === row) + '">' + r.label + "</button>";
+      }).join("");
+      let verdict = "Standard spelling keeps this mark on mid-class consonants.";
+      if (name) {
+        const sameWord = ex && ex[0] === shape;
+        verdict = name.en + " · " + name.th;
+        var detail = sameWord
+          ? "This shape is a real word: " + ex[0] + ", " + ex[1] + "."
+          : "On " + l.g + " the shape is " + shape + ". It may not be a word. The same rule gives " + ex[0] + ", " + ex[1] + ".";
+      }
+      box.innerHTML =
+        '<p class="big" lang="th">' + l.g + "</p>" +
+        '<p lang="th"><strong>' + esc(l.name) + "</strong> · " + esc(l.gloss) + "</p>" +
+        "<p>" + esc(l.hint) + "</p>" +
+        (l.note ? "<p>" + esc(l.note) + "</p>" : "") +
+        (l.badge ? "<p><span class=\"badge\">" + esc(l.badge) + "</span></p>" : "") +
+        '<p>Same sound</p><div class="siblings">' + same + "</div>" +
+        '<div class="situations">' + sits + "</div>" +
+        '<p class="pattern" lang="th">' + esc(shape) + "</p>" +
+        '<p class="verdict">' + esc(name ? verdict : "Not used here") + "</p>" +
+        "<p>" + esc(name ? detail : verdict) + "</p>" +
+        '<p><button class="speak" type="button" id="say"' + (voice ? "" : " hidden") + ">Play the shape</button></p>";
+      box.querySelectorAll("[data-g]").forEach(function (b) {
+        b.addEventListener("click", function () { current = b.dataset.g; render(); });
+      });
+      box.querySelectorAll("[data-row]").forEach(function (b) {
+        b.addEventListener("click", function () { row = b.dataset.row; render(); });
+      });
+      const say = document.getElementById("say");
+      if (say) say.addEventListener("click", function () { ThaiSpeak.speak(shape, "th"); });
+    }
+    function render() { renderCols(); renderMatrix(); renderInspect(); }
+    ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
+    render();
+  </script>
+</body>
+</html>
