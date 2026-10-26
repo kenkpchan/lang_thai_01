@@ -1,7 +1,13 @@
 import fs from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
-import { hashPassword, verifyPassword, newSessionToken } from "./auth-crypto.mjs";
+import {
+  hashPassword,
+  verifyPassword,
+  newSessionToken,
+  createStatelessSessionToken,
+  verifyStatelessSessionToken,
+} from "./auth-crypto.mjs";
 
 const USERS_FILE =
   process.env.AUTH_USERS_FILE || path.join(process.cwd(), "data", "app-users.json");
@@ -12,6 +18,26 @@ const SESSION_DAYS = 14;
 
 function useSupabase() {
   return !!(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
+}
+
+function bootstrapCreds() {
+  const user = process.env.AUTH_BOOTSTRAP_USER || process.env.AUTH_USERNAME;
+  const pass = process.env.AUTH_BOOTSTRAP_PASSWORD || process.env.AUTH_PASSWORD;
+  if (!user || !pass) return null;
+  return { user: user.trim(), pass: String(pass) };
+}
+
+/** Netlify without Supabase: login via env + signed session (no writable data/). */
+function useStatelessEnvAuth() {
+  return !useSupabase() && !!bootstrapCreds();
+}
+
+function matchEnvBootstrapLogin(username, password) {
+  const creds = bootstrapCreds();
+  if (!creds) return null;
+  if (String(username || "").trim() !== creds.user) return null;
+  if (String(password || "") !== creds.pass) return null;
+  return { id: "env-bootstrap", username: creds.user };
 }
 
 function supabaseHeaders() {
@@ -43,6 +69,7 @@ async function ensureBootstrapUser() {
   const user = process.env.AUTH_BOOTSTRAP_USER || process.env.AUTH_USERNAME;
   const pass = process.env.AUTH_BOOTSTRAP_PASSWORD || process.env.AUTH_PASSWORD;
   if (!user || !pass) return;
+  if (useStatelessEnvAuth()) return;
 
   if (useSupabase()) {
     const base = `${process.env.SUPABASE_URL.replace(/\/$/, "")}/rest/v1/app_users`;
@@ -97,6 +124,9 @@ export async function findUserByUsername(username) {
  * @param {string} password
  */
 export async function verifyLogin(username, password) {
+  const envUser = matchEnvBootstrapLogin(username, password);
+  if (envUser) return envUser;
+
   const user = await findUserByUsername(username);
   if (!user) return null;
   if (!verifyPassword(password, user.password_hash)) return null;
@@ -105,6 +135,18 @@ export async function verifyLogin(username, password) {
 
 /** @param {string} userId */
 export async function createSession(userId) {
+  if (useStatelessEnvAuth() && userId === "env-bootstrap") {
+    const creds = bootstrapCreds();
+    const token = createStatelessSessionToken(creds.user, userId);
+    const expires = new Date(Date.now() + SESSION_DAYS * 86400000).toISOString();
+    if (!token) {
+      const err = new Error("Auth not configured.");
+      err.code = "CONFIG";
+      throw err;
+    }
+    return { token, expires_at: expires };
+  }
+
   const token = newSessionToken();
   const expires = new Date(Date.now() + SESSION_DAYS * 86400000).toISOString();
 
@@ -143,6 +185,9 @@ export async function createSession(userId) {
 /** @param {string} token */
 export async function getSession(token) {
   if (!token) return null;
+  const stateless = verifyStatelessSessionToken(token);
+  if (stateless) return stateless;
+
   const now = new Date().toISOString();
 
   if (useSupabase()) {
