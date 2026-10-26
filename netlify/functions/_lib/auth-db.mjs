@@ -126,7 +126,14 @@ export async function findUserByUsername(username) {
  */
 export async function verifyLogin(username, password) {
   const envUser = matchEnvBootstrapLogin(username, password);
-  if (envUser) return envUser;
+  if (envUser) {
+    if (useSupabase()) {
+      await ensureBootstrapUser();
+      const dbUser = await findUserByUsername(envUser.username);
+      if (dbUser) return dbUser;
+    }
+    if (useStatelessEnvAuth()) return envUser;
+  }
 
   const user = await findUserByUsername(username);
   if (!user) return null;
