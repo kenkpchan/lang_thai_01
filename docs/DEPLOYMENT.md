@@ -66,9 +66,23 @@ git credential-manager github login --username kenkpchan --web --force
 | Site ID | `159929c5-0377-4a7f-88f4-cfb3214ed1d3` |
 | Intended Git repo | **kenkpchan/lang_thai_01**, branch **main** |
 
-**Continuous deploy (intended):** push to `kenkpchan` `main` → Netlify builds and publishes.
+**Continuous deploy:** push to `kenkpchan` `main` → Netlify builds and publishes (GitHub App linked; `installation_id` set in site build settings).
 
-**If Git deploy fails** (“Unable to access repository”, “Host key verification failed”): complete **Link repository** in the UI — https://app.netlify.com/projects/lang-thai-01/link — choose GitHub → **lang_thai_01** → **main**, and confirm settings match `netlify.toml`. Do not rely on API-only site creation without a GitHub App **installation_id**.
+**If Git deploy fails** (“Unable to access repository”, “Host key verification failed”): complete **Link repository** in the UI — https://app.netlify.com/projects/lang-thai-01/link — choose GitHub → **lang_thai_01** → **main**, and confirm settings match `netlify.toml`.
+
+### Netlify environment variables (production)
+
+Set in **Project configuration → Environment variables** (or run `node scripts/netlify-sync-env.mjs` from a machine with `.env` and Netlify CLI login):
+
+| Variable | Purpose |
+| --- | --- |
+| `AUTH_BOOTSTRAP_USER` / `AUTH_BOOTSTRAP_PASSWORD` | Translation app login when Supabase is not used |
+| `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL` | DeepSeek / OpenAI translate |
+| `TAVILY_API_KEY` | Challenge topics web search |
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | **Recommended** — durable history, users, sessions |
+| `SITE_URL` | `https://lang-thai-01.netlify.app` (CORS helper) |
+
+Without Supabase, functions store JSON under `/tmp` on Netlify (works for demos; not durable across cold starts). Run [db/supabase-schema.sql](../db/supabase-schema.sql) in Supabase, then add the two `SUPABASE_*` vars and redeploy.
 
 **Public access:** the site must not require Netlify SSO for learners. If visitors see **401** / **Netlify SSO Redirect**, turn off SSO for this site under **Project configuration → Access control** (or set site `sso_login` off).
 

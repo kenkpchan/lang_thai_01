@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import { dataDir } from "./data-path.mjs";
 import {
   REVISION_STATUSES,
   ACTIVE_CARD_STATUSES,
@@ -8,21 +9,21 @@ import {
   normalizeEnglishKey,
 } from "./schema.mjs";
 
+const root = dataDir();
 const LOCAL_FILE =
   process.env.TRANSLATION_HISTORY_FILE ||
-  path.join(process.cwd(), "data", "translation-history.json");
+  path.join(root, "translation-history.json");
 const LOG_FILE =
   process.env.TRANSLATION_LOOKUP_LOG_FILE ||
-  path.join(process.cwd(), "data", "translation-lookup-log.json");
+  path.join(root, "translation-lookup-log.json");
 const LINKS_FILE =
   process.env.TRANSLATION_LINKS_FILE ||
-  path.join(process.cwd(), "data", "card-links.json");
+  path.join(root, "card-links.json");
 const REVIEW_STATE_FILE =
-  process.env.REVIEW_STATE_FILE ||
-  path.join(process.cwd(), "data", "review-state.json");
+  process.env.REVIEW_STATE_FILE || path.join(root, "review-state.json");
 const CHALLENGE_TOPICS_FILE =
   process.env.CHALLENGE_TOPICS_FILE ||
-  path.join(process.cwd(), "data", "challenge-topics.json");
+  path.join(root, "challenge-topics.json");
 
 function useSupabase() {
   return !!(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import { dataDir } from "./data-path.mjs";
 import {
   hashPassword,
   verifyPassword,
@@ -10,9 +11,9 @@ import {
 } from "./auth-crypto.mjs";
 
 const USERS_FILE =
-  process.env.AUTH_USERS_FILE || path.join(process.cwd(), "data", "app-users.json");
+  process.env.AUTH_USERS_FILE || path.join(dataDir(), "app-users.json");
 const SESSIONS_FILE =
-  process.env.AUTH_SESSIONS_FILE || path.join(process.cwd(), "data", "app-sessions.json");
+  process.env.AUTH_SESSIONS_FILE || path.join(dataDir(), "app-sessions.json");
 
 const SESSION_DAYS = 14;
 
