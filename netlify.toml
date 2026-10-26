@@ -2,6 +2,48 @@
   publish = "."
   command = "node js/check-pages.js && node js/check-syllables.js"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[functions.environment]
+  NODE_USE_ENV_PROXY = "1"
+
+[[redirects]]
+  from = "/api/translate"
+  to = "/.netlify/functions/translate"
+  status = 200
+
+[[redirects]]
+  from = "/api/history"
+  to = "/.netlify/functions/history"
+  status = 200
+
+[[redirects]]
+  from = "/api/links"
+  to = "/.netlify/functions/links"
+  status = 200
+
+[[redirects]]
+  from = "/api/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/review"
+  to = "/.netlify/functions/review"
+  status = 200
+
+[[redirects]]
+  from = "/api/challenge"
+  to = "/.netlify/functions/challenge"
+  status = 200
+
+[[redirects]]
+  from = "/integrated-transation-vocab.html"
+  to = "/integrated-translation-vocab.html"
+  status = 301
+
 [[redirects]]
   from = "/"
   to = "/integrated-tone-vocab.html"

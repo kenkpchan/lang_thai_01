@@ -116,6 +116,10 @@
 </head>
 <body>
   <div class="wrap">
+    <nav class="tv-topnav" aria-label="Workshop pages" style="display:flex;flex-wrap:wrap;gap:12px 18px;padding:18px 0 4px;font-size:13px;font-weight:500;letter-spacing:.04em">
+      <a href="integrated-tone-vocab.html" aria-current="page" style="text-decoration:underline;text-underline-offset:4px">Tone workshop · 聲調詞彙板</a>
+      <a href="integrated-translation-vocab.html">Translation · 英泰詞彙</a>
+    </nav>
     <p class="kicker">Class Board and Syllable Bench</p>
     <h1>Tone and vocabulary workshop <em lang="zh-Hant">聲調詞彙板</em></h1>
     <div class="guide">
@@ -960,6 +964,55 @@
     });
     ThaiSpeak.whenVoices(function () { voice = !!ThaiSpeak.pick("th"); render(); });
     applyLevel(level);
+    (function cardDeepLink() {
+      var p = new URLSearchParams(location.search);
+      var ret = p.get("return");
+      if (ret && (ret.indexOf("integrated-translation") !== -1 || ret.charAt(0) === "/")) {
+        var back = document.createElement("p");
+        back.style.margin = "8px 0 0";
+        var a = document.createElement("a");
+        a.href = ret;
+        a.textContent = "← Back to translation card · 返回詞卡";
+        a.style.fontWeight = "600";
+        back.appendChild(a);
+        var nav = document.querySelector(".tv-topnav");
+        if (nav && nav.parentNode) nav.parentNode.insertBefore(back, nav.nextSibling);
+      }
+      var romanParam = (p.get("roman") || "").trim();
+      var thaiParam = (p.get("thai") || "").trim();
+      function normRoman(s) {
+        return String(s || "").toLowerCase().replace(/[\s-]/g, "");
+      }
+      function focusWord() {
+        if (thaiParam && TNC_BY_TEXT[thaiParam]) {
+          var entry = TNC_BY_TEXT[thaiParam];
+          if (entry.parsed) {
+            lexicon = null;
+            state = { c: entry.parsed.c, v: entry.parsed.v, fin: entry.parsed.fin, mark: entry.parsed.mark };
+          } else lexicon = entry;
+          render();
+          var btn = document.querySelector('.word[data-th="' + CSS.escape(thaiParam) + '"]');
+          if (btn) { btn.scrollIntoView({ block: "nearest" }); btn.focus(); }
+          return;
+        }
+        if (!romanParam) return;
+        var want = normRoman(romanParam);
+        var target = TNC_ENTRIES.find(function (e) {
+          if (e.roman && normRoman(e.roman) === want) return true;
+          if (!e.parsed) return false;
+          var L = letterBy(e.parsed.c);
+          var j = Thai.judge(L.cls, e.parsed.c, e.parsed.v, e.parsed.fin, e.parsed.mark);
+          return normRoman(Thai.romanize(e.parsed.c, e.parsed.v, j.final, j.tone)) === want;
+        });
+        if (!target) return;
+        if (target.parsed) {
+          lexicon = null;
+          state = { c: target.parsed.c, v: target.parsed.v, fin: target.parsed.fin, mark: target.parsed.mark };
+        } else lexicon = target;
+        render();
+      }
+      if (romanParam || thaiParam) setTimeout(focusWord, 120);
+    })();
   </script>
 </body>
 </html>

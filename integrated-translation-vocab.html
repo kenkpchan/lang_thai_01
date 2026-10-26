@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Translation vocabulary · Version 1 Clean Essential · 英泰詞彙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+TC:wght@400;600&family=Noto+Serif+TC:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/NotoSansThai-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=6">
+  <link rel="stylesheet" href="css/translation-vocab.css?v=9">
+</head>
+<body class="tv-page">
+  <div id="tv-login" class="tv-login">
+    <div class="tv-login-card">
+      <h2>Sign in · 登入</h2>
+      <p class="tv-hint">Translation vocabulary is private. Use the username and password stored in the app database.</p>
+      <form id="tv-login-form">
+        <label for="tv-login-user">Username</label>
+        <input id="tv-login-user" name="username" type="text" autocomplete="username" required>
+        <label for="tv-login-pass">Password</label>
+        <input id="tv-login-pass" name="password" type="password" autocomplete="current-password" required>
+        <p id="tv-login-error" class="tv-login-error" role="alert"></p>
+        <button type="submit" class="tv-primary">Sign in</button>
+      </form>
+    </div>
+  </div>
+  <div id="tv-app" class="wrap" hidden>
+    <nav class="tv-topnav" aria-label="Workshop pages">
+      <a href="integrated-tone-vocab.html">Tone workshop · 聲調詞彙板</a>
+      <a href="integrated-translation-vocab.html" aria-current="page">Translation · 英泰詞彙</a>
+      <span id="tv-user-label" class="tv-user-label"></span>
+      <button type="button" id="tv-logout" class="tv-logout">Sign out</button>
+    </nav>
+    <p class="kicker">AI-assisted · learner card</p>
+    <h1>Translation vocabulary <em lang="zh-Hant">英泰詞彙 · 簡潔版</em></h1>
+
+    <nav class="tv-appnav" aria-label="App sections">
+      <button type="button" class="tv-appnav-btn is-on" data-view="lookup" aria-current="page">Look up · 查詞</button>
+      <button type="button" class="tv-appnav-btn" data-view="today" hidden>Today · 今日十詞</button>
+      <button type="button" class="tv-appnav-btn" data-view="library">Library · 詞庫</button>
+      <button type="button" class="tv-appnav-btn" data-view="challenge">Challenge · 挑戰</button>
+      <span id="tv-db-mode" class="tv-db-pill">DB · …</span>
+    </nav>
+
+    <section id="tv-view-lookup" class="tv-view">
+      <p class="guide">Saved cards are reused automatically (no extra AI call). Use <strong>Refresh card</strong> when you want a new AI pass.</p>
+      <main class="tv-panel tv-panel-main">
+        <form id="tv-form" class="tv-form">
+          <label for="tv-english">English word or phrase</label>
+          <input id="tv-english" name="english" type="text" autocomplete="off" placeholder="e.g. meeting, thank you, bus stop" maxlength="240" required>
+          <div class="tv-actions">
+            <button type="submit" class="tv-primary">Translate</button>
+            <button type="button" id="tv-refresh-card" class="tv-secondary" hidden>Refresh card (AI)</button>
+          </div>
+        </form>
+        <div id="tv-banner" class="tv-banner" hidden></div>
+        <p id="tv-status" class="tv-status" role="status" aria-live="polite"></p>
+        <div id="tv-result"></div>
+        <section id="tv-related" class="tv-related" hidden aria-label="Related cards">
+          <div class="tv-related-head">
+            <h3>Related · 關聯</h3>
+            <button type="button" id="tv-suggest-links" class="tv-secondary">Suggest links (AI)</button>
+          </div>
+          <div id="tv-related-list"></div>
+          <div id="tv-suggest-list"></div>
+        </section>
+        <div id="tv-revision" class="tv-revision" hidden>
+          <h3 class="tv-rev-title">Revision · 修訂</h3>
+          <label for="tv-notes">Notes</label>
+          <textarea id="tv-notes" rows="3" placeholder="Your notes about this translation…"></textarea>
+          <label for="tv-rev-status">Status</label>
+          <select id="tv-rev-status">
+            <option value="current">Studying · 進行中</option>
+            <option value="draft">Draft · 草稿</option>
+            <option value="reviewed">Done · 完成</option>
+            <option value="archived">Archived · 封存</option>
+          </select>
+          <div class="tv-actions">
+            <button type="button" id="tv-save-notes">Save notes</button>
+            <button type="button" id="tv-retranslate">Re-translate with AI</button>
+            <button type="button" id="tv-delete">Delete card</button>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <section id="tv-view-today" class="tv-view" hidden>
+      <div class="tv-panel tv-today-panel">
+        <p id="tv-today-intro" class="tv-today-intro">Loading queue…</p>
+        <div id="tv-recall" class="tv-recall" hidden>
+          <p class="tv-recall-step" id="tv-recall-step"></p>
+          <p class="tv-recall-cue" id="tv-recall-cue"></p>
+          <p class="tv-hint tv-recall-hint">Say the Thai aloud, then reveal.</p>
+          <button type="button" id="tv-recall-reveal" class="tv-primary">Show Thai</button>
+          <div id="tv-recall-answer" hidden></div>
+          <div id="tv-recall-rate" class="tv-recall-rate" hidden>
+            <span class="tv-recall-rate-label">How well did you recall it?</span>
+            <button type="button" data-rating="again">Again</button>
+            <button type="button" data-rating="hard">Hard</button>
+            <button type="button" data-rating="good">Good</button>
+          </div>
+        </div>
+        <div class="tv-actions tv-today-actions">
+          <button type="button" id="tv-today-start" class="tv-primary">Start recall</button>
+          <button type="button" id="tv-today-reload" class="tv-secondary">Reload queue</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tv-view-challenge" class="tv-view" hidden>
+      <p class="guide tv-challenge-guide-short">Pick a topic, read the Thai, tap a line to hear it · 選主題、讀泰文、點句聽音</p>
+      <details class="tv-challenge-how">
+        <summary>How this works · 運作方式</summary>
+        <p><strong>Auto</strong> lets the server choose live web (Tavily) for today’s news or weather, or practice-only Thai for dialogues. Each run is saved under <strong>Saved topics</strong>. Use <strong>Regenerate</strong> to refresh the same topic without losing your notes.</p>
+      </details>
+      <div id="tv-challenge-layout" class="tv-challenge-layout">
+        <main class="tv-panel tv-panel-main tv-challenge-panel tv-challenge-primary">
+          <div id="tv-challenge-compose" class="tv-challenge-compose">
+            <div class="tv-challenge-tabs" role="tablist" aria-label="Challenge input mode">
+              <button type="button" class="tv-challenge-tab is-on" role="tab" id="tv-challenge-tab-picks" aria-selected="true" aria-controls="tv-challenge-panel-picks" data-challenge-tab="picks">Quick picks · 一鍵</button>
+              <button type="button" class="tv-challenge-tab" role="tab" id="tv-challenge-tab-custom" aria-selected="false" aria-controls="tv-challenge-panel-custom" data-challenge-tab="custom" tabindex="-1">Custom · 自訂</button>
+              <button type="button" class="tv-challenge-tab tv-challenge-tab-saved" role="tab" id="tv-challenge-tab-saved" aria-selected="false" aria-controls="tv-challenge-topics-panel" data-challenge-tab="saved" tabindex="-1">Saved · 主題庫</button>
+            </div>
+            <div id="tv-challenge-panel-picks" class="tv-challenge-tabpanel" role="tabpanel" aria-labelledby="tv-challenge-tab-picks">
+              <p class="tv-hint">Tap to generate and save · 點選即生成並保存</p>
+              <div id="tv-challenge-dupe-choice" class="tv-challenge-dupe-choice" hidden></div>
+              <div id="tv-challenge-starter-chips" class="tv-challenge-starter-groups"></div>
+            </div>
+            <div id="tv-challenge-panel-custom" class="tv-challenge-tabpanel" role="tabpanel" aria-labelledby="tv-challenge-tab-custom" hidden>
+              <form id="tv-challenge-form" class="tv-form">
+                <label for="tv-challenge-prompt">Challenge topic</label>
+                <input id="tv-challenge-prompt" name="prompt" type="text" autocomplete="off" placeholder="e.g. top Thailand headline news, Bangkok weather today" maxlength="400">
+                <label for="tv-challenge-web-mode">Data source · 資料來源</label>
+                <select id="tv-challenge-web-mode" aria-label="Web or practice mode">
+                  <option value="auto" selected>Auto · DeepSeek decides 自動</option>
+                  <option value="live">Live web · Tavily 即時網路</option>
+                  <option value="practice">Practice only · DeepSeek 練習句</option>
+                </select>
+                <div class="tv-actions">
+                  <button type="submit" class="tv-primary" id="tv-challenge-generate">Generate Thai · 生成</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="tv-challenge-session-bar" class="tv-challenge-session-bar" hidden></div>
+          <p id="tv-challenge-status" class="tv-status" role="status" aria-live="polite"></p>
+          <div id="tv-challenge-result"></div>
+          <div id="tv-challenge-revision" class="tv-challenge-revision-compact" hidden></div>
+        </main>
+        <aside id="tv-challenge-topics-panel" class="tv-panel tv-challenge-topics-panel" aria-label="Saved challenge topics">
+          <div class="tv-history-head">
+            <h2>Saved topics · 主題庫</h2>
+          </div>
+          <label class="visually-hidden" for="tv-challenge-topic-search">Search saved topics</label>
+          <input id="tv-challenge-topic-search" type="search" class="tv-search" placeholder="Search topics…" autocomplete="off">
+          <label for="tv-challenge-topic-filter">Status</label>
+          <select id="tv-challenge-topic-filter" aria-label="Topic status filter">
+            <option value="active" selected>Studying · 進行中</option>
+            <option value="all">All · 全部</option>
+            <option value="reviewed">Done · 完成</option>
+            <option value="archived">Archived · 封存</option>
+          </select>
+          <ul id="tv-challenge-topics-list" class="tv-challenge-topics-list"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="tv-view-library" class="tv-view" hidden>
+      <div class="tv-lib-layout">
+        <aside class="tv-lib-list-panel tv-panel" aria-label="Card list">
+          <div class="tv-history-head">
+            <h2>Cards · 詞卡</h2>
+            <button type="button" id="tv-lib-select-toggle" class="tv-secondary tv-lib-select-btn">Select</button>
+          </div>
+          <div id="tv-batch-bar" class="tv-batch-bar" hidden>
+            <span id="tv-batch-count">0 selected</span>
+            <button type="button" data-batch="reviewed">Mark reviewed</button>
+            <button type="button" data-batch="archived">Archive</button>
+            <button type="button" id="tv-batch-clear">Clear</button>
+          </div>
+          <div class="tv-filter-row">
+            <select id="tv-status-filter" aria-label="Filter by status">
+              <option value="">Studying · 進行中 (not archived)</option>
+              <option value="needs_wording">Needs wording check</option>
+              <option value="draft">Draft · 草稿</option>
+              <option value="reviewed">Done · 完成</option>
+              <option value="current">Current</option>
+              <option value="archived">Archived · 封存</option>
+              <option value="all">All · 全部</option>
+            </select>
+          </div>
+          <input id="tv-search" class="tv-search" type="search" placeholder="Search English, Thai, 繁體, roman…" autocomplete="off">
+          <div id="tv-history-list"></div>
+        </aside>
+        <div class="tv-lib-detail-panel tv-panel" id="tv-lib-detail">
+          <p class="tv-hint">Pick a card from the list, or translate a new word in Look up.</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="tv-lib-sheet" class="tv-lib-sheet" hidden>
+      <div class="tv-lib-sheet-backdrop" data-close-sheet></div>
+      <div class="tv-lib-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="tv-sheet-title">
+        <button type="button" class="tv-sheet-close" data-close-sheet aria-label="Close">×</button>
+        <div id="tv-sheet-body"></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/translation-vocab.js?v=12"></script>
+</body>
+</html>

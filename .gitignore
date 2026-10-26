@@ -3,6 +3,13 @@ Thumbs.db
 *.log
 .env
 .env.*
+data/translation-history.json
+data/translation-lookup-log.json
+data/card-links.json
+data/app-users.json
+data/app-sessions.json
+data/review-state.json
+data/challenge-topics.json
 .netlify/
 .netlify-*.json
 *.zip

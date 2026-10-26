@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype C · Review queue + table · 歷史紀錄 C</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+TC:wght@400;600&family=Noto+Serif+TC:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/NotoSansThai-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=6">
+  <link rel="stylesheet" href="css/translation-vocab.css?v=4">
+  <style>
+    .proto-note { font-size: 13px; color: var(--tv-muted); max-width: 72ch; }
+    .ph-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 14px 0 12px;
+      padding: 12px;
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 12px;
+    }
+    .ph-strip strong { margin-right: auto; }
+    .ph-strip button {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: #fff;
+      border: 1px solid var(--tv-border);
+    }
+    .ph-table-wrap {
+      background: var(--tv-card);
+      border: 1px solid var(--tv-border);
+      border-radius: 16px;
+      overflow: auto;
+      margin-bottom: 40px;
+    }
+    table.ph-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .ph-table th, .ph-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--tv-border);
+      text-align: left;
+      vertical-align: top;
+    }
+    .ph-table th {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--tv-muted);
+      background: #f8fafc;
+    }
+    .ph-table tr:hover td { background: #f8fafc; }
+    .ph-table b { font-size: 16px; color: var(--tv-accent-deep); }
+    .ph-table .zh { color: var(--tv-zh-head); font-weight: 600; }
+    .ph-table select { border-radius: 8px; padding: 4px 8px; border: 1px solid var(--tv-border); max-width: 110px; }
+    .ph-table input.notes {
+      width: 100%;
+      min-width: 140px;
+      border: none;
+      background: transparent;
+      border-bottom: 1px dashed var(--tv-border);
+      padding: 4px 0;
+    }
+    .ph-table .acts button {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid var(--tv-border);
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body class="tv-page">
+  <div class="wrap">
+    <p class="kicker">Prototype C · static mock</p>
+    <h1>History — review queue + dense table <em lang="zh-Hant">校對隊列＋表格</em></h1>
+    <p class="proto-note">Top strip: “Needs review” queue with Next. Table rows are rows of work: status dropdown and notes inline, no page change. Best when you treat revision as <em>批核流水線</em> with many cards.</p>
+
+    <div class="ph-strip">
+      <strong>Needs review · 3 cards</strong>
+      <button type="button">Previous</button>
+      <button type="button">Next →</button>
+      <span style="font-size:13px;color:var(--tv-muted)">or filter table below</span>
+    </div>
+
+    <div class="ph-table-wrap">
+      <table class="ph-table">
+        <thead>
+          <tr>
+            <th>Thai</th>
+            <th>English</th>
+            <th>繁體</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b lang="th">ประสบการณ์</b><br><span class="zh" lang="zh-Hant">bprà-sòp-gaan</span></td>
+            <td>experience</td>
+            <td class="zh" lang="zh-Hant">經驗</td>
+            <td><select><option>current</option><option selected>draft</option><option>reviewed</option></select></td>
+            <td><input class="notes" value="Check roman" readonly></td>
+            <td class="acts"><button type="button">Open</button><button type="button">AI</button></td>
+          </tr>
+          <tr>
+            <td><b lang="th">ขอโทษ</b><br><span class="zh" lang="zh-Hant">kŏr-tôht</span></td>
+            <td>sorry</td>
+            <td class="zh" lang="zh-Hant">對不起</td>
+            <td><select><option selected>draft</option><option>reviewed</option></select></td>
+            <td><input class="notes" value="" readonly></td>
+            <td class="acts"><button type="button">Open</button><button type="button">AI</button></td>
+          </tr>
+          <tr>
+            <td><b lang="th">การประชุม</b><br><span class="zh" lang="zh-Hant">gaan bprà-chum</span></td>
+            <td>meeting</td>
+            <td class="zh" lang="zh-Hant">會議</td>
+            <td><select><option>current</option><option selected>reviewed</option></select></td>
+            <td><input class="notes" value="OK" readonly></td>
+            <td class="acts"><button type="button">Open</button><button type="button">AI</button></td>
+          </tr>
+          <tr>
+            <td><b lang="th">เท่าไหร่</b><br><span class="zh" lang="zh-Hant">thâo-rài</span></td>
+            <td>how much</td>
+            <td class="zh" lang="zh-Hant">多少錢</td>
+            <td><select><option>current</option><option>draft</option></select></td>
+            <td><input class="notes" value="Spoken form เท่าไหร่" readonly></td>
+            <td class="acts"><button type="button">Open</button><button type="button">AI</button></td>
+          </tr>
+          <tr>
+            <td><b lang="th">ยา</b><br><span class="zh" lang="zh-Hant">yaa</span></td>
+            <td>medicine</td>
+            <td class="zh" lang="zh-Hant">藥</td>
+            <td><select><option selected>draft</option><option>reviewed</option></select></td>
+            <td><input class="notes" value="Also 藥店 drugstore" readonly></td>
+            <td class="acts"><button type="button">Open</button><button type="button">AI</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

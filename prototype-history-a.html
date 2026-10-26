@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prototype A · Two-pane revision · 歷史紀錄 A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Outfit:wght@400;500;640&family=Noto+Sans+TC:wght@400;600&family=Noto+Serif+TC:wght@560;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/NotoSansThai-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=6">
+  <link rel="stylesheet" href="css/translation-vocab.css?v=4">
+  <style>
+    .proto-note { font-size: 13px; color: var(--tv-muted); max-width: 72ch; }
+    .ph-layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 16px;
+      margin: 16px 0 40px;
+      min-height: 60vh;
+    }
+    .ph-list {
+      background: var(--tv-card);
+      border: 1px solid var(--tv-border);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      max-height: 78vh;
+      overflow: hidden;
+    }
+    .ph-list-head { display: grid; gap: 8px; margin-bottom: 10px; }
+    .ph-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ph-chip {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      background: #f1f5f9;
+      border: 1px solid var(--tv-border);
+    }
+    .ph-chip.on { background: #dbeafe; border-color: #93c5fd; color: var(--tv-accent-deep); }
+    .ph-rows {
+      overflow: auto;
+      display: grid;
+      gap: 6px;
+      padding-right: 4px;
+    }
+    .ph-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .ph-row:hover { border-color: var(--tv-border); }
+    .ph-row.sel { background: #fff; border-color: var(--tv-accent); box-shadow: 0 0 0 1px var(--tv-accent); }
+    .ph-row b { font-size: 17px; color: var(--tv-accent-deep); }
+    .ph-row small { grid-column: 1; font-size: 12px; color: var(--tv-muted); }
+    .ph-row .st {
+      font-size: 10px;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #e2e8f0;
+    }
+    .ph-row .st.reviewed { background: #d1fae5; color: #065f46; }
+    .ph-detail {
+      background: var(--tv-card);
+      border: 1px solid var(--tv-border);
+      border-radius: 16px;
+      padding: 20px;
+      overflow: auto;
+      max-height: 78vh;
+    }
+    .ph-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--tv-border);
+    }
+    .ph-toolbar button {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: #fff;
+      border: 1px solid var(--tv-border);
+    }
+    .ph-toolbar button:first-child { background: var(--tv-accent); color: #fff; border-color: transparent; }
+    .ph-mini-card { max-width: 560px; }
+    @media (max-width: 900px) {
+      .ph-layout { grid-template-columns: 1fr; }
+      .ph-list, .ph-detail { max-height: none; }
+    }
+  </style>
+</head>
+<body class="tv-page">
+  <div class="wrap">
+    <p class="kicker">Prototype A · static mock</p>
+    <h1>History — two-pane revision <em lang="zh-Hant">左右分頁校對</em></h1>
+    <p class="proto-note">Left: narrow card list with status pills and “needs review” chips. Right: large editing area — notes, status, related links — without scrolling the list. Best on desktop for批量修訂.</p>
+
+    <div class="ph-layout">
+      <aside class="ph-list" aria-label="Card list">
+        <div class="ph-list-head">
+          <input class="tv-search" type="search" placeholder="Search…">
+          <div class="ph-chips">
+            <span class="ph-chip on">Needs review (2)</span>
+            <span class="ph-chip">All</span>
+            <span class="ph-chip">Reviewed</span>
+          </div>
+        </div>
+        <div class="ph-rows">
+          <div class="ph-row sel"><div><b lang="th">ประสบการณ์</b><small>experience · 經驗</small></div><span class="st">current</span></div>
+          <div class="ph-row"><div><b lang="th">ขอโทษ</b><small>sorry · 對不起</small></div><span class="st">draft</span></div>
+          <div class="ph-row"><div><b lang="th">การประชุม</b><small>meeting · 會議</small></div><span class="st reviewed">reviewed</span></div>
+          <div class="ph-row"><div><b lang="th">สวัสดี</b><small>hello · 你好</small></div><span class="st">current</span></div>
+          <div class="ph-row"><div><b lang="th">ขอบคุณ</b><small>thank you · 謝謝</small></div><span class="st">draft</span></div>
+          <div class="ph-row"><div><b lang="th">เท่าไหร่</b><small>how much · 多少錢</small></div><span class="st">current</span></div>
+          <div class="ph-row"><div><b lang="th">ห้องน้ำ</b><small>bathroom · 浴室</small></div><span class="st reviewed">reviewed</span></div>
+          <div class="ph-row"><div><b lang="th">อาหาร</b><small>food · 食物</small></div><span class="st">current</span></div>
+          <div class="ph-row"><div><b lang="th">รถเมล์</b><small>bus · 公車</small></div><span class="st">current</span></div>
+          <div class="ph-row"><div><b lang="th">ยา</b><small>medicine · 藥</small></div><span class="st">draft</span></div>
+        </div>
+      </aside>
+      <section class="ph-detail">
+        <div class="ph-toolbar">
+          <button type="button">Mark reviewed</button>
+          <button type="button">Edit notes</button>
+          <button type="button">Refresh card (AI)</button>
+          <button type="button">Archive</button>
+          <button type="button">Merge duplicate…</button>
+        </div>
+        <article class="tv-card-v1 ph-mini-card">
+          <p class="tv-source">English · <strong>experience</strong></p>
+          <h2 class="tv-thai-main" lang="th">ประสบการณ์</h2>
+          <p class="tv-roman">bprà-sòp-gaan / prasopkan</p>
+          <p class="tv-zh-head" lang="zh-Hant">經驗</p>
+          <p class="tv-meaning">The main word for “experience” as a noun, used for life or work experience you have gained.</p>
+        </article>
+        <div class="tv-revision" style="margin-top:16px">
+          <label for="ph-notes">Notes (inline edit)</label>
+          <textarea id="ph-notes" rows="3">Tone check: ประ-สบ-การณ์ — mid cluster.</textarea>
+          <label for="ph-st">Status</label>
+          <select id="ph-st"><option>current</option><option>draft</option><option selected>reviewed</option><option>archived</option></select>
+        </div>
+        <section class="tv-related" style="margin-top:18px">
+          <div class="tv-related-head"><h3>Related · 關聯</h3></div>
+          <button type="button" class="tv-link-chip"><span class="tv-link-rel">same topic</span> <b lang="th">ทำงาน</b> work</button>
+        </section>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
