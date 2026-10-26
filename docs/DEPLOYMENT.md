@@ -82,7 +82,9 @@ Set in **Project configuration → Environment variables** (or run `node scripts
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | **Recommended** — durable history, users, sessions |
 | `SITE_URL` | `https://lang-thai-01.netlify.app` (CORS helper) |
 
-Without Supabase, functions store JSON under `/tmp` on Netlify (works for demos; not durable across cold starts). Run [db/supabase-schema.sql](../db/supabase-schema.sql) in Supabase, then add the two `SUPABASE_*` vars and redeploy.
+**Supabase (production DB):** project **lang-thai-01** — dashboard https://supabase.com/dashboard/project/brccssgixlelsbfgnvkk — API URL `https://brccssgixlelsbfgnvkk.supabase.co`. Schema: [db/supabase-schema.sql](../db/supabase-schema.sql) (already applied). `SUPABASE_*` vars are set on Netlify production.
+
+Without Supabase, functions fall back to `/tmp` JSON (not durable). Prefer Supabase for history and sessions.
 
 **Public access:** the site must not require Netlify SSO for learners. If visitors see **401** / **Netlify SSO Redirect**, turn off SSO for this site under **Project configuration → Access control** (or set site `sso_login` off).
 
